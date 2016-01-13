@@ -43,7 +43,7 @@ public final class ArmPos {
 	public static final double frontStateRearLimitAngle =	112.0;  //AP 03-03  was: AP 2-14 105.6
 	//public static final double frontStateRearLimitAngle =	140.0;  //AP 03-11
 	public static final double rearFlipStart =				150.0;	// AP 2-24
-	//public static final double rearLimitAngle = 			222.5;  //AP 2-14
+	public static final double rearLimitAngle = 			222.5;  //AP 2-14
 	private static final double practiceRearLimitAngle = 	218.0;  //AP 3-24 Practice Robot
 	private static final double competitionRearLimitAngle = 213.0;  //AP 3-27
 	//public static final double rearWheelLimit =				242.0; // AP 2-24
