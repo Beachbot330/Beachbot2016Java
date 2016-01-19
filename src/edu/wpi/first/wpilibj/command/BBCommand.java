@@ -3,7 +3,7 @@
  */
 package edu.wpi.first.wpilibj.command;
 
-import org.usfirst.frc330.Beachbot2016Java.Robot;
+import org.usfirst.frc330.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 

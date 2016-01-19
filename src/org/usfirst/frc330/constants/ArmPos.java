@@ -2,7 +2,7 @@
 
 package org.usfirst.frc330.constants;
 
-import org.usfirst.frc330.Beachbot2016Java.Robot;
+import org.usfirst.frc330.Robot;
 
 public final class ArmPos {
 	

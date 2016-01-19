@@ -1,6 +1,6 @@
 package edu.wpi.first.wpilibj.command;
 
-import org.usfirst.frc330.Beachbot2016Java.Robot;
+import org.usfirst.frc330.Robot;
 
 public class BBCommandGroup extends CommandGroup {
     

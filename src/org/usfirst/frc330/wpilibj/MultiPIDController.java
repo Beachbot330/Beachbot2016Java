@@ -4,7 +4,7 @@
  */
 package org.usfirst.frc330.wpilibj;
 
-import org.usfirst.frc330.Beachbot2016Java.Robot;
+import org.usfirst.frc330.Robot;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;

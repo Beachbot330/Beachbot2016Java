@@ -478,7 +478,7 @@ Properties:
   Java Package: !!robotbuilder.data.properties.StringProperty {default: org.usfirst.frc0000,
     name: Java Package, validators: null, value: org.usfirst.frc330}
   Use Default Java Package: !!robotbuilder.data.properties.BooleanProperty {default: true,
-    name: Use Default Java Package, validators: null, value: true}
+    name: Use Default Java Package, validators: null, value: false}
   Team Number: !!robotbuilder.data.properties.IntegerProperty {default: 0, name: Team Number,
     validators: null, value: 330}
   Export Subsystems: !!robotbuilder.data.properties.BooleanProperty {default: true,
