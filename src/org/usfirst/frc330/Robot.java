@@ -91,6 +91,12 @@ public class Robot extends IterativeRobot {
         beep.start();
         
     }
+    
+    /*****************************************************************
+     * 
+     * OTHER METHODS (Don't know where to put them?? Put them here)
+     * 
+     ****************************************************************/
 
     /**
      * This function is called when the disabled button is hit.
@@ -101,12 +107,31 @@ public class Robot extends IterativeRobot {
     	logger.updateDate();
     }
 
+    
     public void disabledPeriodic() {
     	Scheduler.getInstance().run();
     	chassis.calcXY();
     	csvLogger.writeData();
     }
 
+    public static boolean isPracticeRobot() {
+        return (frills.isPracticeRobot());
+    }
+    
+    /*****************************************************************
+     * 
+     * AUTONOMOUS METHODS
+     * 
+     ****************************************************************/
+    
+    /**
+     * This function is responsible for initialization for autonomous
+     * mode 
+     * 
+     * 1. Log entry for Autonomous Initialization
+     * 2. Reset position
+     * 3. Autonomous command
+     */
     public void autonomousInit() {
     	
     	logger.println("Autonomous Init");
@@ -131,6 +156,19 @@ public class Robot extends IterativeRobot {
     	csvLogger.writeData();
     }
 
+    /*****************************************************************
+     * 
+     * TELEOP METHODS
+     * 
+     ****************************************************************/
+    
+    /**
+     * This function is responsible for initialization for teleop
+     * mode. 
+     * 
+     * 1. Log entry for Teleop Initialization
+     * 2. Sound the buzzer
+     */
     public void teleopInit() {
     	
     	logger.println("Teleop Init");
@@ -155,6 +193,17 @@ public class Robot extends IterativeRobot {
     	csvLogger.writeData();
     }
     
+    /*****************************************************************
+     * 
+     * TEST METHODS
+     * 
+     ****************************************************************/
+    
+    /**
+     * This function is responsible for initialization for test mode. 
+     * 
+     * 1. Log entry for Test Initialization
+     */
     public void testInit() {
         logger.println("Test Init");
     }
@@ -166,9 +215,5 @@ public class Robot extends IterativeRobot {
     	LiveWindow.run();
         chassis.calcXY();
         csvLogger.writeData();
-    }
-    
-    public static boolean isPracticeRobot() {
-        return (frills.isPracticeRobot());
     }
 }
