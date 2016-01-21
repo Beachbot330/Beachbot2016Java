@@ -47,5 +47,24 @@ public class Climber extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
+    
+    public void solenoidDeploy(){
+    	pivot.set(true);
+    }
+    public void solenoidRetract(){
+    	pivot.set(false);
+    }
+    public void ratchetEngage(){
+    	ratchet.set(true);
+    }
+    public void ratchetDisengage(){
+    	ratchet.set(false);
+    }
+    public void engagePTO(){
+    	powerTakeOff.set(true);
+    }
+    public void disengagePTO(){
+    	powerTakeOff.set(false);
+    }
 }
 
