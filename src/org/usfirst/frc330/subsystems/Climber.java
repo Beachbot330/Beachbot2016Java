@@ -66,5 +66,9 @@ public class Climber extends Subsystem {
     public void disengagePTO(){
     	powerTakeOff.set(false);
     }
+    public void stopClimber(){
+    	ratchetEngage();
+    	disengagePTO();
+    }
 }
 

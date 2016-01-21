@@ -55,5 +55,15 @@ public class Pickup extends Subsystem {
     public void shootSolenoidOff(){
     	shooter.set(false);
     }
+    public void pickupForward(){
+    	//TODO: Implement
+    }
+    public void pickupReverse(){
+    	//TODO: Implement
+    }
+    public void stopPickup(){
+    	pickupR.set(0);
+    	pickupL.set(0);
+    }
 }
 
