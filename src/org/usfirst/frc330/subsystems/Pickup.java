@@ -14,6 +14,7 @@ package org.usfirst.frc330.subsystems;
 import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.*;
 
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -46,6 +47,13 @@ public class Pickup extends Subsystem {
 
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
+    }
+    
+    public void shootSolenoidOn(){
+    	shooter.set(true);
+    }
+    public void shootSolenoidOff(){
+    	shooter.set(false);
     }
 }
 
