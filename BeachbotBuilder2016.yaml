@@ -239,6 +239,18 @@ Children:
           value: '5'
       Base: Quadrature Encoder
       Name: driveTrainEncoderR
+    - Children: []
+      Properties:
+        UpdateRate: !!robotbuilder.data.properties.IntegerProperty {default: 50, name: UpdateRate,
+          validators: null, value: 50}
+        Port: !!robotbuilder.data.properties.ChoicesProperty
+          choices: [SPI]
+          default: SPI
+          name: Port
+          validators: null
+          value: SPI
+      Base: NavX
+      Name: Imu
     Properties:
       Default command parameters: !!robotbuilder.data.properties.ParametersProperty
         default: []
@@ -1063,7 +1075,7 @@ Children:
   Base: Commands
   Name: Commands
 Properties:
-  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\allenpeters\workspace',
+  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Joe-XPS13-W7\workspace',
     extension: null, folder: true, name: Eclipse Workspace, validators: null, value: ..\}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
@@ -1082,7 +1094,7 @@ Properties:
     name: Export Subsystems, validators: null, value: true}
   Simulation World File: !!robotbuilder.data.properties.StringProperty {default: /usr/share/frcsim/worlds/GearsBotDemo.world,
     name: Simulation World File, validators: null, value: /usr/share/frcsim/worlds/GearsBotDemo.world}
-  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\allenpeters\',
+  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Joe-XPS13-W7\',
     extension: null, folder: true, name: Wiring file location, validators: null, value: 'C:\Users\allenpeters\'}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
     name: Autonomous Command, type: Command, validators: null, value: Autonomous Command}
