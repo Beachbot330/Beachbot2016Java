@@ -73,6 +73,7 @@ public class Robot extends IterativeRobot {
         // pointers. Bad news. Don't move it.
         oi = new OI();
     
+        autoChooser = new SendableChooser();
         SmartDashboard.putData("Autonomous mode chooser", autoChooser);
         csvLogger.writeHeader();
         logger.println("Robot Init");
