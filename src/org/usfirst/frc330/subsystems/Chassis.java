@@ -299,5 +299,44 @@ public class Chassis extends Subsystem {
             this.right = 0;
         }
     } /* End pidDriveAuto() */
+    
+    
+    public void shiftHigh()
+    {
+    	shifter.set(DoubleSolenoid.Value.kForward);
+    }
+    
+    public void shiftLow()
+    {
+    	shifter.set(DoubleSolenoid.Value.kReverse);
+    }
+    
+    public boolean isHighGear() {
+    	return (shifter.get() == DoubleSolenoid.Value.kForward);
+    }
+    
+    
+    /////////////////////////////////////////////////////////////
+    // GET methods
+    /////////////////////////////////////////////////////////////   
+    public double getX() {
+        return x;
+    }
+    
+    public double getY() {
+        return y;
+    }
+    
+    public double getLeftDistance() {
+    	return driveTrainEncoderL.getDistance();
+    }
+    
+    public double getRightDistance() {
+    	return driveTrainEncoderR.getDistance();
+    }
+    
+//    public double getPressure() {
+//    	return 37.5*(pressureSensor.getAverageVoltage()- 0.5);
+//    }
 }
 
