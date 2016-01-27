@@ -14,6 +14,7 @@ package org.usfirst.frc330.subsystems;
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.*;
+import org.usfirst.frc330.constants.ArmPos;
 import org.usfirst.frc330.constants.TurretPos;
 import org.usfirst.frc330.constants.TurretPos;
 import org.usfirst.frc330.util.CSVLoggable;
@@ -114,12 +115,30 @@ public class Turret extends Subsystem {
 	/////////////////////////////////////////////////////////////
 	// SET methods
 	/////////////////////////////////////////////////////////////
-	// TODO: Check the logic
+
 	public void setTurret(double output){
-		if (getTurretAngle() > TurretPos.limitAngleCW)
-			turret.set(0);
-		else if (getTurretAngle() < TurretPos.limitAngleCCW)
-			turret.set(0);
+		double limitCW, limitCCW;
+		
+		//Reduced CW limit if arm is low
+		if (Robot.arm.getArmAngle() < ArmPos.armSafeLimit){ 
+			limitCW = TurretPos.turretSafeLimitCW;
+			limitCCW = TurretPos.turretSafeLimitCCW;
+		}
+		else{
+			limitCW = TurretPos.limitAngleCW;
+			limitCCW = TurretPos.limitAngleCCW;
+		}
+		
+		
+		//Don't rotate too far CW
+		if (getTurretAngle() > limitCW && output > 0)
+			turret.set(0.0);
+		
+		//Dont't rotate too far CCW
+		else if (getTurretAngle() < limitCCW && output < 0)
+			turret.set(0.0);
+		
+		//Check current limits	
 /*		else if (output > 0 && Robot.powerDP.getArmLeftCurrent() < ArmPos.currentLowerLimit)
 			arm.set(0);
 		else if (output < 0 && Robot.powerDP.getArmLeftCurrent() > ArmPos.currentUpperLimit)
@@ -128,8 +147,11 @@ public class Turret extends Subsystem {
 			arm.set(0);
 		else if (output < 0 && Robot.powerDP.getArmRightCurrent() > ArmPos.currentUpperLimit)
 			arm.set(0);*/
+		
+		//Else Go!
 		else
 			turret.set(output);
+
 	}
 
 

@@ -20,6 +20,7 @@ public final class ArmPos {
 	
 	// Angles
 	public static final double limitLowerAngle   = 0.0;   //AP 1-26
+	public static final double armSafeLimit	     = 45.0;  //AP 1-26
 	public static final double limitUpperAngle   = 90.0;  //AP 1-26
 
 	//Current

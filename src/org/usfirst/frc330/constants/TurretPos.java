@@ -16,8 +16,10 @@ public final class TurretPos {
 	public static final double feedForward	   = 2.0;  //TODO: Set Initial Value
 
 	//Angles
-	public static final double limitAngleCCW =	-170.0; // AP 1-26
-	public static final double limitAngleCW =	 170.0; // AP 1-26
+	public static final double limitAngleCCW   		= -170.0; 	// AP 1-26
+	public static final double turretSafeLimitCCW 	=   -5.0; 	// AP 1-26
+	public static final double turretSafeLimitCW 	=    5.0; 	// AP 1-26
+	public static final double limitAngleCW    		=  170.0; 	// AP 1-26
 	
 	//Current
 	//public static final double currentLowerLimit = -50;
