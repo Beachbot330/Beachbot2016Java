@@ -65,5 +65,11 @@ public class Pickup extends Subsystem {
     	pickupR.set(0);
     	pickupL.set(0);
     }
+    public void openLid(){
+    	pickupLid.set(true);
+    }
+    public void closeLid(){
+    	pickupLid.set(false);
+    }
 }
 
