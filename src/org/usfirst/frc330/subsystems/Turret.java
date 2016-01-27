@@ -210,7 +210,7 @@ public class Turret extends Subsystem {
 	//////////////////////////
 	double tempSetpoint;
 	public void manualTurret() {
-		double turretCommand = Robot.oi.armJoystick.getY(); //TODO: Change this to the proper control
+		double turretCommand = Robot.oi.armJoystick.getZ();
 		if (Math.abs(turretCommand) > 0.03)
 		{
 			if (turretPID.isEnabled())
