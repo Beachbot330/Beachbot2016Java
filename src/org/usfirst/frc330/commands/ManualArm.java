@@ -42,6 +42,7 @@ public class ManualArm extends BBCommand {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.arm.manualArm();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -51,6 +52,9 @@ public class ManualArm extends BBCommand {
 
     // Called once after isFinished returns true
     protected void end() {
+    	if (!Robot.arm.isEnable()) {
+            Robot.arm.setArm(0);
+      	}
     }
 
     // Called when another command which requires one or more of the same

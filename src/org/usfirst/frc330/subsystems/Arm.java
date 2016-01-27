@@ -15,6 +15,7 @@ import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.*;
 import org.usfirst.frc330.constants.ArmPos;
+import org.usfirst.frc330.constants.TurretPos;
 import org.usfirst.frc330.util.CSVLoggable;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -175,11 +176,9 @@ public class Arm extends Subsystem {
     /* Control the arm manually */
     public void manualArm() {
 
-    	double armCommand = Robot.oi.driverL.getY(); /* TODO: can change this */  	
-    	double value = 0.3;
+    	double armCommand = Robot.oi.armJoystick.getY();	
 
-    	// TODO: What is this value for?
-    	if ( Math.abs(armCommand) > value ) {
+    	if ( Math.abs(armCommand) > ArmPos.deadZone) {
 			if (armPID.isEnabled())
 				armPID.disable();
 		} else if ( !armPID.isEnabled() ) {
