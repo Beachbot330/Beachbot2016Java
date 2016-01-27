@@ -145,10 +145,10 @@ public class Arm extends Subsystem {
 	/* Set the arm */
     public void setArm(double output) {
     	/* AHHHH! The arm would eat the ground */
-    	if ( getArmAngle() < ArmPos.limitLowerAngle ) {
+    	if ( getArmAngle() < ArmPos.limitLowerAngle && output < 0) {
     		arm.set(0);
     	/* OH NOES! The arm would flip off the back of the robot */
-    	} else if ( getArmAngle() > ArmPos.limitUpperAngle ) {
+    	} else if ( getArmAngle() > ArmPos.limitUpperAngle && output > 0) {
     		arm.set(0);
     	/* We good */
     	} else {
