@@ -103,7 +103,10 @@ public class Robot extends IterativeRobot {
         autoObstacle.addObject("Sally Port", new SallyPort());
         autoObstacle.addObject("Teeter Totter", new TeeterTotter());
         
-        SmartDashboard.putData("Auto Porgram", autoProgram);
+        /* Set to a default value */
+        autoObstacle.addDefault("Drawbridge", new Drawbridge());
+        
+        SmartDashboard.putData("Auto Program", autoProgram);
         SmartDashboard.putData("Robot Start Position", autoStartPosition);
         SmartDashboard.putData("Obstacle", autoObstacle);
         
@@ -145,7 +148,7 @@ public class Robot extends IterativeRobot {
     public static boolean isPracticeRobot() {
         return (frills.isPracticeRobot());
     }
-    
+
     public static Command getObstacle() {
     	return (Command)autoObstacle.getSelected();
     }
