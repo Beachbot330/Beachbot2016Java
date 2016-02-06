@@ -24,8 +24,8 @@ public class ArmToNeutral extends BBCommandGroup {
 
     public ArmToNeutral() {
     	
-    	addParallel(new SetTurretPosition(TurretPos.neutral));
-    	addParallel(new SetArmPosition(ArmPos.neutral));
+    	addParallel(new SetTurretPosition(TurretConst.neutral));
+    	addParallel(new SetArmPosition(ArmConst.neutral));
     	addParallel(new PickupOff());
  
     } 

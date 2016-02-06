@@ -14,9 +14,9 @@ package org.usfirst.frc330.subsystems;
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.*;
-import org.usfirst.frc330.constants.ArmPos;
-import org.usfirst.frc330.constants.TurretPos;
-import org.usfirst.frc330.constants.TurretPos;
+import org.usfirst.frc330.constants.ArmConst;
+import org.usfirst.frc330.constants.TurretConst;
+import org.usfirst.frc330.constants.TurretConst;
 import org.usfirst.frc330.util.CSVLoggable;
 
 import edu.wpi.first.wpilibj.CANTalon;
@@ -93,10 +93,10 @@ public class Turret extends Subsystem {
 		super();
 
 		// Turret PIDController object
-		turretPID = new PIDController(TurretPos.proportional,
-				TurretPos.integral,
-				TurretPos.derivitive,turretPIDSource,turretPIDOutput, 0.01);
-		turretPID.setAbsoluteTolerance(TurretPos.tolerance);
+		turretPID = new PIDController(TurretConst.proportional,
+				TurretConst.integral,
+				TurretConst.derivitive,turretPIDSource,turretPIDOutput, 0.01);
+		turretPID.setAbsoluteTolerance(TurretConst.tolerance);
 
 		// Add to Smart Dashboard
 		SmartDashboard.putData("TurretPID", turretPID);
@@ -120,13 +120,13 @@ public class Turret extends Subsystem {
 		double limitCW, limitCCW;
 		
 		//Reduced CW limit if arm is low
-		if (Robot.arm.getArmAngle() < ArmPos.armSafeLimit){ 
-			limitCW = TurretPos.turretSafeLimitCW;
-			limitCCW = TurretPos.turretSafeLimitCCW;
+		if (Robot.arm.getArmAngle() < ArmConst.armSafeLimit){ 
+			limitCW = TurretConst.turretSafeLimitCW;
+			limitCCW = TurretConst.turretSafeLimitCCW;
 		}
 		else{
-			limitCW = TurretPos.limitAngleCW;
-			limitCCW = TurretPos.limitAngleCCW;
+			limitCW = TurretConst.limitAngleCW;
+			limitCCW = TurretConst.limitAngleCCW;
 		}
 		
 		
@@ -241,10 +241,10 @@ public class Turret extends Subsystem {
 		else if (!turretPID.isEnabled())
 		{
 			tempSetpoint = this.getTurretAngle();
-			if(tempSetpoint > TurretPos.limitAngleCW)
-				tempSetpoint = TurretPos.limitAngleCW;
-			else if(tempSetpoint < TurretPos.limitAngleCCW)
-				tempSetpoint = TurretPos.limitAngleCCW;
+			if(tempSetpoint > TurretConst.limitAngleCW)
+				tempSetpoint = TurretConst.limitAngleCW;
+			else if(tempSetpoint < TurretConst.limitAngleCCW)
+				tempSetpoint = TurretConst.limitAngleCCW;
 			turretPID.setSetpoint(tempSetpoint);
 			turretPID.enable();
 		} 

@@ -13,7 +13,7 @@ package org.usfirst.frc330.commands;
 
 
 import org.usfirst.frc330.Robot;
-import org.usfirst.frc330.constants.ArmPos;
+import org.usfirst.frc330.constants.ArmConst;
 
 import edu.wpi.first.wpilibj.command.BBCommand;
 
@@ -26,7 +26,7 @@ public class  SetArmPosition extends BBCommand {
 	double tolerance;
     
 	public SetArmPosition(double angle) {
-		this(angle, ArmPos.tolerance, -1.0);
+		this(angle, ArmConst.tolerance, -1.0);
 	}
 	
 	public SetArmPosition(double angle, double tolerance){

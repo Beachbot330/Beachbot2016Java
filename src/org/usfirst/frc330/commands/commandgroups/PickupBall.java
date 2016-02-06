@@ -23,8 +23,8 @@ public class PickupBall extends BBCommandGroup {
 
     public PickupBall() {
     	addParallel (new RetractPortcullisStinger());
-    	addParallel(new SetTurretPosition(TurretPos.center, TurretPos.pickupTolerance));
-    	addParallel(new SetArmPosition(ArmPos.pickupAngle, ArmPos.pickupTolerance));
+    	addParallel(new SetTurretPosition(TurretConst.center, TurretConst.pickupTolerance));
+    	addParallel(new SetArmPosition(ArmConst.pickupAngle, ArmConst.pickupTolerance));
     	addSequential(new LidClose());
     	addSequential(new PickupOn()); 	
     } 

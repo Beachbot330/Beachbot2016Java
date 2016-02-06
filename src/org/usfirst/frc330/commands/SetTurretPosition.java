@@ -13,7 +13,7 @@ package org.usfirst.frc330.commands;
 
 
 import org.usfirst.frc330.Robot;
-import org.usfirst.frc330.constants.TurretPos;
+import org.usfirst.frc330.constants.TurretConst;
 
 import edu.wpi.first.wpilibj.command.BBCommand;
 
@@ -26,7 +26,7 @@ public class  SetTurretPosition extends BBCommand {
 	double tolerance;
     
 	public SetTurretPosition(double angle) {
-		this(angle, TurretPos.tolerance, -1.0);
+		this(angle, TurretConst.tolerance, -1.0);
 	}
 	
 	public SetTurretPosition(double angle, double tolerance){

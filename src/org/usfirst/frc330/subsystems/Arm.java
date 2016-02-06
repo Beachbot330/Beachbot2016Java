@@ -14,8 +14,8 @@ package org.usfirst.frc330.subsystems;
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.*;
-import org.usfirst.frc330.constants.ArmPos;
-import org.usfirst.frc330.constants.TurretPos;
+import org.usfirst.frc330.constants.ArmConst;
+import org.usfirst.frc330.constants.TurretConst;
 import org.usfirst.frc330.util.CSVLoggable;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -104,13 +104,13 @@ public class Arm extends Subsystem {
     	
     	// Arm PIDController object
     	armPID = new PIDController(
-    			ArmPos.proportional, 
-    			ArmPos.integral, 
-    			ArmPos.derivative, 
+    			ArmConst.proportional, 
+    			ArmConst.integral, 
+    			ArmConst.derivative, 
     			armPIDSource, 
     			armPIDOutput,
     			0.01);
-    	armPID.setAbsoluteTolerance(ArmPos.tolerance);
+    	armPID.setAbsoluteTolerance(ArmConst.tolerance);
     	
     	// Add to Smart Dashboard
     	SmartDashboard.putData("ArmPID", armPID);
@@ -150,17 +150,17 @@ public class Arm extends Subsystem {
     public void setArm(double output) {
     	
     	// Is the turret centered?
-    	boolean centered = Robot.turret.getTurretAngle() < TurretPos.turretSafeLimitCW &&
-    					   Robot.turret.getTurretAngle() > TurretPos.turretSafeLimitCCW;
+    	boolean centered = Robot.turret.getTurretAngle() < TurretConst.turretSafeLimitCW &&
+    					   Robot.turret.getTurretAngle() > TurretConst.turretSafeLimitCCW;
     					   
     	//Don't let the arm go down if the turret is not centered
     	if ( !centered && output < 0)
     		arm.set(0);
     	/* AHHHH! The arm would eat the ground */
-    	else if ( getArmAngle() < ArmPos.limitLowerAngle && output < 0) {
+    	else if ( getArmAngle() < ArmConst.limitLowerAngle && output < 0) {
     		arm.set(0);
     	/* OH NOES! The arm would flip off the back of the robot */
-    	} else if ( getArmAngle() > ArmPos.limitUpperAngle && output > 0) {
+    	} else if ( getArmAngle() > ArmConst.limitUpperAngle && output > 0) {
     		arm.set(0);
     	/* We good */
     	} else {
@@ -190,16 +190,16 @@ public class Arm extends Subsystem {
 
     	double armCommand = Robot.oi.armJoystick.getY();	
 
-    	if ( Math.abs(armCommand) > ArmPos.deadZone) {
+    	if ( Math.abs(armCommand) > ArmConst.deadZone) {
 			if (armPID.isEnabled())
 				armPID.disable();
 		} else if ( !armPID.isEnabled() ) {
     		tempSetPoint = this.getArmAngle();
     		
-    		if ( tempSetPoint < ArmPos.limitLowerAngle ) {
-    			tempSetPoint = ArmPos.limitLowerAngle;
-    		} else if ( tempSetPoint > ArmPos.limitUpperAngle ) {
-    			tempSetPoint = ArmPos.limitUpperAngle;
+    		if ( tempSetPoint < ArmConst.limitLowerAngle ) {
+    			tempSetPoint = ArmConst.limitLowerAngle;
+    		} else if ( tempSetPoint > ArmConst.limitUpperAngle ) {
+    			tempSetPoint = ArmConst.limitUpperAngle;
     		}
     	
     		armPID.setSetpoint(tempSetPoint);
