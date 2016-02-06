@@ -110,6 +110,7 @@ public class Arm extends Subsystem {
     			armPIDSource, 
     			armPIDOutput,
     			0.01);
+    	armPID.setAbsoluteTolerance(ArmPos.tolerance);
     	
     	// Add to Smart Dashboard
     	SmartDashboard.putData("ArmPID", armPID);
@@ -218,4 +219,25 @@ public class Arm extends Subsystem {
     public synchronized boolean isEnable() {
 		return armPID.isEnabled();
 	}
+    
+    public void setArmAbsoluteTolerance(double absvalue) {
+		armPID.setAbsoluteTolerance(absvalue);
+	}
+    
+    // Method to Enable Arm
+    public synchronized void enableArm() {
+        armPID.enable();
+    }
+    
+    // Method to check if Arm is on target
+    public synchronized boolean onArmTarget() {
+        return armPID.onTarget();
+    }
+    
+    public void retractStinger() {
+    	portcullisWedge.set(false);
+    }
+    public void deployStinger() {
+    	portcullisWedge.set(true);
+    }
 }
