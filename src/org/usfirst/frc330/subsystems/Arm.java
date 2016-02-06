@@ -135,8 +135,12 @@ public class Arm extends Subsystem {
 		return 0.0;//TODO: Write this method
 	}
 
-	public double getArmOutput() {
-		return arm.get();
+	public double getArmLOutput() {
+		return armL.get();
+	}
+	
+	public double getArmROutput() {
+		return armR.get();
 	}
     
 	public double pidGet() {
@@ -154,17 +158,22 @@ public class Arm extends Subsystem {
     					   Robot.turret.getTurretAngle() > TurretConst.turretSafeLimitCCW;
     					   
     	//Don't let the arm go down if the turret is not centered
-    	if ( !centered && output < 0)
-    		arm.set(0);
+    	if ( !centered && output < 0) {
+    		armL.set(0);
+    		armR.set(0);
+    	}
     	/* AHHHH! The arm would eat the ground */
     	else if ( getArmAngle() < ArmConst.limitLowerAngle && output < 0) {
-    		arm.set(0);
+    		armL.set(0);
+    		armR.set(0);
     	/* OH NOES! The arm would flip off the back of the robot */
     	} else if ( getArmAngle() > ArmConst.limitUpperAngle && output > 0) {
-    		arm.set(0);
+    		armL.set(0);
+    		armR.set(0);
     	/* We good */
     	} else {
-    		arm.set(output);
+    		armL.set(output);
+    		armR.set(output);
     	}
     }
     

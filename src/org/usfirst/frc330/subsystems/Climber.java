@@ -51,7 +51,7 @@ public class Climber extends Subsystem {
     }
     
     public void lowerClimberDeploy(){
-    	pivotLow.set(DoubleSolenoid.Value.kForward);;
+    	pivotLow.set(DoubleSolenoid.Value.kForward);
     }
     public void upperClimberDeploy(){
     	pivotHigh.set(DoubleSolenoid.Value.kForward);
