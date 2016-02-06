@@ -41,7 +41,7 @@ public class ShootWithoutLid extends BBCommand {
     // Called just before this Command runs the first time
     protected void initialize() {
         shootOffTimer = Timer.getFPGATimestamp() + 0.5;
-        Robot.pickup.shootSolenoidOn();
+        Robot.pickup.shootSolenoidsOn();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -55,12 +55,12 @@ public class ShootWithoutLid extends BBCommand {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.pickup.shootSolenoidOff();
+    	Robot.pickup.shootSolenoidsOff();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.pickup.shootSolenoidOff();
+    	Robot.pickup.shootSolenoidsOff();
     }
 }

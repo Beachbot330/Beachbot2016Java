@@ -13,6 +13,8 @@ package org.usfirst.frc330.subsystems;
 
 import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.*;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -48,17 +50,11 @@ public class Climber extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
     
-    public void solenoidDeploy(){
-    	pivot.set(true);
+    public void lowerClimberDeploy(){
+    	pivotLow.set(DoubleSolenoid.Value.kForward);;
     }
-    public void solenoidRetract(){
-    	pivot.set(false);
-    }
-    public void ratchetEngage(){
-    	ratchet.set(true);
-    }
-    public void ratchetDisengage(){
-    	ratchet.set(false);
+    public void upperClimberDeploy(){
+    	pivotHigh.set(DoubleSolenoid.Value.kForward);
     }
     public void engagePTO(){
     	powerTakeOff.set(true);
@@ -67,7 +63,6 @@ public class Climber extends Subsystem {
     	powerTakeOff.set(false);
     }
     public void stopClimber(){
-    	ratchetEngage();
     	disengagePTO();
     }
 }
