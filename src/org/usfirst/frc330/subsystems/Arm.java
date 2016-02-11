@@ -130,9 +130,21 @@ public class Arm extends Subsystem {
 	/////////////////////////////////////////////////////////////
 	// GET methods
 	/////////////////////////////////////////////////////////////
+    
+    // Get input from encoder for Arm
     public double getArmAngle()
 	{
-		return 0.0;//TODO: Write this method
+    	double fetchEncoder = armL.getPosition();
+    	double count2deg    = 0.0;
+    	 	
+    	// NOTES: 
+    	// 4096 counts per revolution
+    	// 5 revolution of encoder to revolution of arm
+    	// TLDR; This means 0-72 degrees = 0-4096 counts
+    	
+    	count2deg = (ArmConst.maxAngleDegrees * fetchEncoder) / ArmConst.maxEncoderCounts;
+    	
+		return count2deg;
 	}
 
 	public double getArmLOutput() {
@@ -190,6 +202,27 @@ public class Arm extends Subsystem {
 	{
 		armPID.setPID(P, I, D, F);
 	}
+    
+    // Quadrants are zero-indexed (0-4)
+    // 0 = Lowest; 4 = Highest
+    public void setQuadrantPosition(int quadrant)
+    {
+    	// Grab positioning from arm angle
+    	double positionRawCount = armL.getPosition();
+    	int    tempCtn          = 0;
+    	
+    	if ( quadrant >= ArmConst.minQuadrant && quadrant <= ArmConst.maxQuadrant )
+    	{
+    		// Set the position
+    		tempCtn = ArmConst.maxEncoderCounts * quadrant;
+    		armL.setPosition(positionRawCount + tempCtn);
+    	}
+    	else
+    	{
+    		throw new RuntimeException("setQuadrantPosition: Quadrant must be integer value 0-4.");
+    	}  	
+    	
+    }
     
 	/////////////////////////////////////////////////////////////
 	// OTHER Methods (helper functions and commands)
