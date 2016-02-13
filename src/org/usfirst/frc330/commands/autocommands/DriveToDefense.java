@@ -14,7 +14,7 @@ package org.usfirst.frc330.commands.autocommands;
 
 import org.usfirst.frc330.commands.drivecommands.*;
 
-import edu.wpi.first.wpilibj.command.BBCommand;
+
 import edu.wpi.first.wpilibj.command.BBCommandGroup;
 
 /**
@@ -25,7 +25,6 @@ public class DriveToDefense extends BBCommandGroup {
     public  DriveToDefense() {
     	
     	//Drive to the outer works to score points
-    	BBCommand driveCommand = new DriveWaypoint(0.0, 73.0, 4.0, 3.0, true);  //X Y Tol Timeout Stop
-    	addSequential(driveCommand);
+    	addSequential(new DriveWaypoint(0.0, 73.0, 4.0, 3.0, true));  //X Y Tol Timeout Stop
     }
 }

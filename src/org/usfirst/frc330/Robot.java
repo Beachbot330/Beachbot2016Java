@@ -153,7 +153,7 @@ public class Robot extends IterativeRobot {
     	return (Command)autoObstacle.getSelected();
     }
     
-    public static Command getPosition() {
+    public static Command getStartPosition() {
     	return (Command)autoStartPosition.getSelected();
     }
     
