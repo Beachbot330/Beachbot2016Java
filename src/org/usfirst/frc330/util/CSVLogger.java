@@ -47,7 +47,6 @@ public class CSVLogger {
 		try {
 			roboRIOWriter = new BufferedWriter(new FileWriter(roboRIOFile));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -81,7 +80,6 @@ public class CSVLogger {
 			try {
 				roboRIOWriter.write(header);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     	}
@@ -132,7 +130,6 @@ public class CSVLogger {
 			try {
 				roboRIOWriter.write(b.toString());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     	}
