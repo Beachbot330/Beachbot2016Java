@@ -13,6 +13,7 @@ package org.usfirst.frc330.subsystems;
 
 import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.*;
+import org.usfirst.frc330.constants.ChassisConst;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -68,31 +69,72 @@ public class Pickup extends Subsystem
     	shooterSecondStage1.set(false);
     	shooterSecondStage2.set(false);
     }
-
+    
+    //Picks up foward
     public void pickupForward()
     {
+    	
     	//TODO: Implement
+    	
+    	// Close the lid
+    	closeLid();
+    	
+    	// Turn on right and left motors
+    	// for sucking in
+    	startPickup(true);
+    	
     }
-
+    
+    // reverses pick up
     public void pickupReverse()
     {
     	//TODO: Implement
+    	
+    	// Closes the lid
+    	closeLid();
+    
+    	// Turn on the right and left motors 
+    	// for throwing out
+    	startPickup(false);
+    	
     }
-
+    
+    // this initiates pick up system 
+    // note: set in chassis constant
+    // 	true means pick up forward
+    //	false means pick up reverse 
+    public void startPickup(boolean choice)
+    {
+    	if(choice)
+    	{
+    		pickupR.set(ChassisConst.pickupSpeed);
+    		pickupL.set(ChassisConst.pickupSpeed);
+    	}
+    	else
+    	{
+    		pickupR.set(-(ChassisConst.pickupSpeed));
+    		pickupL.set(-(ChassisConst.pickupSpeed));
+    	}
+    }
+   
+    // this stops the the pickup
     public void stopPickup()
     {
     	pickupR.set(0);
     	pickupL.set(0);
     }
-
+    
+    // this opens the lid
     public void openLid()
     {
     	pickupLid.set(DoubleSolenoid.Value.kForward);
     }
-
+    
+    // this closes the lid
     public void closeLid()
     {
     	pickupLid.set(DoubleSolenoid.Value.kReverse);
     }
+    
 }
 

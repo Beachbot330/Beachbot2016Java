@@ -166,7 +166,7 @@ public class Turret extends Subsystem {
 	/////////////////////////////////////////////////////////////	
 	public double getTurretAngle()
 	{
-		return 0.0;//TODO: Write this method
+		return turret.getPosition();
 	}
 
 	public double getTurretOutput() {

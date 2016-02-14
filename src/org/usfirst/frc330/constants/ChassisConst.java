@@ -12,6 +12,8 @@ public final class ChassisConst {
 	public static final double defaultMaxOutput = 0.8;
 	public static final double defaultMaxOutputStep = 0.1;
 	
+	// Pick Up Speed
+	public static final double pickupSpeed = 1.0;
 	
 	//Encoder Distance Constants
     public static final double wheelDiameter = 6;
