@@ -7,16 +7,19 @@ public final class TurretConst {
 	private TurretConst(){}
 
 	// Tolerance
-	public static final double tolerance         = 0.5;  //TODO: Initial Value
-	public static final double pickupTolerance	 = 5.0;  //AP 2-6 (WAG)
+	public static final double tolerance            = 0.5;  //TODO: Initial Value
+	public static final double pickupTolerance	    = 5.0;  //AP 2-6 (WAG)
 	
 	// PID Constants
-	public static final double proportional    = 0.06; //TODO: Set Initial Value
-	public static final double integral        = 0.0;  //TODO: Set Initial Value
-	public static final double derivitive      = 0.0;  //TODO: Set Initial Value
-	public static final double feedForward	   = 2.0;  //TODO: Set Initial Value
+	public static final double proportional         = 0.06; //TODO: Set Initial Value
+	public static final double integral             = 0.0;  //TODO: Set Initial Value
+	public static final double derivitive           = 0.0;  //TODO: Set Initial Value
+	public static final double feedForward	        = 2.0;  //TODO: Set Initial Value
 
-	//Angles
+	// Angles
+	// NOTE: Assumption - from turret's POV facing forward being (pickup end of robot)
+	// CCW = Counter Clock Wise
+	// CW  = Clock Wise
 	public static final double limitAngleCCW   		= -170.0; 	// AP 1-26
 	public static final double aimLeft				=  -90.0;   // AP 2-6
 	public static final double turretSafeLimitCCW 	=   -5.0; 	// AP 1-26
