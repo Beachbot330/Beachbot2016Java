@@ -14,6 +14,7 @@ public final class ChassisConst {
 	
 	// Pick Up Speed
 	public static final double pickupSpeed 				  = 1.0;
+	public static final double pickupReverseSpeed         = 2.0;
 	
 	//Encoder Distance Constants
     public static final double wheelDiameter 			  = 6;
