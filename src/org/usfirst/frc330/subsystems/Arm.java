@@ -20,6 +20,7 @@ import org.usfirst.frc330.util.CSVLoggable;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -39,6 +40,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Arm extends Subsystem {
 
+	//TODO delete armPID and convert all methods to use CAN Talon armL
 	protected PIDController armPID;
 	double    tempSetPoint;
 	
@@ -115,6 +117,11 @@ public class Arm extends Subsystem {
     	// Add to Smart Dashboard
     	SmartDashboard.putData("ArmPID", armPID);
     	
+    	//set armR to follow armL, reversed
+    	armR.changeControlMode(TalonControlMode.Follower);
+    	armR.set(armL.getDeviceID());
+    	armR.reverseOutput(true);
+    	
 		/////////////////////////////////////////////////////////////////
 		// LOG IT!
     	// TODO: Add additional logging as needed
@@ -147,12 +154,8 @@ public class Arm extends Subsystem {
 		return count2deg;
 	}
 
-	public double getArmLOutput() {
+	public double getArmOutput() {
 		return armL.get();
-	}
-	
-	public double getArmROutput() {
-		return armR.get();
 	}
     
 	public double pidGet() {
@@ -172,20 +175,16 @@ public class Arm extends Subsystem {
     	//Don't let the arm go down if the turret is not centered
     	if ( !centered && output < 0) {
     		armL.set(0);
-    		armR.set(0);
     	}
     	/* AHHHH! The arm would eat the ground */
     	else if ( getArmAngle() < ArmConst.limitLowerAngle && output < 0) {
     		armL.set(0);
-    		armR.set(0);
     	/* OH NOES! The arm would flip off the back of the robot */
     	} else if ( getArmAngle() > ArmConst.limitUpperAngle && output > 0) {
     		armL.set(0);
-    		armR.set(0);
     	/* We good */
     	} else {
     		armL.set(output);
-    		armR.set(output);
     	}
     }
     
