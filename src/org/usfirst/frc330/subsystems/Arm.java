@@ -13,27 +13,16 @@ package org.usfirst.frc330.subsystems;
 
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.RobotMap;
-import org.usfirst.frc330.commands.*;
 import org.usfirst.frc330.constants.ArmConst;
 import org.usfirst.frc330.constants.TurretConst;
 import org.usfirst.frc330.util.CSVLoggable;
 
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CANTalon.StatusFrameRate;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.PIDSourceType;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Talon;
-
-
-
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -74,8 +63,15 @@ public class Arm extends Subsystem {
 
     	super();
     	
+    	int absolutePosition = armL.getPulseWidthPosition() & 0xFFF; /* mask out the bottom12 bits, we don't care about the wrap arounds */
+        /* use the low level API to set the quad encoder signal */
+        armL.setEncPosition(absolutePosition - getArmZero());
+    	
+    	armL.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
     	setPIDConstants(ArmConst.proportional, ArmConst.integral, ArmConst.derivative);
     	setArmAbsoluteTolerance(ArmConst.tolerance);
+    	setLowerSoftLimit(ArmConst.limitLowerAngle);
+    	setUpperSoftLimit(ArmConst.limitUpperAngle);
     	
     	//set armR to follow armL, reversed
     	armR.changeControlMode(TalonControlMode.Follower);
@@ -234,6 +230,36 @@ public class Arm extends Subsystem {
     }
     public void deployStinger() {
     	portcullisWedge.set(true);
+    }
+    
+    public void setArmZero()
+	{        
+        String name;
+        
+        if (Robot.isPracticeRobot())
+            name = "PracticeArmZero";
+        else
+            name = "CompetitionArmZero";
+        
+        Preferences.getInstance().putInt(name, armL.getPulseWidthPosition());
+        armL.setEncPosition(0);
+    }
+    
+    public int getArmZero() {
+		String name;
+        if (Robot.isPracticeRobot())
+            name = "PracticeArmZero";
+        else
+            name = "CompetitionArmZero";
+		return Preferences.getInstance().getInt(name,0);
+	}
+    
+    public void setLowerSoftLimit(double lowerAngle) {
+    	armL.setForwardSoftLimit(convertDegreesToRotations(lowerAngle));
+    }
+    
+    public void setUpperSoftLimit(double upperAngle) {
+    	armL.setReverseSoftLimit(convertDegreesToRotations(upperAngle));
     }
     
     private int convertDegreesToTicks(double degrees) {
