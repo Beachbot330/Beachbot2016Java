@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -72,6 +73,9 @@ public class Arm extends Subsystem {
     	setArmAbsoluteTolerance(ArmConst.tolerance);
     	setLowerSoftLimit(ArmConst.limitLowerAngle);
     	setUpperSoftLimit(ArmConst.limitUpperAngle);
+    	armL.enableForwardSoftLimit(true);
+    	armL.enableReverseSoftLimit(true);
+    	armL.enableBrakeMode(true);
     	
     	//set armR to follow armL, reversed
     	armR.changeControlMode(TalonControlMode.Follower);
@@ -97,17 +101,7 @@ public class Arm extends Subsystem {
     // Get input from encoder for Arm
     public double getArmAngle()
 	{
-    	double fetchEncoder = armL.getPosition();
-    	double count2deg    = 0.0;
-    	 	
-    	// NOTES: 
-    	// 4096 counts per revolution
-    	// 5 revolution of encoder to revolution of arm
-    	// TLDR; This means 0-72 degrees = 0-4096 counts
-    	
-    	count2deg = (ArmConst.maxAngleDegrees * fetchEncoder) / ArmConst.maxEncoderCounts;
-    	
-		return count2deg;
+		return (convertRotationsToDegrees(armL.getPosition()));
 	}
 
 	public double getArmOutput() {
@@ -159,18 +153,20 @@ public class Arm extends Subsystem {
     public void setQuadrantPosition(int quadrant)
     {
     	// Grab positioning from arm angle
-    	double positionRawCount = armL.getPosition();
-    	int    tempCtn          = 0;
+    	double currentArmAngle = getArmAngle();
+    	int currentQuadrant = (int)(currentArmAngle/ArmConst.maxAngleDegrees);
     	
     	if ( quadrant >= ArmConst.minQuadrant && quadrant <= ArmConst.maxQuadrant )
     	{
     		// Set the position
-    		tempCtn = ArmConst.maxEncoderCounts * quadrant;
-    		armL.setPosition(positionRawCount + tempCtn);
+    		SmartDashboard.putNumber("CurrentQuadrant", currentQuadrant);
+    		SmartDashboard.putNumber("quadrant", quadrant);
+    		armL.setPosition(convertDegreesToRotations(currentArmAngle + (quadrant-currentQuadrant)*ArmConst.maxAngleDegrees));
     	}
     	else
     	{
-    		throw new RuntimeException("setQuadrantPosition: Quadrant must be integer value 0-4.");
+    		throw new RuntimeException("setQuadrantPosition: Quadrant must be integer value " 
+    				+ ArmConst.minQuadrant + "-" + ArmConst.maxQuadrant);
     	}  	
     	
     }
@@ -180,19 +176,23 @@ public class Arm extends Subsystem {
 	/////////////////////////////////////////////////////////////
     /* Control the arm manually */
     public void manualArm() {
-    	double tempSetPoint;
     	double armCommand = Robot.oi.armJoystick.getY();	
-
+    	double angle;
+    	
     	if ( Math.abs(armCommand) > ArmConst.deadZone) {
 			if (armL.getControlMode() != TalonControlMode.PercentVbus)
 				armL.changeControlMode(TalonControlMode.PercentVbus);
 			armL.set(armCommand);
 		} else if ( armL.getControlMode() != TalonControlMode.Position) {
-    		tempSetPoint = this.getArmAngle();
-    		this.setArmAngle(tempSetPoint);
+			angle = getArmAngle();
+			if (angle < ArmConst.limitLowerAngle)
+				angle = ArmConst.limitLowerAngle;
+			else if (angle > ArmConst.limitUpperAngle)
+				angle = ArmConst.limitUpperAngle;
+
     		armL.changeControlMode(TalonControlMode.Position);
-    		armL.enable();
-    	}
+			setArmAngle(angle);
+    	} 
     	
     }
 
@@ -255,26 +255,26 @@ public class Arm extends Subsystem {
 	}
     
     public void setLowerSoftLimit(double lowerAngle) {
-    	armL.setForwardSoftLimit(convertDegreesToRotations(lowerAngle));
+    	armL.setReverseSoftLimit(convertDegreesToRotations(lowerAngle));
     }
     
     public void setUpperSoftLimit(double upperAngle) {
-    	armL.setReverseSoftLimit(convertDegreesToRotations(upperAngle));
+    	armL.setForwardSoftLimit(convertDegreesToRotations(upperAngle));
     }
     
     private int convertDegreesToTicks(double degrees) {
-    	return (int)(degrees * 4096.0 / 360.0);
+    	return (int)(degrees * ArmConst.maxEncoderCounts / ArmConst.maxAngleDegrees);
     }
     
     private double convertTicksToDegrees(int ticks) {
-    	return (ticks * 360.0 / 4096.0);
+    	return (ticks * ArmConst.maxAngleDegrees / ArmConst.maxEncoderCounts);
     }
     
     private double convertDegreesToRotations(double degrees) {
-    	return (degrees / 360.0);
+    	return (degrees / ArmConst.maxAngleDegrees);
     }
     
     private double convertRotationsToDegrees(double rotations) {
-    	return (rotations * 360.0);
+    	return (rotations * ArmConst.maxAngleDegrees);
     }
 }
