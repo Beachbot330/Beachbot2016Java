@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.BBCommandGroup;
 /**
  *
  */
-public class DirveAndShoot extends BBCommandGroup {
+public class DriveAndShoot extends BBCommandGroup {
     
-    public  DirveAndShoot() {
+    public  DriveAndShoot() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
