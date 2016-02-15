@@ -112,8 +112,8 @@ public class Pickup extends Subsystem
     	}
     	else
     	{
-    		pickupR.set(-(ChassisConst.pickupSpeed));
-    		pickupL.set(-(ChassisConst.pickupSpeed));
+    		pickupR.set(-(ChassisConst.pickupReverseSpeed));
+    		pickupL.set(-(ChassisConst.pickupReverseSpeed));
     	}
     }
    

@@ -13,7 +13,7 @@ public final class TurretConst {
 	// PID Constants
 	public static final double proportional         = 0.06; //TODO: Set Initial Value
 	public static final double integral             = 0.0;  //TODO: Set Initial Value
-	public static final double derivitive           = 0.0;  //TODO: Set Initial Value
+	public static final double derivative           = 0.0;  //TODO: Set Initial Value
 	public static final double feedForward	        = 2.0;  //TODO: Set Initial Value
 
 	// Angles

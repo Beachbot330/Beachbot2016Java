@@ -1,13 +1,13 @@
 
-package org.usfirst.frc330.commands.breachDefenseCommands;
+package org.usfirst.frc330.commands.driveAndShoot;
 import edu.wpi.first.wpilibj.command.BBCommandGroup;
 
 /**
  *
  */
-public class Drawbridge extends BBCommandGroup {
+public class DriveAndShoot extends BBCommandGroup {
     
-    public  Drawbridge() {
+    public  DriveAndShoot() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
