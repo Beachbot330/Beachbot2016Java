@@ -267,9 +267,9 @@ public class Chassis extends Subsystem
     private void drive(double left, double right)
     {
         
-        speedControllerL1.set(left);
-        speedControllerL2.set(left);
-        speedControllerL3.set(left);
+        speedControllerL1.set(-left);
+        speedControllerL2.set(-left);
+        speedControllerL3.set(-left);
         
         speedControllerR1.set(right);
         speedControllerR2.set(right);
