@@ -15,6 +15,7 @@ import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.*;
 import org.usfirst.frc330.constants.ChassisConst;
+import org.usfirst.frc330.util.CSVLoggable;
 import org.usfirst.frc330.wpilibj.DummyPIDOutput;
 import org.usfirst.frc330.wpilibj.MultiPIDController;
 
@@ -121,6 +122,88 @@ public class Chassis extends Subsystem
         driveTrainEncoderL.setDistancePerPulse(distanceperpulse);
         driveTrainEncoderR.setDistancePerPulse(distanceperpulse);
      
+        	
+        // LOGGING!
+        CSVLoggable temp = new CSVLoggable(true) {
+			public double get() { return driveTrainEncoderL.getDistance(); }
+    	};
+    	Robot.csvLogger.add("DriveTrainDistanceL", temp);
+    	
+    	temp = new CSVLoggable(true) {
+			public double get() { return driveTrainEncoderR.getDistance(); }
+    	};
+    	Robot.csvLogger.add("DriveTrainDistanceR", temp);
+    	
+    	temp = new CSVLoggable() {
+			public double get() { return driveTrainEncoderL.getRate(); }  		
+    	};
+    	Robot.csvLogger.add("DriveTrainRateL", temp);
+    	
+    	temp = new CSVLoggable() {
+			public double get() { return driveTrainEncoderR.getRate(); }  		
+    	};
+    	Robot.csvLogger.add("DriveTrainRateR", temp);    	
+
+    	/*temp = new CSVLoggable() {
+			public double get() { return chassisLeftDrive.get(); }  		
+    	};
+    	Robot.csvLogger.add("DriveTrainLeft", temp);
+    	
+    	temp = new CSVLoggable() {
+			public double get() { return chassisRightDrive.get(); }  		
+    	};
+    	Robot.csvLogger.add("DriveTrainRight", temp); */
+    	
+    	temp = new CSVLoggable(true) {
+			public double get() { return getAngle(); }  		
+    	};    	
+    	Robot.csvLogger.add("ChassisAngle", temp);
+    	
+    	temp = new CSVLoggable(true) {
+			public double get() { return imu.isConnected() ? 1: 0; }  		
+    	};    	
+    	Robot.csvLogger.add("GyroIsConnected", temp);
+    	
+    	temp = new CSVLoggable(true) {
+			public double get() { return getX(); }  		
+    	};     	
+    	Robot.csvLogger.add("ChassisX", temp);
+    	
+    	temp = new CSVLoggable(true) {
+			public double get() { return getY(); }  		
+    	};      	
+    	Robot.csvLogger.add("ChassisY", temp);
+    	
+    	temp = new CSVLoggable(true) {
+			public double get() { return getPressure(); }  		
+    	};  
+    	Robot.csvLogger.add("Pressure", temp);
+    	
+    	//TODO: Fix this
+//    	temp = new CSVLoggable(true) {
+//			public double get() { return shifter.getInt(); }  		
+//    	};  
+//    	Robot.csvLogger.add("Shifter", temp);
+    	
+//    	temp = new CSVLoggable(true) {
+//    		public double get() { return Robot.powerDP.getChassisLeftDrive1Current(); }
+//    	};
+//    	Robot.csvLogger.add("LeftDrive1Current", temp);
+//    	
+//    	temp = new CSVLoggable() {
+//    		public double get() { return Robot.powerDP.getChassisLeftDrive2Current(); }
+//    	};
+//    	Robot.csvLogger.add("LeftDrive2Current", temp);
+//    	
+//    	temp = new CSVLoggable(true) {
+//    		public double get() { return Robot.powerDP.getChassisRightDrive1Current(); }
+//    	};
+//    	Robot.csvLogger.add("RightDrive1Current", temp);
+//    	
+//    	temp = new CSVLoggable() {
+//    		public double get() { return Robot.powerDP.getChassisRightDrive2Current(); }
+//    	};
+//    	Robot.csvLogger.add("RightDrive2Current", temp);
         
     }
 
