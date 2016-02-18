@@ -144,15 +144,15 @@ public class Chassis extends Subsystem
     	};
     	Robot.csvLogger.add("DriveTrainRateR", temp);    	
 
-    	/*temp = new CSVLoggable() {
-			public double get() { return chassisLeftDrive.get(); }  		
+    	temp = new CSVLoggable() {
+			public double get() { return speedControllerL1.get(); }  		
     	};
     	Robot.csvLogger.add("DriveTrainLeft", temp);
     	
     	temp = new CSVLoggable() {
-			public double get() { return chassisRightDrive.get(); }  		
+			public double get() { return speedControllerR1.get(); }  		
     	};
-    	Robot.csvLogger.add("DriveTrainRight", temp); */
+    	Robot.csvLogger.add("DriveTrainRight", temp);
     	
     	temp = new CSVLoggable(true) {
 			public double get() { return getAngle(); }  		
@@ -179,11 +179,17 @@ public class Chassis extends Subsystem
     	};  
     	Robot.csvLogger.add("Pressure", temp);
     	
-    	//TODO: Fix this
-//    	temp = new CSVLoggable(true) {
-//			public double get() { return shifter.getInt(); }  		
-//    	};  
-//    	Robot.csvLogger.add("Shifter", temp);
+    	temp = new CSVLoggable(true) {
+			public double get() { 
+				DoubleSolenoid.Value state = shifter.get();
+				double state_int;
+				if (state == DoubleSolenoid.Value.kForward)
+						state_int = 1.0;
+				else
+					state_int = 0.0;
+				return state_int;}  		
+    	};  
+    	Robot.csvLogger.add("Shifter", temp);
     	
 //    	temp = new CSVLoggable(true) {
 //    		public double get() { return Robot.powerDP.getChassisLeftDrive1Current(); }
@@ -439,4 +445,3 @@ public class Chassis extends Subsystem
     	return 37.5*(pressureSensor.getAverageVoltage()- 0.5);
     }
 }
-
