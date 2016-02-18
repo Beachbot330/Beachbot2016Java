@@ -163,6 +163,11 @@ public class Turret extends Subsystem {
 	public double getTurretOutput() {
 		return turret.get();
 	}
+	
+	public boolean isCentered() {
+    	return Robot.turret.getTurretAngle() < TurretConst.turretSafeLimitCW &&
+				   Robot.turret.getTurretAngle() > TurretConst.turretSafeLimitCCW;
+	}
 
 	/////////////////////////////////////////////////////////////
 	// PID Stuff

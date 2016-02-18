@@ -194,6 +194,7 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
         chassis.calcXY();
         chassis.pidDriveAuto();
+        arm.monitorArm();
     	csvLogger.writeData();
     }
 
@@ -231,6 +232,7 @@ public class Robot extends IterativeRobot {
     	Scheduler.getInstance().run();
         chassis.calcXY();
         chassis.pidDrive();
+        arm.monitorArm();
     	csvLogger.writeData();
     }
     
@@ -255,6 +257,7 @@ public class Robot extends IterativeRobot {
     public void testPeriodic() {
     	LiveWindow.run();
         chassis.calcXY();
+        arm.monitorArm();
         csvLogger.writeData();
     }
 }

@@ -82,6 +82,8 @@ public class Arm extends Subsystem {
     	armR.set(armL.getDeviceID());
     	armR.reverseOutput(true);
     	
+    	SmartDashboard.putData("Arm", armL);
+    	
 		/////////////////////////////////////////////////////////////////
 		// LOG IT!
     	// TODO: Add additional logging as needed
@@ -111,35 +113,13 @@ public class Arm extends Subsystem {
 	public double getArmOutput() {
 		return armL.get();
 	}
-    
-	public double pidGet() {
-		return getArmAngle();
-	}
 	
 	/////////////////////////////////////////////////////////////
 	// SET methods
 	/////////////////////////////////////////////////////////////
 	/* Set the arm */
     public void setArm(double output) {
-    	
-    	// Is the turret centered?
-    	boolean centered = Robot.turret.getTurretAngle() < TurretConst.turretSafeLimitCW &&
-    					   Robot.turret.getTurretAngle() > TurretConst.turretSafeLimitCCW;
-    					   
-    	//Don't let the arm go down if the turret is not centered
-    	if ( !centered && output < 0) {
-    		armL.set(0);
-    	}
-    	/* AHHHH! The arm would eat the ground */
-    	else if ( getArmAngle() < ArmConst.limitLowerAngle && output < 0) {
-    		armL.set(0);
-    	/* OH NOES! The arm would flip off the back of the robot */
-    	} else if ( getArmAngle() > ArmConst.limitUpperAngle && output > 0) {
-    		armL.set(0);
-    	/* We good */
-    	} else {
-    		armL.set(output);
-    	}
+    	armL.set(output);
     }
     
     /* Set the arm angle */
@@ -280,5 +260,13 @@ public class Arm extends Subsystem {
     
     private double convertRotationsToDegrees(double rotations) {
     	return (rotations * ArmConst.maxAngleDegrees);
+    }
+    
+    public void monitorArm() {
+    	if (Robot.turret.isCentered())
+        	setLowerSoftLimit(ArmConst.limitLowerAngle);
+    	else
+    		setLowerSoftLimit(ArmConst.armSafeLimit);
+    		
     }
 }
