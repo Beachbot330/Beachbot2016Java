@@ -68,8 +68,7 @@ public class Turret extends Subsystem {
     	turret.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
     	setPIDConstants(ArmConst.proportional, ArmConst.integral, ArmConst.derivative);
     	setTurretAbsoluteTolerance(TurretConst.tolerance);
-    	setCCWSoftLimit(TurretConst.turretSafeLimitCCW);
-    	setCWSoftLimit(TurretConst.turretSafeLimitCW);
+    	setSoftLimitsSafe();
     	turret.enableForwardSoftLimit(true);
     	turret.enableReverseSoftLimit(true);
     	turret.enableBrakeMode(true);
@@ -212,12 +211,22 @@ public class Turret extends Subsystem {
 		return turret.isEnabled();
 	}
 	
-    public void setCCWSoftLimit(double CCWAngle) {
+    private void setCCWSoftLimit(double CCWAngle) {
     	turret.setReverseSoftLimit(convertDegreesToRotations(CCWAngle));
     }
     
-    public void setCWSoftLimit(double CWAngle) {
+    private void setCWSoftLimit(double CWAngle) {
     	turret.setForwardSoftLimit(convertDegreesToRotations(CWAngle));
+    }
+    
+    public void setSoftLimitsSafe() {
+    	setCCWSoftLimit(TurretConst.turretSafeLimitCCW);
+    	setCWSoftLimit(TurretConst.turretSafeLimitCW);
+    }
+    
+    public void setSoftLimitsArmUp() {
+    	setCCWSoftLimit(TurretConst.limitAngleCCW);
+    	setCWSoftLimit(TurretConst.limitAngleCW);
     }
     
     public void setTurretZero()
@@ -276,9 +285,9 @@ public class Turret extends Subsystem {
     }
     
     // Helper function: convertRotationsToDegrees
-  	// Function: Convert rotationss to degrees
+  	// Function: Convert rotations to degrees
   	// Parameters:
-  	// 		double rotations - Rotations to conver to degrees
+  	// 		double rotations - Rotations to convert to degrees
   	//     
   	// Return value:
   	//		double - Degree values

@@ -14,7 +14,7 @@ public final class ArmConst {
 	public static final double pickupTolerance	 = 5.0;  //AP 2-6 (WAG)
 	
 	// PID Constants
-	public static final double proportional      = 0.06; //TODO: Set Initial Value
+	public static final double proportional      = 0.2;  //TODO: Set Initial Value
 	public static final double integral          = 0.0;  //TODO: Set Initial Value
 	public static final double derivative        = 0.0;  //TODO: Set Initial Value
 	public static final double feedForward	     = 0.0;  //TODO: Set Initial Value

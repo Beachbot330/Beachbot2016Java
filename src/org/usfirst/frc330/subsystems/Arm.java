@@ -238,11 +238,11 @@ public class Arm extends Subsystem {
 		return Preferences.getInstance().getInt(name,0);
 	}
     
-    public void setLowerSoftLimit(double lowerAngle) {
+    private void setLowerSoftLimit(double lowerAngle) {
     	armL.setReverseSoftLimit(convertDegreesToRotations(lowerAngle));
     }
     
-    public void setUpperSoftLimit(double upperAngle) {
+    private void setUpperSoftLimit(double upperAngle) {
     	armL.setForwardSoftLimit(convertDegreesToRotations(upperAngle));
     }
     
@@ -267,6 +267,9 @@ public class Arm extends Subsystem {
         	setLowerSoftLimit(ArmConst.limitLowerAngle);
     	else
     		setLowerSoftLimit(ArmConst.armSafeLimit);
-    		
+    	if (Robot.arm.getArmAngle() <= ArmConst.armSafeLimit)
+    		Robot.turret.setSoftLimitsSafe();
+    	else
+    		Robot.turret.setSoftLimitsArmUp();
     }
 }
