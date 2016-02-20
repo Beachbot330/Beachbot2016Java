@@ -152,13 +152,15 @@ public class Arm extends Subsystem {
     	// Grab positioning from arm angle
     	double currentArmAngle = getArmAngle();
     	int currentQuadrant = (int)(currentArmAngle/ArmConst.maxAngleDegrees);
+    	double angleChange = (quadrant-currentQuadrant)*ArmConst.maxAngleDegrees;
     	
     	if ( quadrant >= ArmConst.minQuadrant && quadrant <= ArmConst.maxQuadrant )
     	{
     		// Set the position
-    		SmartDashboard.putNumber("CurrentQuadrant", currentQuadrant);
-    		SmartDashboard.putNumber("quadrant", quadrant);
-    		armL.setPosition(convertDegreesToRotations(currentArmAngle + (quadrant-currentQuadrant)*ArmConst.maxAngleDegrees));
+    		Robot.logger.println("Original Quadrant: " + currentQuadrant, true);
+    		Robot.logger.println("New Quadrant: " + quadrant, true);
+    		armL.setPosition(convertDegreesToRotations(currentArmAngle + angleChange));
+    		setArmAngle(getArmAngle() + angleChange);
     	}
     	else
     	{
