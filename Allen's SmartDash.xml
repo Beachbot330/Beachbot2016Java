@@ -1,0 +1,168 @@
+<xml version="1.0">
+<dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="26" y="217"/>
+		<width>158</width>
+		<height>118</height>
+		<property name="Image File" value="C:\Users\allenpeters\git\Beachbot2016Dash\Photos\Turret small.jpg"/>
+		<property name="Maintain Aspect Ratio" value="true"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="16" y="620"/>
+		<property name="Image File" value="C:\Users\allenpeters\git\Beachbot2016Dash\Photos\Shooter.jpg"/>
+		<property name="Maintain Aspect Ratio" value="true"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="565" y="430"/>
+		<width>138</width>
+		<height>103</height>
+		<property name="Image File" value="C:\Users\allenpeters\git\Beachbot2016Dash\Photos\Pickup small.jpg"/>
+		<property name="Maintain Aspect Ratio" value="true"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="973" y="413"/>
+		<width>234</width>
+		<height>166</height>
+		<property name="Image File" value="C:\Users\allenpeters\git\Beachbot2016Dash\Photos\Arm Small.jpg"/>
+		<property name="Maintain Aspect Ratio" value="true"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="1268" y="85"/>
+		<width>234</width>
+		<height>175</height>
+		<property name="Image File" value="C:\Users\allenpeters\git\Beachbot2016Dash\Photos\20160216_202203_2.jpg"/>
+		<property name="Maintain Aspect Ratio" value="true"/>
+	</static-widget>
+	<widget field="TurretAngle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="32" y="343"/>
+		<height>20</height>
+	</widget>
+	<widget field="ArmAngle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="999" y="594"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="1254" y="4"/>
+		<property name="Text" value="Auto Selections"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="602" y="8"/>
+		<width>271</width>
+	</static-widget>
+	<widget field="ClimberPTO_engage" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="866" y="269"/>
+	</widget>
+	<widget field="rightDrivePID" type="PIDController" class="edu.wpi.first.smartdashboard.gui.elements.PIDEditor">
+		<location x="1422" y="270"/>
+	</widget>
+	<widget field="SetQuadrantPosition: Quadrant2" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1024" y="694"/>
+	</widget>
+	<widget field="TankDrive" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1434" y="574"/>
+	</widget>
+	<widget field="Auto Program" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="1075" y="30"/>
+		<property name="Use Radio Buttons" value="false"/>
+	</widget>
+	<widget field="SetQuadrantPosition: Quadrant3" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1024" y="717"/>
+	</widget>
+	<widget field="LidClose" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="592" y="541"/>
+	</widget>
+	<widget field="ShiftHigh" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1436" y="509"/>
+	</widget>
+	<widget field="deployUpperClimber" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="865" y="212"/>
+	</widget>
+	<widget field="SetQuadrantPosition: Quadrant4" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1024" y="741"/>
+	</widget>
+	<widget field="PickupOn" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="431" y="544"/>
+	</widget>
+	<widget field="leftDrivePID" type="PIDController" class="edu.wpi.first.smartdashboard.gui.elements.PIDEditor">
+		<location x="1253" y="273"/>
+	</widget>
+	<widget field="gyroPID" type="PIDController" class="edu.wpi.first.smartdashboard.gui.elements.PIDEditor">
+		<location x="1102" y="101"/>
+	</widget>
+	<widget field="ShiftLow" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1438" y="539"/>
+	</widget>
+	<widget field="Robot Start Position" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="1257" y="30"/>
+		<property name="Use Radio Buttons" value="false"/>
+	</widget>
+	<widget field="PickupBall" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="502" y="654"/>
+	</widget>
+	<widget field="ArmPosition1" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="845" y="663"/>
+	</widget>
+	<widget field="RetractPortcullisStinger" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="774" y="504"/>
+	</widget>
+	<widget field="Obstacle" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="1395" y="32"/>
+		<property name="Use Radio Buttons" value="false"/>
+	</widget>
+	<widget field="Shoot" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="25" y="583"/>
+	</widget>
+	<widget field="ArmPosition2" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="844" y="688"/>
+	</widget>
+	<widget field="DeployPortcullisStinger" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="780" y="476"/>
+	</widget>
+	<widget field="ClimberDeploy" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="885" y="184"/>
+	</widget>
+	<widget field="ArmPosition3" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="843" y="713"/>
+	</widget>
+	<widget field="deployLowerClimber" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="865" y="238"/>
+	</widget>
+	<widget field="LidOpen" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="590" y="572"/>
+	</widget>
+	<widget field="KillAll" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="886" y="13"/>
+	</widget>
+	<widget field="ManualTurret" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="32" y="369"/>
+	</widget>
+	<widget field="ShootWithoutLid" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="154" y="761"/>
+	</widget>
+	<widget field="Aim" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="461" y="470"/>
+	</widget>
+	<widget field="ClimberPTO_disengage" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="843" y="149"/>
+	</widget>
+	<widget field="BuzzerBeepTimed" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="420" y="11"/>
+	</widget>
+	<widget field="ArmToNeutral" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="841" y="636"/>
+	</widget>
+	<widget field="ManualArm" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="961" y="776"/>
+	</widget>
+	<widget field="SetQuadrantPosition: Quadrant1" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1024" y="671"/>
+	</widget>
+	<widget field="PickupReverse" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="407" y="592"/>
+	</widget>
+	<widget field="PickupOff" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="429" y="569"/>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>
