@@ -101,6 +101,11 @@ public class Arm extends Subsystem {
 		};
 		Robot.csvLogger.add("ArmOutput", temp);
 		
+		temp = new CSVLoggable(true) {
+			public double get() { return getCurrentQuadrant(); }
+		};
+		Robot.csvLogger.add("ArmQuadrant", temp);
+		
     }
     
 	/////////////////////////////////////////////////////////////
@@ -145,13 +150,17 @@ public class Arm extends Subsystem {
 		armL.setPID(P, I, D);
 	}
     
+    public int getCurrentQuadrant() {
+    	return (int)(getArmAngle()/ArmConst.maxAngleDegrees);
+    }
+    
     // Quadrants are zero-indexed (0-4)
     // 0 = Lowest; 4 = Highest
     public void setQuadrantPosition(int quadrant)
     {
     	// Grab positioning from arm angle
     	double currentArmAngle = getArmAngle();
-    	int currentQuadrant = (int)(currentArmAngle/ArmConst.maxAngleDegrees);
+    	int currentQuadrant = getCurrentQuadrant();
     	double angleChange = (quadrant-currentQuadrant)*ArmConst.maxAngleDegrees;
     	
     	if ( quadrant >= ArmConst.minQuadrant && quadrant <= ArmConst.maxQuadrant )
