@@ -1588,6 +1588,24 @@ Children:
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
     Name: AllensSuperDebugCommandOfAwesome
+  - Children: []
+    Properties:
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value: []
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: None}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: &id032 []
+        name: Parameter presets
+        validators: null
+        value: *id032
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command
+    Name: CalArmTurretZero
   Properties: {}
   Base: Commands
   Name: Commands
