@@ -18,7 +18,10 @@ import org.usfirst.frc330.constants.TurretConst;
 import org.usfirst.frc330.util.CSVLoggable;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -57,10 +60,21 @@ public class Turret extends Subsystem {
 	public Turret()
 	{
 		super();
+		
+		int absolutePosition = turret.getPulseWidthPosition() & 0xFFF;
+		turret.setPosition(absolutePosition - getTurretZero());
 
-		// Turret PIDController object
-		setPIDConstants(TurretConst.proportional, TurretConst.integral, TurretConst.derivative);
-		setTurretAbsoluteTolerance(ArmConst.tolerance);
+		
+    	turret.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+    	setPIDConstants(ArmConst.proportional, ArmConst.integral, ArmConst.derivative);
+    	setTurretAbsoluteTolerance(TurretConst.tolerance);
+    	setCCWSoftLimit(TurretConst.turretSafeLimitCCW);
+    	setCWSoftLimit(TurretConst.turretSafeLimitCW);
+    	turret.enableForwardSoftLimit(true);
+    	turret.enableReverseSoftLimit(true);
+    	turret.enableBrakeMode(true);
+    	
+    	SmartDashboard.putData("Turret", turret);
 
 		/////////////////////////////////////////////////////////////////
 		// LOG IT!
@@ -70,6 +84,11 @@ public class Turret extends Subsystem {
 			public double get() { return getTurretAngle(); }
 		};
 		Robot.csvLogger.add("TurretAngle", temp);
+		
+		temp = new CSVLoggable(true) {
+			public double get() { return getTurretOutput(); }
+		};
+		Robot.csvLogger.add("TurretOutput", temp);
 
 	}
 	/////////////////////////////////////////////////////////////
@@ -83,50 +102,7 @@ public class Turret extends Subsystem {
 	// Return value:
 	//		void
 	public void setTurret(double output){
-		double limitCW,
-			   limitCCW;
-		
-		//Reduced CW limit if arm is low
-		if (Robot.arm.getArmAngle() < ArmConst.armSafeLimit)
-		{ 
-			limitCW = TurretConst.turretSafeLimitCW;
-			limitCCW = TurretConst.turretSafeLimitCCW;
-		}
-		else
-		{
-			limitCW = TurretConst.limitAngleCW;
-			limitCCW = TurretConst.limitAngleCCW;
-		}
-		
-		
-		//Don't rotate too far CW
-		if (getTurretAngle() > limitCW && output > 0)
-		{
-			turret.set(0.0);
-		}
-		
-		//Dont't rotate too far CCW
-		else if (getTurretAngle() < limitCCW && output < 0)
-		{
-			turret.set(0.0);
-		}
-		
-		//Check current limits	
-/*		else if (output > 0 && Robot.powerDP.getArmLeftCurrent() < ArmPos.currentLowerLimit)
-			arm.set(0);
-		else if (output < 0 && Robot.powerDP.getArmLeftCurrent() > ArmPos.currentUpperLimit)
-			arm.set(0);
-		else if (output > 0 && Robot.powerDP.getArmRightCurrent() < ArmPos.currentLowerLimit)
-			arm.set(0);
-		else if (output < 0 && Robot.powerDP.getArmRightCurrent() > ArmPos.currentUpperLimit)
-			arm.set(0);*/
-		
-		//Else Go!
-		else
-		{
-			turret.set(output);
-		}
-			
+		turret.set(output);
 	}
 
 	// Helper function: setPIDConstants
@@ -149,7 +125,7 @@ public class Turret extends Subsystem {
 	
 	public void setTurretAngle(double position)
 	{
-		turret.setSetpoint(position);
+		turret.setSetpoint(convertDegreesToRotations(position));
 	}
 
 	/////////////////////////////////////////////////////////////
@@ -157,7 +133,7 @@ public class Turret extends Subsystem {
 	/////////////////////////////////////////////////////////////	
 	public double getTurretAngle()
 	{
-		return turret.getPosition();
+		return (convertRotationsToDegrees(turret.getPosition()));
 	}
 
 	public double getTurretOutput() {
@@ -172,28 +148,28 @@ public class Turret extends Subsystem {
 	/////////////////////////////////////////////////////////////
 	// PID Stuff
 	/////////////////////////////////////////////////////////////
-	public synchronized double getTurretSetpoint() {
+	public double getTurretSetpoint() {
 		return turret.getSetpoint();
 	}
 
 	// Method to check if Turret is on target
-	public synchronized boolean onTurretTarget() {
+	public boolean onTurretTarget() {
 		double error = convertTicksToDegrees(turret.getClosedLoopError());
         return (Math.abs(error) < tolerance);
 	}
 
 	// Method returns if Turret is enabled
-	public synchronized boolean isTurretEnabled() {
+	public boolean isTurretEnabled() {
 		return turret.isEnabled();
 	}
 
 	// Method to Enable Turret
-	public synchronized void enableTurret() {
+	public void enableTurret() {
 		turret.enable();
 	}
 
 	// Method to Disable Turret
-	public synchronized void disableTurret() {
+	public void disableTurret() {
 		turret.disable();
 	}
 
@@ -207,10 +183,6 @@ public class Turret extends Subsystem {
 		
 		turret.set(0);
 		
-	}
-
-	public double pidGet() {
-		return getTurretAngle();
 	}
 
 	//////////////////////////
@@ -236,8 +208,38 @@ public class Turret extends Subsystem {
 		} 
 	}
 
-	public synchronized boolean isEnable() {
+	public boolean isEnable() {
 		return turret.isEnabled();
+	}
+	
+    public void setCCWSoftLimit(double CCWAngle) {
+    	turret.setReverseSoftLimit(convertDegreesToRotations(CCWAngle));
+    }
+    
+    public void setCWSoftLimit(double CWAngle) {
+    	turret.setForwardSoftLimit(convertDegreesToRotations(CWAngle));
+    }
+    
+    public void setTurretZero()
+	{        
+        String name;
+        
+        if (Robot.isPracticeRobot())
+            name = "PracticeTurretZero";
+        else
+            name = "CompetitionTurretZero";
+        
+        Preferences.getInstance().putInt(name, turret.getPulseWidthPosition());
+        turret.setEncPosition(0);
+    }
+    
+    public int getTurretZero() {
+		String name;
+        if (Robot.isPracticeRobot())
+            name = "PracticeTurretZero";
+        else
+            name = "CompetitionTurretZero";
+		return Preferences.getInstance().getInt(name,0);
 	}
 	
 	// Helper function: convertDegreesToTicks
@@ -248,7 +250,7 @@ public class Turret extends Subsystem {
 	// Return value:
 	//		int - Tick values
 	private int convertDegreesToTicks(double degrees) {
-    	return (int)(degrees * 4096.0 / 360.0);
+    	return (int)(degrees * TurretConst.maxEncoderCounts / TurretConst.maxAngleDegrees);
     }
     
 	// Helper function: convertTicksToDegrees
@@ -259,7 +261,7 @@ public class Turret extends Subsystem {
 	// Return value:
 	//		int - Degree values
     private double convertTicksToDegrees(int ticks) {
-    	return (ticks * 360.0 / 4096.0);
+    	return (ticks * TurretConst.maxAngleDegrees / TurretConst.maxEncoderCounts);
     }
     
     // Helper function: convertDegreesToRotations
@@ -270,7 +272,7 @@ public class Turret extends Subsystem {
  	// Return value:
  	//		double - Rotation value
     private double convertDegreesToRotations(double degrees) {
-    	return (degrees / 360.0);
+    	return (degrees / TurretConst.maxAngleDegrees);
     }
     
     // Helper function: convertRotationsToDegrees
@@ -281,7 +283,7 @@ public class Turret extends Subsystem {
   	// Return value:
   	//		double - Degree values
     private double convertRotationsToDegrees(double rotations) {
-    	return (rotations * 360.0);
+    	return (rotations * TurretConst.maxAngleDegrees);
     }
 	
 }

@@ -17,7 +17,7 @@ public final class ArmConst {
 	public static final double proportional      = 0.06; //TODO: Set Initial Value
 	public static final double integral          = 0.0;  //TODO: Set Initial Value
 	public static final double derivative        = 0.0;  //TODO: Set Initial Value
-	public static final double feedForward	     = 2.0;  //TODO: Set Initial Value
+	public static final double feedForward	     = 0.0;  //TODO: Set Initial Value
 	
 	// Angles
 	public static final double limitLowerAngle   =  0.0;  //AP 1-26
