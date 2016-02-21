@@ -71,14 +71,14 @@ public class Arm extends Subsystem {
         //armR.setEncPosition(absolutePosition - getArmZero());
     	
     	armL.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-    	armL.reverseSensor(false);
-    	armL.reverseOutput(false);
+    	armL.reverseSensor(true);
+    	armL.reverseOutput(true);
     	setPIDConstants(ArmConst.proportional, ArmConst.integral, ArmConst.derivative);
     	setArmAbsoluteTolerance(ArmConst.tolerance);
     	setLowerSoftLimit(ArmConst.limitLowerAngle);
     	setUpperSoftLimit(ArmConst.limitUpperAngle);
-    	armL.enableForwardSoftLimit(true);
-    	armL.enableReverseSoftLimit(true);
+    	armL.enableForwardSoftLimit(false);
+    	armL.enableReverseSoftLimit(false);
     	armL.enableBrakeMode(false);
     	
     	//set armR to follow armL, reversed
@@ -111,7 +111,26 @@ public class Arm extends Subsystem {
 			public double get() { return getSetpoint(); }
 		};
 		Robot.csvLogger.add("ArmSetpoint", temp);
+	
+		temp = new CSVLoggable(true) {
+			public double get() { return getLowerLimit(); }
+		};
+		Robot.csvLogger.add("LowerLimit", temp);
 		
+		temp = new CSVLoggable(true) {
+			public double get() { return getUpperLimit(); }
+		};
+		Robot.csvLogger.add("UpperLimit", temp);
+		
+		temp = new CSVLoggable(true) {
+			public double get() { return getLowerLimitTripped() ? 1 : 0; }
+		};
+		Robot.csvLogger.add("LowerLimitTripped", temp);
+		
+		temp = new CSVLoggable(true) {
+			public double get() { return getUpperLimitTripped() ? 1 : 0; }
+		};
+		Robot.csvLogger.add("UpperLimitTripped", temp);
     }
     
 	/////////////////////////////////////////////////////////////
@@ -129,32 +148,28 @@ public class Arm extends Subsystem {
 		return (convertDegreesToTicks(getArmAngle()));
 	}
     
+    private double lowerLimit = 0;
     public double getLowerLimit()
 	{
-		return (armL.getForwardSoftLimit());
+		return (lowerLimit);
 	}
     
+    private double upperLimit = 0;
     public double getUpperLimit()
 	{
-		return (armL.getReverseSoftLimit());
+		return (upperLimit);
 	}
 
 	public double getArmOutput() {
-		return armL.getOutputVoltage();
+		return armL.getOutputVoltage()/armL.getBusVoltage();
 	}
 	
-	public boolean getForwardLimitTripped(){
-		if (armL.getFaultForSoftLim() != 0)
-			return true;
-		else
-			return false;
+	public boolean getLowerLimitTripped(){
+		return (getArmAngle() <= getLowerLimit());
 	}
 	
-	public boolean getReverseLimitTripped(){
-		if(armL.getFaultRevSoftLim() != 0)
-			return true;
-		else
-			return false;
+	public boolean getUpperLimitTripped(){
+		return (getArmAngle() >= getUpperLimit());
 	}
 	
 	/////////////////////////////////////////////////////////////
@@ -162,11 +177,23 @@ public class Arm extends Subsystem {
 	/////////////////////////////////////////////////////////////
 	/* Set the arm */
     public void setArm(double output) {
-    	armL.set(output);
+    	
+    	if (getLowerLimitTripped() && output > 0)
+    		armL.set(0);
+    	else if (getUpperLimitTripped() && output < 0)
+    		armL.set(0);
+    	else
+    		armL.set(output);
     }
     
     /* Set the arm angle */
     public void setArmAngle(double position) {
+    	if (armL.getControlMode() != TalonControlMode.Position)
+    		armL.changeControlMode(TalonControlMode.Position);
+    	if (position >= getUpperLimit())
+    		position = getUpperLimit();
+    	else if (position <= getLowerLimit())
+    		position = getLowerLimit();
     	armL.setSetpoint(convertDegreesToRotations(position));
     }
     
@@ -214,23 +241,17 @@ public class Arm extends Subsystem {
     /* Control the arm manually */
     public void manualArm() {
     	double armCommand = -Robot.oi.armJoystick.getY();	
-    	double angle;
     	
     	if ( Math.abs(armCommand) > ArmConst.deadZone) {
 			if (armL.getControlMode() != TalonControlMode.PercentVbus)
 				armL.changeControlMode(TalonControlMode.PercentVbus);
-			armL.set(armCommand);
+			setArm(armCommand);
 			Robot.logger.println("Set: " + armCommand);
 		} 
     	else if ( armL.getControlMode() != TalonControlMode.Position) {
-			angle = getArmAngle();
-			if (angle < ArmConst.limitLowerAngle)
-				angle = ArmConst.limitLowerAngle;
-			else if (angle > ArmConst.limitUpperAngle)
-				angle = ArmConst.limitUpperAngle;
 
     		armL.changeControlMode(TalonControlMode.Position);
-			setArmAngle(angle);
+			setArmAngle(getArmAngle());
     	} 
     	
     }
@@ -240,6 +261,8 @@ public class Arm extends Subsystem {
 		if (armL.isEnabled())
 		{
 			armL.reset();
+			armL.changeControlMode(TalonControlMode.Position);
+			armL.enable();
 		}
 		armL.set(0);
 	}
@@ -295,11 +318,11 @@ public class Arm extends Subsystem {
 	}
     
     private void setLowerSoftLimit(double lowerAngle) {
-    	armL.setReverseSoftLimit(convertDegreesToRotations(lowerAngle));
+    	lowerLimit = lowerAngle;
     }
     
     private void setUpperSoftLimit(double upperAngle) {
-    	armL.setForwardSoftLimit(convertDegreesToRotations(upperAngle));
+    	upperLimit = upperAngle;
     }
     
     private int convertDegreesToTicks(double degrees) {
