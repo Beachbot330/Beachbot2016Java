@@ -143,8 +143,7 @@ public class OI {
         SmartDashboard.putData("ArmPosition3", new ArmPosition3());
         SmartDashboard.putData("SetQuadrantPosition: Quadrant1", new SetQuadrantPosition(1));
         SmartDashboard.putData("SetQuadrantPosition: Quadrant2", new SetQuadrantPosition(2));
-        SmartDashboard.putData("SetQuadrantPosition: Quadrant3", new SetQuadrantPosition(3));
-        SmartDashboard.putData("SetQuadrantPosition: Quadrant4", new SetQuadrantPosition(4));
+        SmartDashboard.putData("SetQuadrantPosition: Quadrant0", new SetQuadrantPosition(0));
         SmartDashboard.putData("AllensSuperDebugCommandOfAwesome", new AllensSuperDebugCommandOfAwesome());
         SmartDashboard.putData("CalArmTurretZero", new CalArmTurretZero());
 

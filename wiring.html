@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Wiring</title>
+    <style type="text/css" media="screen">
+      table {
+          text-align: left;
+          width: 400px;
+
+          border-top: 2px solid black;
+          border-bottom: 2px solid black;
+          border-collapse:collapse;
+          border-spacing:0px;
+      }
+      th {
+          border-top: 2px solid black;
+          border-bottom: 2px solid black;
+      }
+      .pound {
+          width: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Wiring</h1>
+                    <h2>DIO</h2>
+	    <table><tr>
+	        <th class="pound">#</th>
+	        <th>Sensor</th></tr>
+	                                               <tr><td>0</td><td>Frills buzzer</td><td></td></tr>
+            	                                         <tr><td>1</td><td>Frills practiceRobot</td><td></td></tr>
+            	                                         <tr><td>2</td><td>Chassis driveTrainEncoderL</td><td></td></tr>
+            	                                         <tr><td>3</td><td>Chassis driveTrainEncoderL</td><td></td></tr>
+            	                                         <tr><td>4</td><td>Chassis driveTrainEncoderR</td><td></td></tr>
+            	                                         <tr><td>5</td><td>Chassis driveTrainEncoderR</td><td></td></tr>
+            	                                                                                                                                                                                                                                                     	    </table>
+                    <h2>PWMs</h2>
+	    <table><tr>
+	        <th class="pound">#</th>
+	        <th>Motor</th>
+                <th>Type</th></tr>
+	                                               <tr><td>0</td><td>Pickup PickupL</td><td>Victor</td></tr>
+            	                                         <tr><td>1</td><td>Pickup PickupR</td><td>Victor</td></tr>
+            	                                         <tr><td>2</td><td>Chassis Speed Controller L1</td><td>VictorSP</td></tr>
+            	                                         <tr><td>3</td><td>Chassis Speed Controller L2</td><td>VictorSP</td></tr>
+            	                                         <tr><td>4</td><td>Chassis Speed Controller L3</td><td>VictorSP</td></tr>
+            	                                         <tr><td>5</td><td>Chassis Speed Controller R1</td><td>VictorSP</td></tr>
+            	                                         <tr><td>6</td><td>Chassis Speed Controller R2</td><td>VictorSP</td></tr>
+            	                                         <tr><td>7</td><td>Chassis Speed Controller R3</td><td>VictorSP</td></tr>
+            	                                                                                                                                                                                                                             	    </table>
+     
+                <h2>CAN IDs</h2>
+	<table><tr>
+	<th class="pound">ID</th>
+	<th>Device</th></tr>
+	                                         <tr><td>0</td><td>Frills PowerDistPanel</td><td></td></tr>
+            	                                                     <tr><td>2</td><td>Arm armL</td><td></td></tr>
+            	                                         <tr><td>3</td><td>Arm armR</td><td></td></tr>
+            	                                         <tr><td>4</td><td>Turret turret</td><td></td></tr>
+            	                                                                                                                                                                                                                                                                 	</table>
+    
+            
+                    <h2>Analog Inputs</h2>
+	    <table><tr>
+	        <th class="pound">#</th>
+	        <th>Sensor</th></tr>
+	                                               <tr><td>0</td><td>Chassis PressureSensor</td><td></td></tr>
+            	                                                                                                                                                                                                                                                                                                                 	    </table>
+    
+                    <h2>PCM 0</h2>
+	    <table><tr>
+	        <th class="pound">#</th>
+	        <th>Solenoid</th></tr>
+	                                               <tr><td>0</td><td>Chassis Shifter Forward </td><td></td></tr>
+            	                                         <tr><td>1</td><td>Chassis Shifter Reverse </td><td></td></tr>
+            	                                         <tr><td>2</td><td>Pickup ShooterFirstStage1 Output </td><td></td></tr>
+            	                                         <tr><td>3</td><td>Pickup ShooterFirstStage2 Output </td><td></td></tr>
+            	                                         <tr><td>4</td><td>Pickup ShooterSecondStage1 Output </td><td></td></tr>
+            	                                         <tr><td>5</td><td>Pickup ShooterSecondStage2 Output </td><td></td></tr>
+            	                                         <tr><td>6</td><td>Pickup pickupLid Forward </td><td></td></tr>
+            	                                         <tr><td>7</td><td>Pickup pickupLid Reverse </td><td></td></tr>
+            	                                                                                                                                                                                                                             	    </table>
+                        <h2>PCM 1</h2>
+	    <table><tr>
+	        <th class="pound">#</th>
+	        <th>Solenoid</th></tr>
+	                                               <tr><td>0</td><td>Climber PowerTakeOff Forward </td><td></td></tr>
+            	                                         <tr><td>1</td><td>Climber PowerTakeOff Reverse </td><td></td></tr>
+            	                                         <tr><td>2</td><td>Climber PivotHigh Output </td><td></td></tr>
+            	                                         <tr><td>3</td><td>Climber PivotLow Output </td><td></td></tr>
+            	                                         <tr><td>4</td><td>Arm PortcullisWedge Output </td><td></td></tr>
+            	                                                                                                                                                                                                                                                                 	    </table>
+                                                                                                                                                                                                                                        
+          </body>
+</html>

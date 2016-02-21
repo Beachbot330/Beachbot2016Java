@@ -1559,13 +1559,9 @@ Children:
           parameters:
           - {name: Quadrant, type: int, value: '2'}
         - !!robotbuilder.data.properties.ParameterSet
-          name: Quadrant3
+          name: Quadrant0
           parameters:
-          - {name: Quadrant, type: int, value: '3'}
-        - !!robotbuilder.data.properties.ParameterSet
-          name: Quadrant4
-          parameters:
-          - {name: Quadrant, type: int, value: '4'}
+          - {name: Quadrant, type: int, value: '0'}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
@@ -1630,7 +1626,7 @@ Properties:
   Simulation World File: !!robotbuilder.data.properties.StringProperty {default: /usr/share/frcsim/worlds/GearsBotDemo.world,
     name: Simulation World File, validators: null, value: /usr/share/frcsim/worlds/GearsBotDemo.world}
   Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Joe-XPS13-W7\',
-    extension: null, folder: true, name: Wiring file location, validators: null, value: /home/beachbots-admin/git/Beachbot2016Java}
+    extension: null, folder: true, name: Wiring file location, validators: null, value: .\}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
     name: Autonomous Command, type: Command, validators: null, value: Autonomous Command}
 Base: Robot
