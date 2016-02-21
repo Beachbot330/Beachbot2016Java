@@ -15,7 +15,6 @@ import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.ManualArm;
 import org.usfirst.frc330.constants.ArmConst;
-import org.usfirst.frc330.constants.TurretConst;
 import org.usfirst.frc330.util.CSVLoggable;
 
 import edu.wpi.first.wpilibj.CANTalon;
@@ -69,16 +68,18 @@ public class Arm extends Subsystem {
     	int absolutePosition = armL.getPulseWidthPosition() & 0xFFF; /* mask out the bottom12 bits, we don't care about the wrap arounds */
         /* use the low level API to set the quad encoder signal */
         armL.setEncPosition(absolutePosition - getArmZero());
+        //armR.setEncPosition(absolutePosition - getArmZero());
     	
     	armL.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-    	armL.reverseSensor(true);
+    	armL.reverseSensor(false);
+    	armL.reverseOutput(false);
     	setPIDConstants(ArmConst.proportional, ArmConst.integral, ArmConst.derivative);
     	setArmAbsoluteTolerance(ArmConst.tolerance);
     	setLowerSoftLimit(ArmConst.limitLowerAngle);
     	setUpperSoftLimit(ArmConst.limitUpperAngle);
     	armL.enableForwardSoftLimit(true);
     	armL.enableReverseSoftLimit(true);
-    	armL.enableBrakeMode(true);
+    	armL.enableBrakeMode(false);
     	
     	//set armR to follow armL, reversed
     	armR.changeControlMode(TalonControlMode.Follower);
@@ -106,6 +107,11 @@ public class Arm extends Subsystem {
 		};
 		Robot.csvLogger.add("ArmQuadrant", temp);
 		
+		temp = new CSVLoggable(true) {
+			public double get() { return getSetpoint(); }
+		};
+		Robot.csvLogger.add("ArmSetpoint", temp);
+		
     }
     
 	/////////////////////////////////////////////////////////////
@@ -116,6 +122,11 @@ public class Arm extends Subsystem {
     public double getArmAngle()
 	{
 		return (convertRotationsToDegrees(armL.getPosition()));
+	}
+    
+    public double getArmPositionTicks()
+	{
+		return (convertDegreesToTicks(getArmAngle()));
 	}
     
     public double getLowerLimit()
@@ -129,7 +140,21 @@ public class Arm extends Subsystem {
 	}
 
 	public double getArmOutput() {
-		return armL.get();
+		return armL.getOutputVoltage();
+	}
+	
+	public boolean getForwardLimitTripped(){
+		if (armL.getFaultForSoftLim() != 0)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean getReverseLimitTripped(){
+		if(armL.getFaultRevSoftLim() != 0)
+			return true;
+		else
+			return false;
 	}
 	
 	/////////////////////////////////////////////////////////////
@@ -143,6 +168,10 @@ public class Arm extends Subsystem {
     /* Set the arm angle */
     public void setArmAngle(double position) {
     	armL.setSetpoint(convertDegreesToRotations(position));
+    }
+    
+    public double getSetpoint() {
+    	return convertRotationsToDegrees(armL.getSetpoint());
     }
     
     public void setPIDConstants (double P, double I, double D)
@@ -184,14 +213,16 @@ public class Arm extends Subsystem {
 	/////////////////////////////////////////////////////////////
     /* Control the arm manually */
     public void manualArm() {
-    	double armCommand = Robot.oi.armJoystick.getY();	
+    	double armCommand = -Robot.oi.armJoystick.getY();	
     	double angle;
     	
     	if ( Math.abs(armCommand) > ArmConst.deadZone) {
 			if (armL.getControlMode() != TalonControlMode.PercentVbus)
 				armL.changeControlMode(TalonControlMode.PercentVbus);
 			armL.set(armCommand);
-		} else if ( armL.getControlMode() != TalonControlMode.Position) {
+			Robot.logger.println("Set: " + armCommand);
+		} 
+    	else if ( armL.getControlMode() != TalonControlMode.Position) {
 			angle = getArmAngle();
 			if (angle < ArmConst.limitLowerAngle)
 				angle = ArmConst.limitLowerAngle;
@@ -251,6 +282,7 @@ public class Arm extends Subsystem {
         
         Preferences.getInstance().putInt(name, armL.getPulseWidthPosition());
         armL.setEncPosition(0);
+        armR.setEncPosition(0);
     }
     
     public int getArmZero() {

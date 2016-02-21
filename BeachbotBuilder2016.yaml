@@ -296,7 +296,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: &id012 [CANID]
-          value: '0'
+          value: '2'
       Base: CAN Talon
       Name: armL
     - Children: []
@@ -306,7 +306,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id012
-          value: '1'
+          value: '3'
       Base: CAN Talon
       Name: armR
     - Children: []
@@ -489,7 +489,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id012
-          value: '2'
+          value: '4'
       Base: CAN Talon
       Name: turret
     Properties:
@@ -1580,10 +1580,10 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: None}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id031 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id031
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
@@ -1598,10 +1598,10 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: None}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id032 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id032
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command

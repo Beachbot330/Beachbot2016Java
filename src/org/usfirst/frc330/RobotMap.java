@@ -116,10 +116,10 @@ public class RobotMap {
         chassisPressureSensor = new AnalogInput(0);
         LiveWindow.addSensor("Chassis", "PressureSensor", chassisPressureSensor);
         
-        armarmL = new CANTalon(0);
+        armarmL = new CANTalon(2);
         LiveWindow.addActuator("Arm", "armL", armarmL);
         
-        armarmR = new CANTalon(1);
+        armarmR = new CANTalon(3);
         LiveWindow.addActuator("Arm", "armR", armarmR);
         
         armPortcullisWedge = new Solenoid(1, 4);
@@ -146,7 +146,7 @@ public class RobotMap {
         pickuppickupLid = new DoubleSolenoid(0, 6, 7);
         LiveWindow.addActuator("Pickup", "pickupLid", pickuppickupLid);
         
-        turretturret = new CANTalon(2);
+        turretturret = new CANTalon(4);
         LiveWindow.addActuator("Turret", "turret", turretturret);
         
         climberPowerTakeOff = new DoubleSolenoid(1, 0, 1);
