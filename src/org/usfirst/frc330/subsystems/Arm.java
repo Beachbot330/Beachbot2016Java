@@ -178,11 +178,21 @@ public class Arm extends Subsystem {
 	/////////////////////////////////////////////////////////////
 	/* Set the arm */
     public void setArm(double output) {
+    	if (armL.getControlMode() != TalonControlMode.PercentVbus) {
+    		Robot.logger.println("Old Arm Mode: " + armL.getControlMode());
+    		armL.changeControlMode(TalonControlMode.PercentVbus);
+    		Robot.logger.println("New Arm Mode: " + armL.getControlMode());
+    	}
     	armL.set(output);
     }
     
     /* Set the arm angle */
     public void setArmAngle(double position) {
+    	if (armL.getControlMode() != TalonControlMode.Position) {
+    		Robot.logger.println("Old Arm Mode: " + armL.getControlMode());
+    		armL.changeControlMode(TalonControlMode.Position);
+    		Robot.logger.println("New Arm Mode: " + armL.getControlMode());
+    	}
     	armL.setSetpoint(convertDegreesToRotations(position));
     }
     
@@ -233,13 +243,18 @@ public class Arm extends Subsystem {
     	double armCommand = -Robot.oi.armJoystick.getY();	
     	double angle;
     	
-    	if ( Math.abs(armCommand) > ArmConst.deadZone) {
-			if (armL.getControlMode() != TalonControlMode.PercentVbus){
-				Robot.logger.println("Old Arm Mode: " + armL.getControlMode());
-				armL.changeControlMode(TalonControlMode.PercentVbus);
-				Robot.logger.println("New Arm Mode: " + armL.getControlMode());
-			}
-			armL.set(armCommand);
+    	angle = getArmAngle();
+    	if (angle < getLowerLimit() && armCommand >= -ArmConst.deadZone)
+    		setArmAngle(getLowerLimit());
+    	else if (angle > getUpperLimit() && armCommand <= ArmConst.deadZone)
+    		setArmAngle(getUpperLimit());
+    	else if ( Math.abs(armCommand) > ArmConst.deadZone) {
+//			if (armL.getControlMode() != TalonControlMode.PercentVbus){
+//				Robot.logger.println("Old Arm Mode: " + armL.getControlMode());
+//				armL.changeControlMode(TalonControlMode.PercentVbus);
+//				Robot.logger.println("New Arm Mode: " + armL.getControlMode());
+//			}
+			setArm(armCommand);
 			//Robot.logger.println("Set: " + armCommand);
 		} 
     	else if ( armL.getControlMode() != TalonControlMode.Position) {
@@ -249,7 +264,6 @@ public class Arm extends Subsystem {
 			else if (angle > getUpperLimit())
 				angle = getUpperLimit();
 
-    		armL.changeControlMode(TalonControlMode.Position);
 			setArmAngle(angle);
     	} 
     	
