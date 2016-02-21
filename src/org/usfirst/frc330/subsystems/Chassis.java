@@ -184,7 +184,7 @@ public class Chassis extends Subsystem
 				DoubleSolenoid.Value state = shifter.get();
 				double state_int;
 				if (state == DoubleSolenoid.Value.kForward)
-						state_int = 1.0;
+					state_int = 1.0;
 				else
 					state_int = 0.0;
 				return state_int;}  		
