@@ -112,6 +112,11 @@ public class Arm extends Subsystem {
 		};
 		Robot.csvLogger.add("ArmSetpoint", temp);
 		
+		temp = new CSVLoggable(true) {
+			public double get() { return getArmPositionTicks(); }
+		};
+		Robot.csvLogger.add("Ticks", temp);
+		
     }
     
 	/////////////////////////////////////////////////////////////
@@ -121,7 +126,7 @@ public class Arm extends Subsystem {
     // Get input from encoder for Arm
     public double getArmAngle()
 	{
-		return (convertRotationsToDegrees(armL.getPosition()));
+		return (-convertRotationsToDegrees(armL.getPosition()));
 	}
     
     public double getArmPositionTicks()
@@ -171,7 +176,7 @@ public class Arm extends Subsystem {
     }
     
     public double getSetpoint() {
-    	return convertRotationsToDegrees(armL.getSetpoint());
+    	return convertRotationsToDegrees(-armL.getSetpoint());
     }
     
     public void setPIDConstants (double P, double I, double D)
@@ -217,8 +222,11 @@ public class Arm extends Subsystem {
     	double angle;
     	
     	if ( Math.abs(armCommand) > ArmConst.deadZone) {
-			if (armL.getControlMode() != TalonControlMode.PercentVbus)
+			if (armL.getControlMode() != TalonControlMode.PercentVbus){
+				Robot.logger.println("Old Mode: " + armL.getControlMode());
 				armL.changeControlMode(TalonControlMode.PercentVbus);
+				Robot.logger.println("New Mode: " + armL.getControlMode());
+			}
 			armL.set(armCommand);
 			Robot.logger.println("Set: " + armCommand);
 		} 
@@ -241,6 +249,8 @@ public class Arm extends Subsystem {
 		{
 			armL.reset();
 		}
+		armL.enable();
+		armL.changeControlMode(TalonControlMode.PercentVbus);
 		armL.set(0);
 	}
     
@@ -295,11 +305,11 @@ public class Arm extends Subsystem {
 	}
     
     private void setLowerSoftLimit(double lowerAngle) {
-    	armL.setReverseSoftLimit(convertDegreesToRotations(lowerAngle));
+    	armL.setForwardSoftLimit(convertDegreesToRotations(lowerAngle));
     }
     
     private void setUpperSoftLimit(double upperAngle) {
-    	armL.setForwardSoftLimit(convertDegreesToRotations(upperAngle));
+    	armL.setReverseSoftLimit(convertDegreesToRotations(upperAngle));
     }
     
     private int convertDegreesToTicks(double degrees) {
@@ -311,7 +321,7 @@ public class Arm extends Subsystem {
     }
     
     private double convertDegreesToRotations(double degrees) {
-    	return (degrees / ArmConst.maxAngleDegrees);
+    	return (-degrees / ArmConst.maxAngleDegrees);
     }
     
     private double convertRotationsToDegrees(double rotations) {

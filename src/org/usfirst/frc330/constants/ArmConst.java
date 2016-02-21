@@ -10,7 +10,7 @@ public final class ArmConst {
 
 	// Tolerance
 	public static final double tolerance         = 0.5;  //TODO: Set Initial Value
-	public static final double deadZone			 = 0.2;	 //AP 1-26
+	public static final double deadZone			 = 0.05;	 //AP 2-20
 	public static final double pickupTolerance	 = 5.0;  //AP 2-6 (WAG)
 	
 	// PID Constants
@@ -31,7 +31,7 @@ public final class ArmConst {
 	
 	// Encoder Stuff
 	public static final int    maxAngleDegrees   = 72;    //JM 2-10
-	public static final int    maxEncoderCounts  = 4096;  //JM 2-10  
+	public static final int    maxEncoderCounts  = -4096;  //AP 2-20
 	public static final int    minQuadrant       = 0;     //JM 2-10
 	public static final int    maxQuadrant       = 4;     //JM 2-10
 
