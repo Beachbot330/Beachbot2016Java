@@ -18,6 +18,7 @@ public final class ArmConst {
 	public static final double integral          = 0.0;  //TODO: Set Initial Value
 	public static final double derivative        = 0.0;  //TODO: Set Initial Value
 	public static final double feedForward	     = 0.0;  //TODO: Set Initial Value
+	public static final double VoltageRampRate   = 6.0;  // JR 2/20, first idea by MD
 	
 	// Angles
 	public static final double limitLowerAngle   =  0.0;  //AP 1-26

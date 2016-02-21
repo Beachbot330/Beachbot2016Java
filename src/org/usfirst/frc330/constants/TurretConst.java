@@ -9,13 +9,15 @@ public final class TurretConst {
 	// Tolerance
 	public static final double tolerance            = 0.5;  //TODO: Initial Value
 	public static final double pickupTolerance	    = 5.0;  //AP 2-6 (WAG)
+	public static final double deadZone             = 0.1; // JR 2/20
 	
 	// PID Constants
 	public static final double proportional         = 0.2;  //TODO: Set Initial Value
 	public static final double integral             = 0.0;  //TODO: Set Initial Value
 	public static final double derivative           = 0.0;  //TODO: Set Initial Value
 	public static final double feedForward	        = 0.0;  //TODO: Set Initial Value
-
+	public static final double VoltageRampRate      = 6.0;  // JR 2/20, first idea by MD
+	
 	// Angles
 	// NOTE: Assumption - from turret's POV facing forward being (pickup end of robot)
 	// CCW = Counter Clock Wise

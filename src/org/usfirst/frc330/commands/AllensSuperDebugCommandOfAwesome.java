@@ -43,8 +43,8 @@ public class AllensSuperDebugCommandOfAwesome extends BBCommand {
     	Robot.logger.println("RAW Position: " + Robot.arm.getArmPositionTicks());
     	Robot.logger.println("Lower Limit: " + Robot.arm.getLowerLimit(), true);
     	Robot.logger.println("Upper Limit: " + Robot.arm.getUpperLimit(), true);
-    	Robot.logger.println("Forward Limit: " + Robot.arm.getForwardLimitTripped() +
-    						"   Reverse Limit: " + Robot.arm.getReverseLimitTripped());
+    	Robot.logger.println("Forward Limit: " + Robot.arm.getLowerLimitTripped() +
+    						"   Reverse Limit: " + Robot.arm.getUpperLimitTripped());
     }
 
     // Called repeatedly when this Command is scheduled to run

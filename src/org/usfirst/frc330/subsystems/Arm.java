@@ -80,6 +80,7 @@ public class Arm extends Subsystem {
     	armL.enableForwardSoftLimit(true);
     	armL.enableReverseSoftLimit(true);
     	armL.enableBrakeMode(false);
+    	armL.setVoltageRampRate(ArmConst.VoltageRampRate);
     	
     	//set armR to follow armL, reversed
     	armR.changeControlMode(TalonControlMode.Follower);
@@ -112,10 +113,20 @@ public class Arm extends Subsystem {
 		};
 		Robot.csvLogger.add("ArmSetpoint", temp);
 		
+//		temp = new CSVLoggable(true) {
+//			public double get() { return getArmPositionTicks(); }
+//		};
+//		Robot.csvLogger.add("ArmTicks", temp);
+		
 		temp = new CSVLoggable(true) {
-			public double get() { return getArmPositionTicks(); }
+			public double get() { return getLowerLimit(); }
 		};
-		Robot.csvLogger.add("Ticks", temp);
+		Robot.csvLogger.add("ArmLowerLimit", temp);
+		
+		temp = new CSVLoggable(true) {
+			public double get() { return getUpperLimit(); }
+		};
+		Robot.csvLogger.add("ArmUpperLimit", temp);
 		
     }
     
@@ -136,26 +147,26 @@ public class Arm extends Subsystem {
     
     public double getLowerLimit()
 	{
-		return (armL.getForwardSoftLimit());
+		return (convertTicksToDegrees(armL.getForwardSoftLimit()));
 	}
     
     public double getUpperLimit()
 	{
-		return (armL.getReverseSoftLimit());
+		return (convertTicksToDegrees(armL.getReverseSoftLimit()));
 	}
 
 	public double getArmOutput() {
 		return armL.getOutputVoltage();
 	}
 	
-	public boolean getForwardLimitTripped(){
+	public boolean getLowerLimitTripped(){
 		if (armL.getFaultForSoftLim() != 0)
 			return true;
 		else
 			return false;
 	}
 	
-	public boolean getReverseLimitTripped(){
+	public boolean getUpperLimitTripped(){
 		if(armL.getFaultRevSoftLim() != 0)
 			return true;
 		else
@@ -203,7 +214,8 @@ public class Arm extends Subsystem {
     		Robot.logger.println("Original Quadrant: " + currentQuadrant, true);
     		Robot.logger.println("New Quadrant: " + quadrant, true);
     		armL.setPosition(convertDegreesToRotations(currentArmAngle + angleChange));
-    		setArmAngle(getArmAngle() + angleChange);
+    		if (armL.getControlMode() == TalonControlMode.Position)
+    			setArmAngle(getArmAngle() + angleChange);
     	}
     	else
     	{
@@ -223,19 +235,19 @@ public class Arm extends Subsystem {
     	
     	if ( Math.abs(armCommand) > ArmConst.deadZone) {
 			if (armL.getControlMode() != TalonControlMode.PercentVbus){
-				Robot.logger.println("Old Mode: " + armL.getControlMode());
+				Robot.logger.println("Old Arm Mode: " + armL.getControlMode());
 				armL.changeControlMode(TalonControlMode.PercentVbus);
-				Robot.logger.println("New Mode: " + armL.getControlMode());
+				Robot.logger.println("New Arm Mode: " + armL.getControlMode());
 			}
 			armL.set(armCommand);
-			Robot.logger.println("Set: " + armCommand);
+			//Robot.logger.println("Set: " + armCommand);
 		} 
     	else if ( armL.getControlMode() != TalonControlMode.Position) {
 			angle = getArmAngle();
-			if (angle < ArmConst.limitLowerAngle)
-				angle = ArmConst.limitLowerAngle;
-			else if (angle > ArmConst.limitUpperAngle)
-				angle = ArmConst.limitUpperAngle;
+			if (angle < getLowerLimit())
+				angle = getLowerLimit();
+			else if (angle > getUpperLimit())
+				angle = getUpperLimit();
 
     		armL.changeControlMode(TalonControlMode.Position);
 			setArmAngle(angle);
@@ -317,7 +329,7 @@ public class Arm extends Subsystem {
     }
     
     private double convertTicksToDegrees(int ticks) {
-    	return (ticks * ArmConst.maxAngleDegrees / ArmConst.maxEncoderCounts);
+    	return (ticks * ArmConst.maxAngleDegrees / ArmConst.maxEncoderCounts + 0.5);
     }
     
     private double convertDegreesToRotations(double degrees) {
@@ -329,13 +341,18 @@ public class Arm extends Subsystem {
     }
     
     public void monitorArm() {
-    	if (Robot.turret.isCentered())
-        	setLowerSoftLimit(ArmConst.limitLowerAngle);
-    	else
+    	if (Robot.turret.isCentered()) {
+        	setLowerSoftLimit(ArmConst.limitLowerAngle); 
+    	}
+    	else {
     		setLowerSoftLimit(ArmConst.armSafeLimit);
-    	if (Robot.arm.getArmAngle() <= ArmConst.armSafeLimit)
-    		Robot.turret.setSoftLimitsSafe();
-    	else
+    			
+    	}
+    	if (Robot.arm.getArmAngle() <= ArmConst.armSafeLimit) {
+    		Robot.turret.setSoftLimitsSafe(); 
+    	}
+    	else {
     		Robot.turret.setSoftLimitsArmUp();
+    	}
     }
 }
