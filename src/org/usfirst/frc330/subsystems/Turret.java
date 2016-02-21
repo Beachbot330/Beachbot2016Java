@@ -14,7 +14,6 @@ package org.usfirst.frc330.subsystems;
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.ManualTurret;
-import org.usfirst.frc330.constants.ArmConst;
 import org.usfirst.frc330.constants.TurretConst;
 import org.usfirst.frc330.util.CSVLoggable;
 
@@ -71,7 +70,7 @@ public class Turret extends Subsystem {
     	turret.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
     	turret.reverseSensor(false);
     	turret.reverseOutput(false);
-    	setPIDConstants(ArmConst.proportional, ArmConst.integral, ArmConst.derivative);
+    	setPIDConstants(TurretConst.proportional, TurretConst.integral, TurretConst.derivative);
     	setTurretAbsoluteTolerance(TurretConst.tolerance);
     	setSoftLimitsSafe();
     	turret.enableForwardSoftLimit(true);
@@ -219,7 +218,7 @@ public class Turret extends Subsystem {
 				turret.changeControlMode(TalonControlMode.PercentVbus);
 				Robot.logger.println("New Turret Mode: " + turret.getControlMode());
 			}
-			turret.set(turretCommand);
+			turret.set(turretCommand/Math.abs(turretCommand)*Math.pow(turretCommand,2));
 		}
 		else if (turret.getControlMode() != TalonControlMode.Position)
 		{
