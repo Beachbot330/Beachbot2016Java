@@ -254,12 +254,7 @@ public class Arm extends Subsystem implements LiveWindowSendable {
     	double armCommand = -Robot.oi.armJoystick.getY();	
     	double angle;
     	
-    	angle = getArmAngle();
-    	if (angle < getLowerLimit() && armCommand >= -ArmConst.deadZone)
-    		setArmAngle(getLowerLimit());
-    	else if (angle > getUpperLimit() && armCommand <= ArmConst.deadZone)
-    		setArmAngle(getUpperLimit());
-    	else if ( Math.abs(armCommand) > ArmConst.deadZone) {
+    	if ( Math.abs(armCommand) > ArmConst.deadZone) {
 //			if (armL.getControlMode() != TalonControlMode.PercentVbus){
 //				Robot.logger.println("Old Arm Mode: " + armL.getControlMode());
 //				changeControlMode(TalonControlMode.PercentVbus);
