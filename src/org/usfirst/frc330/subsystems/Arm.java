@@ -346,11 +346,11 @@ public class Arm extends Subsystem implements LiveWindowSendable {
     }
     
     private int convertDegreesToTicks(double degrees) {
-    	return (int)(degrees * ArmConst.maxEncoderCounts / ArmConst.maxAngleDegrees);
+    	return (int)(degrees * ArmConst.maxEncoderCounts / ArmConst.maxAngleDegrees + 0.5);
     }
     
     private double convertTicksToDegrees(int ticks) {
-    	return (ticks * ArmConst.maxAngleDegrees / ArmConst.maxEncoderCounts + 0.5);
+    	return (ticks * ArmConst.maxAngleDegrees / ArmConst.maxEncoderCounts);
     }
     
     private double convertDegreesToRotations(double degrees) {
