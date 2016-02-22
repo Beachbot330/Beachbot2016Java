@@ -116,7 +116,7 @@ public class Robot extends IterativeRobot {
         if (isPracticeRobot())
         	logger.println("Practice Robot Detected");
         else
-        	logger.println("Comeptition Robot Detected");
+        	logger.println("Competition Robot Detected");
     
         Command beep = new BuzzerBeepTimed(0.75);
         beep.start();
