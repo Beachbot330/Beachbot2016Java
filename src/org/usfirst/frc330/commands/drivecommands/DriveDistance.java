@@ -27,24 +27,20 @@ public class  DriveDistance extends BBCommand {
 	double leftSetpoint, rightSetpoint;
 	double origDistance;
     boolean stopAtEnd = false;
-    PIDGains highGains, lowGains, gains;
+    PIDGains gains;
     
-    public DriveDistance(double distance) {
-        this(distance, 0, 15, false, ChassisConst.DriveLow, ChassisConst.DriveHigh);
+    public DriveDistance(double distance, PIDGains gains) {
+        this(distance, 0, 15, false, gains);
     }
     
-    public DriveDistance(double distance, double tolerance)
+    public DriveDistance(double distance, double tolerance, PIDGains gains)
     {
-        this(distance, tolerance, 15, false, ChassisConst.DriveLow, ChassisConst.DriveHigh);
+        this(distance, tolerance, 15, false, gains);
     }
     
-    public DriveDistance(	double distance, double tolerance,
-			double timeout, boolean stopAtEnd) {
-    	this(distance, tolerance, timeout, false, ChassisConst.DriveLow, ChassisConst.DriveHigh);
-    }
     
     public DriveDistance(	double distance, double tolerance,
-    						double timeout, boolean stopAtEnd, PIDGains low, PIDGains high) {
+    						double timeout, boolean stopAtEnd, PIDGains gains) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 	
@@ -59,17 +55,12 @@ public class  DriveDistance extends BBCommand {
         	setTimeout(timeout);
         this.stopAtEnd = stopAtEnd;
         origDistance = distance;
-        lowGains = low;
-        highGains = high;
+        this.gains = gains;
         maxOutput = 0;
     }
     // Called just before this Command runs the first time
     protected void initialize() {
         Robot.chassis.gyroPID.disable();
-        if (!Robot.chassis.isHighGear())
-        	gains = lowGains;
-        else
-        	gains = highGains;
         
         Robot.chassis.leftDrivePID.setPID(gains);
         Robot.chassis.rightDrivePID.setPID(gains);

@@ -12,8 +12,9 @@
 package org.usfirst.frc330.commands.autocommands;
 
 
+import org.usfirst.frc330.commands.ShiftLow;
 import org.usfirst.frc330.commands.drivecommands.*;
-
+import org.usfirst.frc330.constants.ChassisConst;
 
 import edu.wpi.first.wpilibj.command.BBCommandGroup;
 
@@ -25,6 +26,7 @@ public class DriveToDefense extends BBCommandGroup {
     public  DriveToDefense() {
     	
     	//Drive to the outer works to score points
-    	addSequential(new DriveWaypoint(0.0, 73.0, 4.0, 3.0, true));  //X Y Tol Timeout Stop
+    	addSequential(new ShiftLow());
+    	addSequential(new DriveWaypoint(0.0, 73.0, 4.0, 3.0, true, ChassisConst.DriveLow,ChassisConst.GyroDriveLow));  //X Y Tol Timeout Stop
     }
 }
