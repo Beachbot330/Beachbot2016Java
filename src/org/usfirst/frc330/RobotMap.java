@@ -90,7 +90,7 @@ public class RobotMap {
         chassisSpeedControllerL3 = new VictorSP(4);
         LiveWindow.addActuator("Chassis", "Speed Controller L3", (VictorSP) chassisSpeedControllerL3);
         
-        chassisShifter = new DoubleSolenoid(0, 0, 1);
+        chassisShifter = new DoubleSolenoid(1, 0, 1);
         LiveWindow.addActuator("Chassis", "Shifter", chassisShifter);
         
         chassisSpeedControllerR1 = new VictorSP(5);
@@ -122,7 +122,7 @@ public class RobotMap {
         armarmR = new CANTalon(3);
         LiveWindow.addActuator("Arm", "armR", armarmR);
         
-        armPortcullisWedge = new Solenoid(1, 4);
+        armPortcullisWedge = new Solenoid(0, 4);
         LiveWindow.addActuator("Arm", "PortcullisWedge", armPortcullisWedge);
         
         pickupPickupR = new Victor(1);
@@ -131,31 +131,31 @@ public class RobotMap {
         pickupPickupL = new Victor(0);
         LiveWindow.addActuator("Pickup", "PickupL", (Victor) pickupPickupL);
         
-        pickupShooterFirstStage1 = new Solenoid(0, 2);
+        pickupShooterFirstStage1 = new Solenoid(1, 2);
         LiveWindow.addActuator("Pickup", "ShooterFirstStage1", pickupShooterFirstStage1);
         
-        pickupShooterFirstStage2 = new Solenoid(0, 3);
+        pickupShooterFirstStage2 = new Solenoid(1, 3);
         LiveWindow.addActuator("Pickup", "ShooterFirstStage2", pickupShooterFirstStage2);
         
-        pickupShooterSecondStage1 = new Solenoid(0, 4);
+        pickupShooterSecondStage1 = new Solenoid(1, 4);
         LiveWindow.addActuator("Pickup", "ShooterSecondStage1", pickupShooterSecondStage1);
         
-        pickupShooterSecondStage2 = new Solenoid(0, 5);
+        pickupShooterSecondStage2 = new Solenoid(1, 5);
         LiveWindow.addActuator("Pickup", "ShooterSecondStage2", pickupShooterSecondStage2);
         
-        pickuppickupLid = new DoubleSolenoid(0, 6, 7);
+        pickuppickupLid = new DoubleSolenoid(1, 6, 7);
         LiveWindow.addActuator("Pickup", "pickupLid", pickuppickupLid);
         
         turretturret = new CANTalon(4);
         LiveWindow.addActuator("Turret", "turret", turretturret);
         
-        climberPowerTakeOff = new DoubleSolenoid(1, 0, 1);
+        climberPowerTakeOff = new DoubleSolenoid(0, 0, 1);
         LiveWindow.addActuator("Climber", "PowerTakeOff", climberPowerTakeOff);
         
-        climberPivotHigh = new Solenoid(1, 2);
+        climberPivotHigh = new Solenoid(0, 2);
         LiveWindow.addActuator("Climber", "PivotHigh", climberPivotHigh);
         
-        climberPivotLow = new Solenoid(1, 3);
+        climberPivotLow = new Solenoid(0, 3);
         LiveWindow.addActuator("Climber", "PivotLow", climberPivotLow);
         
 

@@ -112,14 +112,14 @@ Children:
           default: '0'
           name: Forward PCM (Solenoid)
           validators: &id018 [Solenoid]
-          value: '0'
+          value: '1'
         Reverse PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: &id019 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
             '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
           default: '0'
           name: Reverse PCM (Solenoid)
           validators: &id020 [Solenoid]
-          value: '0'
+          value: '1'
         Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: &id021 ['0', '1', '2', '3', '4', '5', '6', '7']
           default: '0'
@@ -323,7 +323,7 @@ Children:
           default: '0'
           name: Output PCM (Solenoid)
           validators: &id016 [Solenoid]
-          value: '1'
+          value: '0'
       Base: Solenoid
       Name: PortcullisWedge
     Properties:
@@ -387,7 +387,7 @@ Children:
           default: '0'
           name: Output PCM (Solenoid)
           validators: *id016
-          value: '0'
+          value: '1'
       Base: Solenoid
       Name: ShooterFirstStage1
     - Children: []
@@ -403,7 +403,7 @@ Children:
           default: '0'
           name: Output PCM (Solenoid)
           validators: *id016
-          value: '0'
+          value: '1'
       Base: Solenoid
       Name: ShooterFirstStage2
     - Children: []
@@ -419,7 +419,7 @@ Children:
           default: '0'
           name: Output PCM (Solenoid)
           validators: *id016
-          value: '0'
+          value: '1'
       Base: Solenoid
       Name: ShooterSecondStage1
     - Children: []
@@ -435,7 +435,7 @@ Children:
           default: '0'
           name: Output PCM (Solenoid)
           validators: *id016
-          value: '0'
+          value: '1'
       Base: Solenoid
       Name: ShooterSecondStage2
     - Children: []
@@ -445,13 +445,13 @@ Children:
           default: '0'
           name: Forward PCM (Solenoid)
           validators: *id018
-          value: '0'
+          value: '1'
         Reverse PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id019
           default: '0'
           name: Reverse PCM (Solenoid)
           validators: *id020
-          value: '0'
+          value: '1'
         Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id021
           default: '0'
@@ -515,13 +515,13 @@ Children:
           default: '0'
           name: Forward PCM (Solenoid)
           validators: *id018
-          value: '1'
+          value: '0'
         Reverse PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id019
           default: '0'
           name: Reverse PCM (Solenoid)
           validators: *id020
-          value: '1'
+          value: '0'
         Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id021
           default: '0'
@@ -549,7 +549,7 @@ Children:
           default: '0'
           name: Output PCM (Solenoid)
           validators: *id016
-          value: '1'
+          value: '0'
       Base: Solenoid
       Name: PivotHigh
     - Children: []
@@ -565,7 +565,7 @@ Children:
           default: '0'
           name: Output PCM (Solenoid)
           validators: *id016
-          value: '1'
+          value: '0'
       Base: Solenoid
       Name: PivotLow
     Properties:
