@@ -109,6 +109,15 @@ public class Turret extends Subsystem {
 		};
 		Robot.csvLogger.add("TurretCWSoftLimit", temp);
 
+		temp = new CSVLoggable(true) {
+			public double get() { 
+				if(getSensorFault())
+					return 1.0;
+				else
+					return 0.0;
+			}
+		};
+		Robot.csvLogger.add("turretFault", temp);
 	}
 	/////////////////////////////////////////////////////////////
 	// SET methods
@@ -282,6 +291,12 @@ public class Turret extends Subsystem {
         
         Preferences.getInstance().putInt(name, turret.getPulseWidthPosition());
         turret.setEncPosition(0);
+    }
+    
+    public boolean getSensorFault(){
+    	CANTalon.FeedbackDeviceStatus sensorStatus;
+    	sensorStatus = turret.isSensorPresent(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+    	return (sensorStatus != CANTalon.FeedbackDeviceStatus.FeedbackStatusPresent);
     }
     
     public int getTurretZero() {
