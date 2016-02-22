@@ -216,17 +216,6 @@ public class Arm extends Subsystem implements LiveWindowSendable {
 		}
 	}
     
-
-	private void setPID(double P, double I, double D, double F) {
-		armL.setPID(P, I, D, F, 0, 0, 0);
-		if (SCtable != null) {
-            SCtable.putNumber("p", P);
-            SCtable.putNumber("i", I);
-            SCtable.putNumber("d", D);
-            SCtable.putNumber("f", F);
-		}
-	}
-    
     public int getCurrentQuadrant() {
     	return (int)(getArmAngle()/ArmConst.maxAngleDegrees);
     }
@@ -422,14 +411,12 @@ public class Arm extends Subsystem implements LiveWindowSendable {
 
 	@Override
 	public void startLiveWindowMode() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 
 	@Override
 	public void stopLiveWindowMode() {
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -444,8 +431,7 @@ public class Arm extends Subsystem implements LiveWindowSendable {
 					Robot.logger.println("Old Value I: " + armL.getI() + " New Value: " + table.getNumber("i", 0.0));
 					Robot.logger.println("Old Value D: " + armL.getD() + " New Value: " + table.getNumber("d", 0.0));
 					Robot.logger.println("Old Value F: " + armL.getF() + " New Value: " + table.getNumber("f", 0.0));
-					setPID(table.getNumber("p", 0.0), table.getNumber("i", 0.0), table.getNumber("d", 0.0),
-							table.getNumber("f", 0.0));
+					setPIDConstants(table.getNumber("p", 0.0), table.getNumber("i", 0.0), table.getNumber("d", 0.0));
 			} else if (key.equals("setpoint")) {
 				if (getSetpoint() != ((Double) value).doubleValue())
 					Robot.logger.println("Changing Setpoint from SmartDashboard. Old Value: " + getSetpoint() + " New Value: " + ((Double) value).doubleValue());
@@ -480,7 +466,6 @@ public class Arm extends Subsystem implements LiveWindowSendable {
 
 	@Override
 	public void updateTable() {
-		// TODO Auto-generated method stub
 		
 	}
 }

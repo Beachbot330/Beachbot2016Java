@@ -22,13 +22,16 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.tables.ITable;
+import edu.wpi.first.wpilibj.tables.ITableListener;
 
 
 /**
  *
  */
-public class Turret extends Subsystem {
+public class Turret extends Subsystem implements LiveWindowSendable {
 
 	double tolerance = 0;
 
@@ -351,6 +354,94 @@ public class Turret extends Subsystem {
     private double convertRotationsToDegrees(double rotations) {
     	return (rotations * TurretConst.maxAngleDegrees);
     }
+    
+
+
+    /**
+     * All CAN Speed Controllers have the same SmartDashboard type: "CANSpeedController".
+     */
+    String SMART_DASHBOARD_TYPE = "CANSpeedController";
+
+    private ITable SCtable;
+    @Override
+    public void initTable(ITable table) {
+        if (this.SCtable != null)
+            this.SCtable.removeTableListener(listener);
+          this.SCtable = table;
+        if(table != null) {
+            table.putString("~TYPE~", SMART_DASHBOARD_TYPE);
+            table.putString("Type", "CANTalon"); // "CANTalon", "CANJaguar"
+            table.putNumber("Mode", turret.getControlMode().getValue());
+            table.putNumber("p", turret.getP());
+            table.putNumber("i", turret.getI());
+            table.putNumber("d", turret.getD());
+            table.putNumber("f", turret.getF());
+            table.putBoolean("Enabled", isEnable());
+            table.putNumber("setpoint", getTurretSetpoint());
+            table.addTableListener(listener, false);
+        }
+    }
+
+
+	@Override
+	public void startLiveWindowMode() {
+
+	}
+
+
+	@Override
+	public void stopLiveWindowMode() {
+		
+	}
 	
+	private final ITableListener listener = new ITableListener() {
+		@Override
+		public void valueChanged(ITable table, String key, Object value, boolean isNew) {
+			if (key.equals("p") || key.equals("i") || key.equals("d") || key.equals("f")) {
+				if (turret.getP() != table.getNumber("p", 0.0) || turret.getI() != table.getNumber("i", 0.0)
+						|| turret.getD() != table.getNumber("d", 0.0) || turret.getF() != table.getNumber("f", 0.0))
+					Robot.logger.println("Changing PID from SmartDashboard.");
+					Robot.logger.println("Old Value P: " + turret.getP() + " New Value: " + table.getNumber("p", 0.0));
+					Robot.logger.println("Old Value I: " + turret.getI() + " New Value: " + table.getNumber("i", 0.0));
+					Robot.logger.println("Old Value D: " + turret.getD() + " New Value: " + table.getNumber("d", 0.0));
+					Robot.logger.println("Old Value F: " + turret.getF() + " New Value: " + table.getNumber("f", 0.0));
+					setPIDConstants(table.getNumber("p", 0.0), table.getNumber("i", 0.0), table.getNumber("d", 0.0));
+			} else if (key.equals("setpoint")) {
+				if (getTurretSetpoint() != ((Double) value).doubleValue())
+					Robot.logger.println("Changing Setpoint from SmartDashboard. Old Value: " + getTurretSetpoint() + " New Value: " + ((Double) value).doubleValue());
+					setTurretAngle(((Double) value).doubleValue());
+			} else if (key.equals("enabled")) {
+				if (isEnable() != ((Boolean) value).booleanValue()) {
+					if (((Boolean) value).booleanValue()) {
+						enableTurret();
+					} else {
+						stopTurret();
+					}
+				}
+			} else if (key.equals("Mode")) {
+				if (turret.getControlMode().getValue() != ((Integer) value).intValue()) {
+					changeControlMode(TalonControlMode.valueOf(((Integer) value).intValue()));
+				}
+			} else if (key.equals("Value")) {
+				setTurret((Double) value); 
+			}
+		}
+	};
+
+	public void changeControlMode(TalonControlMode controlMode) {
+		if (controlMode != TalonControlMode.PercentVbus && controlMode != TalonControlMode.Position) {
+			throw new RuntimeException("Unspported control mode for arm: " + controlMode.toString());
+		}
+		turret.changeControlMode(controlMode);
+		if (SCtable != null)
+			SCtable.putNumber("Mode", controlMode.getValue());
+	}
+
+
+	@Override
+	public void updateTable() {
+		
+	}
 }
+	
 
