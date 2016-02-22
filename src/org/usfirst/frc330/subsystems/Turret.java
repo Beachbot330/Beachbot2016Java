@@ -66,6 +66,8 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 	{
 		super();
 		
+    	SmartDashboard.putData("Turret", this);
+		
 		int absolutePosition = turret.getPulseWidthPosition() & 0xFFF;
 		turret.setPosition(absolutePosition - getTurretZero());
 
@@ -80,8 +82,6 @@ public class Turret extends Subsystem implements LiveWindowSendable {
     	turret.enableReverseSoftLimit(true);
     	turret.enableBrakeMode(true);
     	turret.setVoltageRampRate(TurretConst.VoltageRampRate);
-    	
-    	SmartDashboard.putData("Turret", turret);
 
 		/////////////////////////////////////////////////////////////////
 		// LOG IT!
