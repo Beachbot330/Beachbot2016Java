@@ -17,7 +17,7 @@ public final class ChassisConst {
 	public static final double pickupReverseSpeed         = 2.0;
 	
 	//Encoder Distance Constants
-    public static final double wheelDiameter 			  = 6;
+    public static final double wheelDiameter 			  = 7.65;
     public static final double pulsePerRevolution 		  = 360;
     public static final double practicePulsePerRevolution = 250;
     public static final double encoderGearRatio 		  = 3;
