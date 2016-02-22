@@ -219,7 +219,7 @@ public class Turret extends Subsystem {
 				turret.changeControlMode(TalonControlMode.PercentVbus);
 				Robot.logger.println("New Turret Mode: " + turret.getControlMode());
 			}
-			turret.set(turretCommand);
+			setTurret(turretCommand);
 		}
 		else if (turret.getControlMode() != TalonControlMode.Position)
 		{
