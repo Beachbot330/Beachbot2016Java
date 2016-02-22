@@ -136,6 +136,7 @@ public class Robot extends IterativeRobot {
     public void disabledInit(){
     	logger.println("Disabled Init");
     	logger.updateDate();
+    	new DisabledCheckSensors().start();
     }
 
     

@@ -14,7 +14,6 @@ package org.usfirst.frc330.subsystems;
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.ManualTurret;
-import org.usfirst.frc330.constants.ArmConst;
 import org.usfirst.frc330.constants.TurretConst;
 import org.usfirst.frc330.util.CSVLoggable;
 
@@ -71,7 +70,7 @@ public class Turret extends Subsystem {
     	turret.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
     	turret.reverseSensor(false);
     	turret.reverseOutput(false);
-    	setPIDConstants(ArmConst.proportional, ArmConst.integral, ArmConst.derivative);
+    	setPIDConstants(TurretConst.proportional, TurretConst.integral, TurretConst.derivative);
     	setTurretAbsoluteTolerance(TurretConst.tolerance);
     	setSoftLimitsSafe();
     	turret.enableForwardSoftLimit(true);
@@ -110,6 +109,15 @@ public class Turret extends Subsystem {
 		};
 		Robot.csvLogger.add("TurretCWSoftLimit", temp);
 
+		temp = new CSVLoggable(true) {
+			public double get() { 
+				if(getSensorFault())
+					return 1.0;
+				else
+					return 0.0;
+			}
+		};
+		Robot.csvLogger.add("turretFault", temp);
 	}
 	/////////////////////////////////////////////////////////////
 	// SET methods
@@ -212,14 +220,23 @@ public class Turret extends Subsystem {
 	double tempSetpoint;
 	public void manualTurret() {
 		double turretCommand = Robot.oi.armJoystick.getZ();
-		if (Math.abs(turretCommand) > TurretConst.deadZone)
-		{
+		double gamePad = Robot.oi.armGamepad.getZ();
+		if (Math.abs(turretCommand) > TurretConst.deadZone){ //Driving via joystick
 			if (turret.getControlMode() != TalonControlMode.PercentVbus){
 				Robot.logger.println("Old Turret Mode: " + turret.getControlMode());
 				turret.changeControlMode(TalonControlMode.PercentVbus);
 				Robot.logger.println("New Turret Mode: " + turret.getControlMode());
 			}
-			setTurret(turretCommand);
+			setTurret(turretCommand/Math.abs(turretCommand)*Math.pow(turretCommand,2));
+		}
+		else if (Math.abs(gamePad) > TurretConst.deadZone){ //Driving via gamepad
+			turretCommand = gamePad;
+			if (turret.getControlMode() != TalonControlMode.PercentVbus){
+				Robot.logger.println("Old Turret Mode: " + turret.getControlMode());
+				turret.changeControlMode(TalonControlMode.PercentVbus);
+				Robot.logger.println("New Turret Mode: " + turret.getControlMode());
+			}
+			turret.set(turretCommand/Math.abs(turretCommand)*Math.pow(turretCommand,2));
 		}
 		else if (turret.getControlMode() != TalonControlMode.Position)
 		{
@@ -274,6 +291,12 @@ public class Turret extends Subsystem {
         
         Preferences.getInstance().putInt(name, turret.getPulseWidthPosition());
         turret.setEncPosition(0);
+    }
+    
+    public boolean getSensorFault(){
+    	CANTalon.FeedbackDeviceStatus sensorStatus;
+    	sensorStatus = turret.isSensorPresent(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+    	return (sensorStatus != CANTalon.FeedbackDeviceStatus.FeedbackStatusPresent);
     }
     
     public int getTurretZero() {
