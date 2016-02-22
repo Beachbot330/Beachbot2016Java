@@ -211,8 +211,17 @@ public class Turret extends Subsystem {
 	double tempSetpoint;
 	public void manualTurret() {
 		double turretCommand = Robot.oi.armJoystick.getZ();
-		if (Math.abs(turretCommand) > TurretConst.deadZone)
-		{
+		double gamePad = Robot.oi.armGamepad.getZ();
+		if (Math.abs(turretCommand) > TurretConst.deadZone){ //Driving via joystick
+			if (turret.getControlMode() != TalonControlMode.PercentVbus){
+				Robot.logger.println("Old Turret Mode: " + turret.getControlMode());
+				turret.changeControlMode(TalonControlMode.PercentVbus);
+				Robot.logger.println("New Turret Mode: " + turret.getControlMode());
+			}
+			turret.set(turretCommand/Math.abs(turretCommand)*Math.pow(turretCommand,2));
+		}
+		else if (Math.abs(gamePad) > TurretConst.deadZone){ //Driving via gamepad
+			turretCommand = gamePad;
 			if (turret.getControlMode() != TalonControlMode.PercentVbus){
 				Robot.logger.println("Old Turret Mode: " + turret.getControlMode());
 				turret.changeControlMode(TalonControlMode.PercentVbus);
