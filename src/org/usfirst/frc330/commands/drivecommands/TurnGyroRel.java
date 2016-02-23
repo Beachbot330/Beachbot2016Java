@@ -17,23 +17,19 @@ import org.usfirst.frc330.wpilibj.PIDGains;
  */
 public class  TurnGyroRel extends TurnGyroAbs{
     double origAngle = 0;
-    public TurnGyroRel(double angle) {
+    public TurnGyroRel(double angle, PIDGains gains) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        this(angle, 0, 15, false);
+        this(angle, 0, 15, false, gains);
     }
     
-    public TurnGyroRel(double angle, double tolerance)
+    public TurnGyroRel(double angle, double tolerance, PIDGains gains)
     {
-        this(angle, tolerance, 15, false);
+        this(angle, tolerance, 15, false, gains);
     }
     
-    public TurnGyroRel(double angle, double tolerance, double timeout, boolean stopAtEnd) {
-    	this(angle,tolerance,timeout,stopAtEnd,ChassisConst.GyroTurnLow,ChassisConst.GyroTurnHigh);
-    }
-    
-    public TurnGyroRel(double angle, double tolerance, double timeout, boolean stopAtEnd, PIDGains low, PIDGains high) {
-        super(angle,tolerance,timeout,stopAtEnd,true, low, high);
+    public TurnGyroRel(double angle, double tolerance, double timeout, boolean stopAtEnd, PIDGains gains) {
+        super(angle,tolerance,timeout,stopAtEnd,true, gains);
         origAngle = angle;
     }
     // Called just before this Command runs the first time

@@ -22,35 +22,31 @@ public class  TurnGyroAbs extends BBCommand {
     double angle, tolerance, maxOutput, maxOutputStep, maxOutputMax;
     boolean stopAtEnd = false;
     boolean enable = true;
-    PIDGains highGains, lowGains, gains;
+    PIDGains gains;
     
-    public TurnGyroAbs(double angle) {
+    public TurnGyroAbs(double angle, PIDGains gains) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        this(angle, 0, 15, false);
+        this(angle, 0, 15, false, gains);
     }
     
-    public TurnGyroAbs(double angle, double tolerance)
+    public TurnGyroAbs(double angle, double tolerance, PIDGains gains)
     {
-        this(angle, tolerance, 15, false);
+        this(angle, tolerance, 15, false, gains);
     
     }
     
-    public TurnGyroAbs(double angle, double tolerance, double timeout)
+    public TurnGyroAbs(double angle, double tolerance, double timeout, PIDGains gains)
     {
-        this(angle, tolerance, timeout, false);
+        this(angle, tolerance, timeout, false, gains);
     
     }
     
-    public TurnGyroAbs(double angle, double tolerance, double timeout, boolean stopAtEnd) {
-        this(angle, tolerance, timeout, stopAtEnd, true);
+    public TurnGyroAbs(double angle, double tolerance, double timeout, boolean stopAtEnd, PIDGains gains) {
+        this(angle, tolerance, timeout, stopAtEnd, true, gains);
     }
     
-    public TurnGyroAbs(double angle, double tolerance, double timeout, boolean stopAtEnd, boolean enable) {
-    	this(angle, tolerance, timeout, stopAtEnd, enable, ChassisConst.GyroTurnLow, ChassisConst.GyroTurnHigh);
-    }
-    
-    public TurnGyroAbs(double angle, double tolerance, double timeout, boolean stopAtEnd, boolean enable, PIDGains low, PIDGains high) {
+    public TurnGyroAbs(double angle, double tolerance, double timeout, boolean stopAtEnd, boolean enable, PIDGains gains) {
                 // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 	
@@ -63,18 +59,13 @@ public class  TurnGyroAbs extends BBCommand {
         	setTimeout(timeout);
         this.stopAtEnd = stopAtEnd;
         this.enable = enable;
-        lowGains = low;
-        highGains = high;
+        this.gains = gains;
     }
     // Called just before this Command runs the first time
     protected void initialize() {
         Robot.chassis.leftDrivePID.disable();
         Robot.chassis.rightDrivePID.disable();  
         
-        if (!Robot.chassis.isHighGear())
-        	gains = lowGains;
-        else
-        	gains = highGains;
         Robot.chassis.gyroPID.setPID(gains);
  //       Robot.chassis.gyroPID.setMaxOutput(gains.getMaxOutput());
         Robot.chassis.gyroPID.setAbsoluteTolerance(tolerance);

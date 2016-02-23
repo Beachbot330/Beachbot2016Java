@@ -14,13 +14,10 @@ import org.usfirst.frc330.wpilibj.PIDGains;
 public class TurnGyroWaypoint extends TurnGyroAbs {
     double x, y;
     
-    public TurnGyroWaypoint(double x, double y, double tolerance, double timeout) {
-    	this(x, y, tolerance, timeout, ChassisConst.GyroTurnLow, ChassisConst.GyroTurnHigh);
-    }
     
-    public TurnGyroWaypoint(double x, double y, double tolerance, double timeout, PIDGains low, PIDGains high)
+    public TurnGyroWaypoint(double x, double y, double tolerance, double timeout, PIDGains gains)
     {
-        super(0,tolerance,timeout,false,true, low, high);
+        super(0,tolerance,timeout,false,true, gains);
         this.x=x;
         this.y=y;
         
