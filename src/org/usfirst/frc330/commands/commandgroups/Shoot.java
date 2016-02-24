@@ -47,5 +47,7 @@ public class Shoot extends BBCommandGroup {
     	addSequential(new LidOpen());
     	addSequential(new Wait(0.2));
     	addSequential(new ShootWithoutLid());
+    	addSequential(new Wait(0.1));
+    	addSequential(new LidClose());
     } 
 }
