@@ -15,10 +15,11 @@ public final class ArmConst {
 	
 	// PID Constants
 	public static final double proportional      = 1.0;  // JR 2/23
-	public static final double integral          = 0.002;  // JR 2/23
-	public static final double derivative        = 2.0;  // JR 2/23
+	public static final double integral          = 0.001;  // JR 2/23
+	public static final double derivative        = 1.0;  // JR 2/23
 	public static final double feedForward	     = 0.0;  // JR 2/23
 	public static final double VoltageRampRate   = 24.0;  // JR 2/23
+	public static final double MaxOutputVoltage  = 9.0;  // JR 2/23
 	
 	// Angles
 	public static final double limitLowerAngle   =  0.0;  //AP 1-26

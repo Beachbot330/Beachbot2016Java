@@ -86,6 +86,7 @@ public class Arm extends Subsystem implements LiveWindowSendable {
     	armL.enableReverseSoftLimit(true);
     	armL.enableBrakeMode(true);
     	armL.setVoltageRampRate(ArmConst.VoltageRampRate);
+    	armL.configMaxOutputVoltage(ArmConst.MaxOutputVoltage);
     	
     	//set armR to follow armL, reversed
     	armR.changeControlMode(TalonControlMode.Follower);
