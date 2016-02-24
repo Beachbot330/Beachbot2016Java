@@ -70,8 +70,11 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 		
 		int absolutePosition = turret.getPulseWidthPosition() & 0xFFF;
 		double position = absolutePosition - getTurretZero();
-		if (position >0.5)
+		if (position > TurretConst.maxEncoderCounts/2)
 			position -= 4096;
+		else if (position < -TurretConst.maxEncoderCounts/2)
+			position += 4096;
+
 		turret.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		turret.setPosition(convertTicksToRotations(position));
     	
