@@ -9,13 +9,13 @@ public final class ArmConst {
 	private ArmConst(){}
 
 	// Tolerance
-	public static final double tolerance         = 0.5;  //TODO: Set Initial Value
+	public static final double tolerance         = 5.0;  //TODO: Set Initial Value
 	public static final double deadZone			 = 0.05;	 //AP 2-20
 	public static final double pickupTolerance	 = 5.0;  //AP 2-6 (WAG)
 	
 	// PID Constants
 	public static final double proportional      = 1.0;  // JR 2/23
-	public static final double integral          = 0.001;  // JR 2/23
+	public static final double integral          = 0.000;  // JR 2/23
 	public static final double derivative        = 1.0;  // JR 2/23
 	public static final double feedForward	     = 0.0;  // JR 2/23
 	public static final double VoltageRampRate   = 24.0;  // JR 2/23
