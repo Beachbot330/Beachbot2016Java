@@ -69,10 +69,12 @@ public class Turret extends Subsystem implements LiveWindowSendable {
     	SmartDashboard.putData("Turret", this);
 		
 		int absolutePosition = turret.getPulseWidthPosition() & 0xFFF;
-		turret.setPosition(absolutePosition - getTurretZero());
-
-		
-    	turret.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		double position = absolutePosition - getTurretZero();
+		if (position >0.5)
+			position -= 4096;
+		turret.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		turret.setPosition(convertTicksToRotations(position));
+    	
     	turret.reverseSensor(false);
     	turret.reverseOutput(false);
     	setPIDConstants(TurretConst.proportional, TurretConst.integral, TurretConst.derivative);
@@ -133,6 +135,7 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 	// Return value:
 	//		void
 	public void setTurret(double output){
+		changeControlMode(TalonControlMode.PercentVbus);
 		turret.set(output);
 	}
 
@@ -148,6 +151,11 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 	public void setPIDConstants(double P, double I, double D)
 	{
 		turret.setPID(P, I, D);
+		if (SCtable != null) {
+            SCtable.putNumber("p", P);
+            SCtable.putNumber("i", I);
+            SCtable.putNumber("d", D);
+		}
 	}
 
 	public void setTurretAbsoluteTolerance(double absvalue) {
@@ -156,7 +164,10 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 	
 	public void setTurretAngle(double position)
 	{
+		changeControlMode(TalonControlMode.Position);
 		turret.setSetpoint(convertDegreesToRotations(position));
+    	if (SCtable != null)
+    		SCtable.putNumber("setpoint", position);
 	}
 
 	/////////////////////////////////////////////////////////////
@@ -225,11 +236,6 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 		double turretCommand = Robot.oi.armJoystick.getZ();
 		double gamePad = Robot.oi.armGamepad.getZ();
 		if (Math.abs(turretCommand) > TurretConst.deadZone){ //Driving via joystick
-			if (turret.getControlMode() != TalonControlMode.PercentVbus){
-				Robot.logger.println("Old Turret Mode: " + turret.getControlMode());
-				turret.changeControlMode(TalonControlMode.PercentVbus);
-				Robot.logger.println("New Turret Mode: " + turret.getControlMode());
-			}
 			setTurret(turretCommand/Math.abs(turretCommand)*Math.pow(turretCommand,2));
 		}
 		else if (Math.abs(gamePad) > TurretConst.deadZone){ //Driving via gamepad
@@ -355,6 +361,10 @@ public class Turret extends Subsystem implements LiveWindowSendable {
     	return (rotations * TurretConst.maxAngleDegrees);
     }
     
+	private double convertTicksToRotations(double position) {
+		return position/TurretConst.maxEncoderCounts;
+	}
+    
 
 
     /**
@@ -428,13 +438,16 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 		}
 	};
 
-	public void changeControlMode(TalonControlMode controlMode) {
-		if (controlMode != TalonControlMode.PercentVbus && controlMode != TalonControlMode.Position) {
-			throw new RuntimeException("Unspported control mode for arm: " + controlMode.toString());
+	public void changeControlMode(TalonControlMode newControlMode) {
+		TalonControlMode oldControlMode = turret.getControlMode();
+		if (newControlMode != TalonControlMode.PercentVbus && newControlMode != TalonControlMode.Position) {
+			throw new RuntimeException("Unsupported control mode for arm: " + newControlMode.toString());
 		}
-		turret.changeControlMode(controlMode);
+		Robot.logger.println("Old Arm Mode: " + oldControlMode);
+		turret.changeControlMode(newControlMode);
+		Robot.logger.println("New Arm Mode: " + newControlMode);
 		if (SCtable != null)
-			SCtable.putNumber("Mode", controlMode.getValue());
+			SCtable.putNumber("Mode", newControlMode.getValue());
 	}
 
 

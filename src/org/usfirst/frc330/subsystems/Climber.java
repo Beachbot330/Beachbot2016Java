@@ -11,6 +11,7 @@
 
 package org.usfirst.frc330.subsystems;
 
+import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.*;
 
@@ -54,12 +55,27 @@ public class Climber extends Subsystem
     
     public void lowerClimberDeploy()
     {
-    	pivotLow.set(true);
+    	if (Robot.arm.isSafeToDeployLowerClimber() && Robot.turret.isCentered())
+    		pivotLow.set(true);
+    }
+    
+    public void lockLowerClimber() {
+    	pivotLow.set(false);
+    }
+    
+    public boolean isLowerClimberDeployed()
+    {
+    	return pivotLow.get();
     }
 
     public void upperClimberDeploy()
     {
-    	pivotHigh.set(true);
+    	if (Robot.arm.isSafeToDeployUpperClimber() && Robot.turret.isCentered() && isLowerClimberDeployed())
+    		pivotHigh.set(true);
+    }
+    
+    public void lockUpperClimber() {
+    	pivotHigh.set(false);
     }
 
     public void engagePTO(){

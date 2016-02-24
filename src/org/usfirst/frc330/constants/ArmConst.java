@@ -14,11 +14,11 @@ public final class ArmConst {
 	public static final double pickupTolerance	 = 5.0;  //AP 2-6 (WAG)
 	
 	// PID Constants
-	public static final double proportional      = 0.2;  //TODO: Set Initial Value
-	public static final double integral          = 0.0;  //TODO: Set Initial Value
-	public static final double derivative        = 0.0;  //TODO: Set Initial Value
-	public static final double feedForward	     = 0.0;  //TODO: Set Initial Value
-	public static final double VoltageRampRate   = 6.0;  // JR 2/20, first idea by MD
+	public static final double proportional      = 1.0;  // JR 2/23
+	public static final double integral          = 0.002;  // JR 2/23
+	public static final double derivative        = 2.0;  // JR 2/23
+	public static final double feedForward	     = 0.0;  // JR 2/23
+	public static final double VoltageRampRate   = 24.0;  // JR 2/23
 	
 	// Angles
 	public static final double limitLowerAngle   =  0.0;  //AP 1-26
@@ -28,7 +28,9 @@ public final class ArmConst {
 	public static final double neutral	         = 60.0;  //AP 2-6
 	public static final double shootAngleRamp    = 90.0;  //AP 2-6 (WAG)
 	public static final double shootAngleFloor   = 90.0;  //AP 2-6 (WAG)
-	public static final double limitUpperAngle   = 90.0;  //AP 1-26
+	public static final double safeToDeployLowerClimber = 90.0; //JR 2/23
+	public static final double safeToDeployUpperClimber = 105.0; //JR 2/23 (WAG)
+	public static final double limitUpperAngle   = 108.0;  //AP 1-26
 	
 	// Encoder Stuff
 	public static final int    maxAngleDegrees   = 72;    //JM 2-10
