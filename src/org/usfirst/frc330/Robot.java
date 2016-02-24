@@ -138,6 +138,7 @@ public class Robot extends IterativeRobot {
     	logger.println("Disabled Init");
     	logger.updateDate();
     	new DisabledCheckSensors().start();
+    	new LockClimber().start();
     }
 
     
