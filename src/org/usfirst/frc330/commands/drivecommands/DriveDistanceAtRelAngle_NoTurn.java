@@ -17,24 +17,24 @@ import org.usfirst.frc330.wpilibj.PIDGains;
 
 public class DriveDistanceAtRelAngle_NoTurn extends DriveDistanceAtAbsAngle_NoTurn{
     
-    public DriveDistanceAtRelAngle_NoTurn(double distance, double angle)
+    public DriveDistanceAtRelAngle_NoTurn(double distance, double angle, PIDGains driveGains, PIDGains gyroGains)
     {
-        this(distance, 6, angle, 5, true,ChassisConst.DriveLow, ChassisConst.DriveHigh, ChassisConst.GyroDriveLow, ChassisConst.GyroDriveHigh);
+        this(distance, 6, angle, 5, true, driveGains, gyroGains);
     }
     
-    public DriveDistanceAtRelAngle_NoTurn(double distance, double angle, double tolerance)
+    public DriveDistanceAtRelAngle_NoTurn(double distance, double angle, double tolerance, PIDGains driveGains, PIDGains gyroGains)
     {
-        this(distance, tolerance, angle, 5, true,ChassisConst.DriveLow, ChassisConst.DriveHigh, ChassisConst.GyroDriveLow, ChassisConst.GyroDriveHigh);
+        this(distance, tolerance, angle, 5, true, driveGains, gyroGains);
     }
     
-    public DriveDistanceAtRelAngle_NoTurn(double distance, double angle, double tolerance, double timeout)
+    public DriveDistanceAtRelAngle_NoTurn(double distance, double angle, double tolerance, double timeout, PIDGains driveGains, PIDGains gyroGains)
     {
-        this(distance, tolerance, angle, timeout, true,ChassisConst.DriveLow, ChassisConst.DriveHigh, ChassisConst.GyroDriveLow, ChassisConst.GyroDriveHigh);
+        this(distance, tolerance, angle, timeout, true, driveGains, gyroGains);
     }
     
-    public DriveDistanceAtRelAngle_NoTurn(double distance, double tolerance, double angle, double timeout, boolean stopAtEnd, PIDGains driveLow, PIDGains driveHigh, PIDGains gyroLow, PIDGains gyroHigh)
+    public DriveDistanceAtRelAngle_NoTurn(double distance, double tolerance, double angle, double timeout, boolean stopAtEnd, PIDGains driveGains, PIDGains gyroGains)
     {
-        super(distance, tolerance, timeout, 0, stopAtEnd, driveLow, driveHigh, gyroLow, gyroHigh);
+        super(distance, tolerance, timeout, 0, stopAtEnd, driveGains, gyroGains);
         this.angle = angle;
     }
         // Called just before this Command runs the first time

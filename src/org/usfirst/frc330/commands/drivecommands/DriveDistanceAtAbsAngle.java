@@ -22,23 +22,17 @@ public class  DriveDistanceAtAbsAngle extends BBCommandGroup{
     double stepSize;
     double origDistance = 0;
     
-    public DriveDistanceAtAbsAngle(double distance, double angle)
+    public DriveDistanceAtAbsAngle(double distance, double angle, PIDGains driveGains, PIDGains gyroGains)
     {
-    	addSequential(new TurnGyroAbs(angle, 5));
-        addSequential(new DriveDistanceAtAbsAngle_NoTurn(distance, 6, angle, 5, true,  ChassisConst.DriveLow, ChassisConst.DriveHigh, ChassisConst.GyroDriveLow, ChassisConst.GyroDriveHigh));
+    	addSequential(new TurnGyroAbs(angle, 5,gyroGains));
+        addSequential(new DriveDistanceAtAbsAngle_NoTurn(distance, 6, angle, 5, true, driveGains, gyroGains));
     }
     
-    public DriveDistanceAtAbsAngle(double distance, double distanceTolerance, double angle, double timeout, boolean stopAtEnd)
+    public DriveDistanceAtAbsAngle(double distance, double distanceTolerance, double angle, double timeout, boolean stopAtEnd, PIDGains driveGains, PIDGains gyroGains)
     {
-        addSequential(new TurnGyroAbs(angle,5));
-        addSequential(new DriveDistanceAtAbsAngle_NoTurn(distance, distanceTolerance, angle, timeout, stopAtEnd, ChassisConst.DriveLow, ChassisConst.DriveHigh, ChassisConst.GyroDriveLow, ChassisConst.GyroDriveHigh));
+        addSequential(new TurnGyroAbs(angle,5,gyroGains));
+        addSequential(new DriveDistanceAtAbsAngle_NoTurn(distance, distanceTolerance, angle, timeout, stopAtEnd, driveGains, gyroGains));
         this.angle = angle;
     }
     
-    public DriveDistanceAtAbsAngle(double distance, double distanceTolerance, double angle, double timeout, boolean stopAtEnd, PIDGains driveLow, PIDGains driveHigh, PIDGains gyroLow, PIDGains gyroHigh)
-    {
-        addSequential(new TurnGyroAbs(angle,5));
-        addSequential(new DriveDistanceAtAbsAngle_NoTurn(distance, distanceTolerance, angle, timeout, stopAtEnd, driveLow, driveHigh, gyroLow, gyroHigh));
-        this.angle = angle;
-    }
 }

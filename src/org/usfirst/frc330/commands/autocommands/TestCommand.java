@@ -1,6 +1,11 @@
 package org.usfirst.frc330.commands.autocommands;
 
+import org.usfirst.frc330.commands.ShiftHigh;
+import org.usfirst.frc330.commands.ShiftLow;
+import org.usfirst.frc330.commands.drivecommands.DriveDistance;
 import org.usfirst.frc330.commands.drivecommands.DriveTime;
+import org.usfirst.frc330.commands.drivecommands.TurnGyroRel;
+import org.usfirst.frc330.constants.ChassisConst;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -26,6 +31,8 @@ public class TestCommand extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new DriveTime(1,0.5,0.5));
+    	addSequential(new ShiftLow());
+//    	addSequential(new DriveDistance(60, ChassisConst.DriveHigh));
+    	addSequential(new TurnGyroRel(30,ChassisConst.GyroTurnLow));
     }
 }

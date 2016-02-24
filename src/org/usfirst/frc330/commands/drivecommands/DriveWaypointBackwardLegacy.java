@@ -15,12 +15,8 @@ import org.usfirst.frc330.wpilibj.PIDGains;
 public class DriveWaypointBackwardLegacy extends DriveWaypointBackward {
 //	double leftDistance, rightDistance;
 	
-	public DriveWaypointBackwardLegacy(double x, double y, double tolerance, double timeout, boolean stopAtEnd) {
-		this(x,y,tolerance,timeout,stopAtEnd, ChassisConst.DriveLow, ChassisConst.DriveHigh, ChassisConst.GyroDriveLow, ChassisConst.GyroDriveHigh);
-	}
-	
-    public DriveWaypointBackwardLegacy(double x, double y, double tolerance, double timeout, boolean stopAtEnd, PIDGains driveLow, PIDGains driveHigh, PIDGains gyroLow, PIDGains gyroHigh) {
-        super(x, y, tolerance, timeout, stopAtEnd, driveLow, driveHigh, gyroLow, gyroHigh);
+    public DriveWaypointBackwardLegacy(double x, double y, double tolerance, double timeout, boolean stopAtEnd, PIDGains driveGains, PIDGains gyroGains) {
+        super(x, y, tolerance, timeout, stopAtEnd, driveGains, gyroGains);
     }
 
     protected boolean isFinished() {

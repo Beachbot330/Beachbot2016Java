@@ -16,41 +16,31 @@ import org.usfirst.frc330.wpilibj.PIDGains;
  */
 public class  DriveDistanceAtAbsAngle_NoTurn extends DriveDistance{
     double angle;
-    PIDGains gains, gyroLow, gyroHigh;
+    PIDGains gyroGains;
     
-    public DriveDistanceAtAbsAngle_NoTurn(double distance, double angle)
+    public DriveDistanceAtAbsAngle_NoTurn(double distance, double angle, PIDGains driveGains, PIDGains gyroGains)
     {
-        this(distance, 6, angle, -1.0, true, ChassisConst.DriveLow, ChassisConst.DriveHigh, ChassisConst.GyroDriveLow, ChassisConst.GyroDriveHigh); //-1 means no timeout
+        this(distance, 6, angle, -1.0, true, driveGains, gyroGains); //-1 means no timeout
     }
     
-    public DriveDistanceAtAbsAngle_NoTurn(double distance, double angle, double tolerance)
+    public DriveDistanceAtAbsAngle_NoTurn(double distance, double angle, double tolerance, PIDGains driveGains, PIDGains gyroGains)
     {
-        this(distance, tolerance, angle, -1.0, true, ChassisConst.DriveLow, ChassisConst.DriveHigh, ChassisConst.GyroDriveLow, ChassisConst.GyroDriveHigh); //-1 means no timeout
+        this(distance, tolerance, angle, -1.0, true, driveGains, gyroGains); //-1 means no timeout
     }
     
-    public DriveDistanceAtAbsAngle_NoTurn(double distance, double tolerance, double angle, double timeout, boolean stopAtEnd) {
-    	this(distance, tolerance, angle, timeout, stopAtEnd, ChassisConst.DriveLow, ChassisConst.DriveHigh, ChassisConst.GyroDriveLow, ChassisConst.GyroDriveHigh);
-    }
-    
-    public DriveDistanceAtAbsAngle_NoTurn(double distance, double tolerance, double angle, double timeout, boolean stopAtEnd, PIDGains driveLow, PIDGains driveHigh, PIDGains gyroLow, PIDGains gyroHigh)
+    public DriveDistanceAtAbsAngle_NoTurn(double distance, double tolerance, double angle, double timeout, boolean stopAtEnd, PIDGains driveGains, PIDGains gyroGains)
     {
-        super(distance, tolerance, timeout, stopAtEnd, driveLow, driveHigh);
+        super(distance, tolerance, timeout, stopAtEnd, driveGains);
         this.angle = angle;
-        this.gyroHigh = gyroHigh;
-        this.gyroLow = gyroLow;
+        this.gyroGains = gyroGains;
     }
     // Called just before this Command runs the first time
     protected void initialize() {
 //    	leftDistance = leftDistance + Robot.chassis.getLeftDistance();
 //        rightDistance = rightDistance + Robot.chassis.getRightDistance();
         super.initialize();
-        if (Robot.chassis.isHighGear())         {
-            gains = gyroHigh;
-        }
-        else {
-            gains = gyroLow;
-        }
-        Robot.chassis.gyroPID.setPID(gains);
+
+        Robot.chassis.gyroPID.setPID(gyroGains);
         Robot.chassis.gyroPID.setSetpoint(angle);
         Robot.chassis.gyroPID.enable();  
     }
