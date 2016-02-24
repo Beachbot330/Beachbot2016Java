@@ -93,6 +93,8 @@ public class Arm extends Subsystem implements LiveWindowSendable {
     	armR.set(armL.getDeviceID());
     	armR.reverseOutput(true);
     	armR.enableBrakeMode(true);
+    	armR.enableForwardSoftLimit(false);
+    	armR.enableReverseSoftLimit(false);
     	
     	
 		/////////////////////////////////////////////////////////////////
