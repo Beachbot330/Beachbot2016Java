@@ -1,22 +1,40 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="turretFault" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="169" y="188"/>
+	</widget>
+	<widget field="TurretCWSoftLimit" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="199" y="257"/>
+	</widget>
+	<widget field="TurretSetpoint" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="186" y="318"/>
+	</widget>
+	<widget field="ArmUpperLimit" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="812" y="401"/>
+	</widget>
+	<widget field="ArmQuadrant" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="194"/>
+	</widget>
+	<widget field="TurretCCWSoftLimit" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="195" y="282"/>
+	</widget>
+	<widget field="Arm" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+		<location x="1294" y="635"/>
+	</widget>
+	<widget field="SetQuadrantPosition: Quadrant0" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1023" y="648"/>
+	</widget>
+	<widget field="Turret" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+		<location x="14" y="374"/>
+	</widget>
+	<widget field="ArmLowerLimit" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="813" y="424"/>
+	</widget>
 	<widget field="Ticks" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="1024" y="618"/>
 	</widget>
-	<widget field="UpperLimitTripped" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="97"/>
-	</widget>
-	<widget field="LowerLimitTripped" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="76"/>
-	</widget>
-	<widget field="UpperLimit" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="55"/>
-	</widget>
-	<widget field="LowerLimit" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="34"/>
-	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.RobotPreferences">
-		<location x="342" y="201"/>
+		<location x="409" y="205"/>
 	</static-widget>
 	<widget field="ArmSetpoint" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="849" y="594"/>
@@ -24,14 +42,8 @@
 	<widget field="CalArmTurretZero" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="418" y="41"/>
 	</widget>
-	<widget field="Arm" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-		<location x="1286" y="629"/>
-	</widget>
-	<widget field="Turret" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-		<location x="0" y="364"/>
-	</widget>
 	<widget field="AllensSuperDebugCommandOfAwesome" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="0" y="0"/>
+		<location x="782" y="48"/>
 	</widget>
 	<widget field="Pressure" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.SimpleDial">
 		<location x="602" y="50"/>
@@ -229,7 +241,8 @@
 </dashboard>
 <live-window>
 </live-window>
-	<hidden field="ArmQuadrant"/>
-	<hidden field="quadrant"/>
-	<hidden field="CurrentQuadrant"/>
+	<hidden field="UpperLimitTripped"/>
+	<hidden field="LowerLimit"/>
+	<hidden field="UpperLimit"/>
+	<hidden field="LowerLimitTripped"/>
 </xml>

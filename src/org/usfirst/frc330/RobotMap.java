@@ -63,6 +63,7 @@ public class RobotMap {
     public static Solenoid pickupShooterSecondStage1;
     public static Solenoid pickupShooterSecondStage2;
     public static DoubleSolenoid pickuppickupLid;
+    public static DigitalOutput pickupCameraLED;
     public static CANTalon turretturret;
     public static DoubleSolenoid climberPowerTakeOff;
     public static Solenoid climberPivotHigh;
@@ -145,6 +146,9 @@ public class RobotMap {
         
         pickuppickupLid = new DoubleSolenoid(1, 6, 7);
         LiveWindow.addActuator("Pickup", "pickupLid", pickuppickupLid);
+        
+        pickupCameraLED = new DigitalOutput(9);
+        LiveWindow.addActuator("Pickup", "CameraLED", pickupCameraLED);
         
         turretturret = new CANTalon(4);
         LiveWindow.addActuator("Turret", "turret", turretturret);
