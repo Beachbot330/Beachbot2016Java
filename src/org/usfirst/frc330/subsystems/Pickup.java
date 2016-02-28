@@ -71,6 +71,20 @@ public class Pickup extends Subsystem
     	shooterSecondStage2.set(false);
     }
     
+    public void shootSecondStageSolenoids(){
+    	shooterFirstStage1.set(false);
+    	shooterFirstStage2.set(false);
+    	shooterSecondStage1.set(true);
+    	shooterSecondStage2.set(true);
+    }
+    
+    public void shootFirstStageSolenoids(){
+    	shooterFirstStage1.set(true);
+    	shooterFirstStage2.set(true);
+    	shooterSecondStage1.set(false);
+    	shooterSecondStage2.set(false);
+    }
+    
     //Picks up foward
     public void pickupForward()
     {
