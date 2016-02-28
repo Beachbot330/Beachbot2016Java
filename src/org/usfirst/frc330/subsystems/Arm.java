@@ -246,6 +246,7 @@ public class Arm extends Subsystem implements LiveWindowSendable {
 	// OTHER Methods (helper functions and commands)
 	/////////////////////////////////////////////////////////////
     /* Control the arm manually */
+    int inertiaCounter;
     public void manualArm() {
     	double armCommand = -Robot.oi.armJoystick.getY();	
     	double gamepadCommand = -Robot.oi.armGamepad.getY();
@@ -253,9 +254,14 @@ public class Arm extends Subsystem implements LiveWindowSendable {
     	
     	if ( Math.abs(armCommand) > ArmConst.deadZone) {
 			setArm(armCommand);
+			inertiaCounter = ArmConst.inertiaCounter;
 		} 
     	else if (Math.abs(gamepadCommand) > ArmConst.gamepadDeadZone) {
     		setArm(gamepadCommand/Math.abs(gamepadCommand)*Math.pow(gamepadCommand, 2));
+    		inertiaCounter = ArmConst.inertiaCounter;
+    	}
+    	else if (inertiaCounter > 0) {
+    		inertiaCounter--;
     	}
     	else if ( armL.getControlMode() != TalonControlMode.Position) {
 			angle = getArmAngle();
