@@ -10,7 +10,8 @@ public final class ArmConst {
 
 	// Tolerance
 	public static final double tolerance         = 5.0;  //TODO: Set Initial Value
-	public static final double deadZone			 = 0.05;	 //AP 2-20
+	public static final double deadZone			 = 0.05; //AP 2-20
+	public static final double gamepadDeadZone   = 0.10; //AP 2-27
 	public static final double pickupTolerance	 = 5.0;  //AP 2-6 (WAG)
 	
 	// PID Constants

@@ -248,17 +248,15 @@ public class Arm extends Subsystem implements LiveWindowSendable {
     /* Control the arm manually */
     public void manualArm() {
     	double armCommand = -Robot.oi.armJoystick.getY();	
+    	double gamepadCommand = -Robot.oi.armGamepad.getY();
     	double angle;
     	
     	if ( Math.abs(armCommand) > ArmConst.deadZone) {
-//			if (armL.getControlMode() != TalonControlMode.PercentVbus){
-//				Robot.logger.println("Old Arm Mode: " + armL.getControlMode());
-//				changeControlMode(TalonControlMode.PercentVbus);
-//				Robot.logger.println("New Arm Mode: " + armL.getControlMode());
-//			}
 			setArm(armCommand);
-			//Robot.logger.println("Set: " + armCommand);
 		} 
+    	else if (Math.abs(gamepadCommand) > ArmConst.gamepadDeadZone) {
+    		setArm(gamepadCommand/Math.abs(gamepadCommand)*Math.pow(gamepadCommand, 2));
+    	}
     	else if ( armL.getControlMode() != TalonControlMode.Position) {
 			angle = getArmAngle();
 			if (angle < getLowerLimit())
