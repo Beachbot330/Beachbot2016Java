@@ -27,6 +27,7 @@ public final class ArmConst {
 	public static final double lowBar            =  3.5;  //JB 2/13 (wag)
 	public static final double armSafeLimit	     = 45.0;  //AP 1-26
 	public static final double neutral	         = 60.0;  //AP 2-6
+	public static final double safeToDeployPortcullis = 65.0; // JR 2-27
 	public static final double shootAngleRamp    = 90.0;  //AP 2-6 (WAG)
 	public static final double shootAngleFloor   = 90.0;  //AP 2-6 (WAG)
 	public static final double safeToDeployLowerClimber = 90.0; //JR 2/23

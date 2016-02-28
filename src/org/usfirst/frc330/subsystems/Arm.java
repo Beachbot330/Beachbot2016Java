@@ -307,7 +307,8 @@ public class Arm extends Subsystem implements LiveWindowSendable {
     	portcullisWedge.set(false);
     }
     public void deployStinger() {
-    	portcullisWedge.set(true);
+    	if (getArmAngle() < ArmConst.safeToDeployPortcullis)
+    		portcullisWedge.set(true);
     }
     
     public void setArmZero()
