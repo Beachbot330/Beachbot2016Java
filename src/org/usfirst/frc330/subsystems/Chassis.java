@@ -442,6 +442,8 @@ public class Chassis extends Subsystem
     
     public double getPressure()
     {
+    	if (Robot.isPracticeRobot())
+    		return (50*pressureSensor.getAverageVoltage() -25);
     	return 37.5*(pressureSensor.getAverageVoltage()- 0.5);
     }
 }
