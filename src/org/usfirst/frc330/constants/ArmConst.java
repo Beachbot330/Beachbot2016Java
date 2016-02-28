@@ -23,7 +23,7 @@ public final class ArmConst {
 	
 	// Angles
 	public static final double limitLowerAngle   =  0.0;  //AP 1-26
-	public static final double pickupAngle		 =  0.0;  //AP 2-6 (WAG)
+	public static final double pickupAngle		 =  5.0;  //AP 2-27 (debug)
 	public static final double lowBar            =  3.5;  //JB 2/13 (wag)
 	public static final double armSafeLimit	     = 45.0;  //AP 1-26
 	public static final double neutral	         = 60.0;  //AP 2-6
