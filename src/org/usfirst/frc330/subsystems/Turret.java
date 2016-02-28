@@ -243,12 +243,7 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 		}
 		else if (Math.abs(gamePad) > TurretConst.deadZone){ //Driving via gamepad
 			turretCommand = gamePad;
-			if (turret.getControlMode() != TalonControlMode.PercentVbus){
-				Robot.logger.println("Old Turret Mode: " + turret.getControlMode());
-				turret.changeControlMode(TalonControlMode.PercentVbus);
-				Robot.logger.println("New Turret Mode: " + turret.getControlMode());
-			}
-			turret.set(turretCommand/Math.abs(turretCommand)*Math.pow(turretCommand,2));
+			setTurret(turretCommand/Math.abs(turretCommand)*Math.pow(turretCommand,2));
 		}
 		else if (turret.getControlMode() != TalonControlMode.Position)
 		{
