@@ -441,7 +441,7 @@ public class Arm extends Subsystem implements LiveWindowSendable {
 					}
 				}
 			} else if (key.equals("Mode")) {
-				if (armL.getControlMode().getValue() != ((Integer) value).intValue()) {
+				if (armL.getControlMode().getValue() != ((Double) value).intValue()) {
 					changeControlMode(TalonControlMode.valueOf(((Integer) value).intValue()));
 				}
 			} else if (key.equals("Value")) {
