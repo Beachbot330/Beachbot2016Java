@@ -13,6 +13,7 @@ public final class ArmConst {
 	public static final double deadZone			 = 0.05; //AP 2-20
 	public static final double gamepadDeadZone   = 0.10; //AP 2-27
 	public static final double pickupTolerance	 = 5.0;  //AP 2-6 (WAG)
+	public static final double defaultTimeout	 = 5.0;  //JR 2-28
 	
 	// PID Constants
 	public static final double proportional      = 1.0;  // JR 2/23

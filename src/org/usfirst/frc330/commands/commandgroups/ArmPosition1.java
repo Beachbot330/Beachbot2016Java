@@ -22,9 +22,9 @@ import org.usfirst.frc330.constants.*;
 public class ArmPosition1 extends BBCommandGroup {
 
     public ArmPosition1() {
-
+    	addParallel(new PickupOn(0.5));
     	addParallel(new SetTurretPosition(TurretConst.aimRight));
-    	addParallel(new SetArmPosition(ArmConst.shootAngleFloor));
-    
+    	addSequential(new SetArmPosition(ArmConst.shootAngleFloor));
+    	addSequential(new LidOpen());
     } 
 }

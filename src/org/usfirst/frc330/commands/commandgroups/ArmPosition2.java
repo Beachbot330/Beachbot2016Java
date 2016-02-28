@@ -13,6 +13,8 @@ package org.usfirst.frc330.commands.commandgroups;
 
 import edu.wpi.first.wpilibj.command.BBCommandGroup;
 
+import org.usfirst.frc330.commands.LidOpen;
+import org.usfirst.frc330.commands.PickupOn;
 import org.usfirst.frc330.commands.SetArmPosition;
 import org.usfirst.frc330.commands.SetTurretPosition;
 import org.usfirst.frc330.constants.ArmConst;
@@ -24,9 +26,9 @@ import org.usfirst.frc330.constants.TurretConst;
 public class ArmPosition2 extends BBCommandGroup {
 
     public ArmPosition2() {
-
+    	addParallel(new PickupOn(0.5));
     	addParallel(new SetTurretPosition(TurretConst.center));
-    	addParallel(new SetArmPosition(ArmConst.shootAngleRamp));
- 
+    	addSequential(new SetArmPosition(ArmConst.shootAngleRamp));
+    	addSequential(new LidOpen());
     } 
 }

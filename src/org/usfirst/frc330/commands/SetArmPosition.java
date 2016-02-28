@@ -26,11 +26,11 @@ public class  SetArmPosition extends BBCommand {
 	double tolerance;
     
 	public SetArmPosition(double angle) {
-		this(angle, ArmConst.tolerance, -1.0);
+		this(angle, ArmConst.tolerance, ArmConst.defaultTimeout);
 	}
 	
 	public SetArmPosition(double angle, double tolerance){
-		this(angle, tolerance, -1.0);
+		this(angle, tolerance, ArmConst.defaultTimeout);
 	}
 	
 	public SetArmPosition(double angle, double tolerance, double timeout) {
