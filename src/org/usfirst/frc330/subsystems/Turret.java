@@ -250,8 +250,9 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 		}
 		else if (inertiaCounter > 0) {
 			inertiaCounter--;
+			setTurret(0);
 		}
-		if (turret.getControlMode() != TalonControlMode.Position)
+		else if (turret.getControlMode() != TalonControlMode.Position)
 		{
 			tempSetpoint = getTurretAngle();
 			if(tempSetpoint > getCWSoftLimit())

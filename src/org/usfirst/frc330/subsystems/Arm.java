@@ -262,6 +262,7 @@ public class Arm extends Subsystem implements LiveWindowSendable {
     	}
     	else if (inertiaCounter > 0) {
     		inertiaCounter--;
+			setArm(0);
     	}
     	else if ( armL.getControlMode() != TalonControlMode.Position) {
 			angle = getArmAngle();
