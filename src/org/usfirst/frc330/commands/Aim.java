@@ -46,10 +46,7 @@ public class Aim extends BBCommand {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	setpoint = SmartDashboard.getNumber("targetAngle", prevSetpoint);
-    	if (setpoint != prevSetpoint) {
-    		Robot.turret.setTurret(setpoint);
-    		prevSetpoint = setpoint;
-    	}
+    	Robot.turret.setTurretAngle(Robot.turret.getTurretAngle()+setpoint);
     }
 
     // Make this return true when this Command no longer needs to run execute()

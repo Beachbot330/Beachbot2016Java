@@ -12,12 +12,12 @@ public final class TurretConst {
 	public static final double deadZone             = 0.05; // AP 2/21
 	
 	// PID Constants
-	public static final double proportional         = 2.0;  // JR 2-23 
-	public static final double integral             = 0.0001;  // AP 2-21 (pickup not installed)
+	public static final double proportional         = 1.2;  // AP 2/28 - Was 2.0JR 2-23 
+	public static final double integral             = 0.0011;  // AP 2-21 (pickup not installed)
 	public static final double derivative           = 1.0;  //TODO: Set Initial Value
 	public static final double feedForward	        = 0.0;  //TODO: Set Initial Value
-	public static final double VoltageRampRate      = 12.0; // JR 2/23	, first idea by MD- V/s
-	public static final double MaxOutputVoltage		= 6.0;  // JR 2/23
+	public static final double VoltageRampRate      = 24.0; // AP 2/28 - Was 12 JR 2/23	, first idea by MD- V/s
+	public static final double MaxOutputVoltage		= 4.0;  // AP 2/28 - Was 6 JR 2/23
 	
 	// Angles
 	// NOTE: Assumption - from turret's POV facing forward being (pickup end of robot)

@@ -1,5 +1,26 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="savePicture" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="163"/>
+	</widget>
+	<widget field="ShootLowerStageWithoutLid" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="617"/>
+	</widget>
+	<widget field="LockClimber" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="215"/>
+	</widget>
+	<widget field="ShootUpperStageWithoutLid" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="506"/>
+	</widget>
+	<widget field="savePictureName" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="142"/>
+	</widget>
+	<widget field="Arm" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+		<location x="0" y="364"/>
+	</widget>
+	<widget field="Turret" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+		<location x="0" y="0"/>
+	</widget>
 	<widget field="turretFault" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="169" y="188"/>
 	</widget>
@@ -18,14 +39,8 @@
 	<widget field="TurretCCWSoftLimit" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="195" y="282"/>
 	</widget>
-	<widget field="Arm" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-		<location x="1294" y="635"/>
-	</widget>
 	<widget field="SetQuadrantPosition: Quadrant0" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="1023" y="648"/>
-	</widget>
-	<widget field="Turret" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-		<location x="14" y="374"/>
 	</widget>
 	<widget field="ArmLowerLimit" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="813" y="424"/>
@@ -241,8 +256,4 @@
 </dashboard>
 <live-window>
 </live-window>
-	<hidden field="UpperLimitTripped"/>
-	<hidden field="LowerLimit"/>
-	<hidden field="UpperLimit"/>
-	<hidden field="LowerLimitTripped"/>
 </xml>
