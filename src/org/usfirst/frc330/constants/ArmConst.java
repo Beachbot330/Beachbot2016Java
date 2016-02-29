@@ -14,6 +14,7 @@ public final class ArmConst {
 	public static final double gamepadDeadZone   = 0.10; //AP 2-27
 	public static final double pickupTolerance	 = 5.0;  //AP 2-6 (WAG)
 	public static final double defaultTimeout	 = 5.0;  //JR 2-28
+	public static final int    inertiaCounter	 = 10;   //JR 2-28 (loops after manual control before starting position control)
 	
 	// PID Constants
 	public static final double proportional      = 1.0;  // JR 2/23
