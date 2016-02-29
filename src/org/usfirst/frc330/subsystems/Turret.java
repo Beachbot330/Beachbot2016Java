@@ -435,7 +435,7 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 				}
 			} else if (key.equals("Mode")) {
 				if (turret.getControlMode().getValue() != ((Double) value).intValue()) {
-					changeControlMode(TalonControlMode.valueOf(((Integer) value).intValue()));
+					changeControlMode(TalonControlMode.valueOf(((Double) value).intValue()));
 				}
 			} else if (key.equals("Value")) {
 				setTurret((Double) value); 
