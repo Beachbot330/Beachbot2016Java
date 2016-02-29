@@ -16,6 +16,7 @@ public abstract class BBCommand extends Command {
 	boolean m_initialized = false;
 	boolean m_completed = false;
 	
+	@Override
 	void _initialize(){
 		super._initialize();
 		Robot.logger.println(this.getClass().getName() + " initialized", false);
@@ -23,6 +24,7 @@ public abstract class BBCommand extends Command {
 		m_completed = false;
 	}
 
+	@Override
 	void _end(){
 		super._end();
 		if(this.isTimedOut())
@@ -33,6 +35,7 @@ public abstract class BBCommand extends Command {
 		m_completed = true;
 	}
 	
+	@Override
 	void _interrupted(){
 		super._interrupted();
 		Robot.logger.println(this.getClass().getName() + " interrupted", false);

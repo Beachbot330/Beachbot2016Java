@@ -6,18 +6,21 @@ public class BBCommandGroup extends CommandGroup {
     
 	boolean m_completed = false;
 	
+	@Override
 	void _initialize(){
 		super._initialize();
 		Robot.logger.println(this.getClass().getName() + " initialized", false);
 		m_completed = false;
 	}
 
+	@Override
 	void _end(){
 		super._end();
 		Robot.logger.println(this.getClass().getName() + " ended", false);
 		m_completed = true;
 	}
 	
+	@Override
 	void _interrupted(){
 		super._interrupted();
 		Robot.logger.println(this.getClass().getName() + " interrupted", false);
