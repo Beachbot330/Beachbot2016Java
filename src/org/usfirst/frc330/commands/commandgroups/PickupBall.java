@@ -27,6 +27,14 @@ public class PickupBall extends BBCommandGroup {
     	addParallel(new SetArmPosition(ArmConst.pickupAngle, ArmConst.pickupTolerance));
     	addSequential(new LidClose());
     	addSequential(new PickupOn()); 	
-    } 
+    }
+
+	@Override
+	protected boolean isFinished() {
+		return false;
+	}
+
+
+
     
 }
