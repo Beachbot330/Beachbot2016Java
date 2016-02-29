@@ -41,7 +41,7 @@ public class ShootWithoutLid extends BBCommand {
     	shotNumber++;
         shootOffTimer = Timer.getFPGATimestamp() + 0.5;
         Robot.pickup.shootSolenoidsOn();
-        Robot.logger.println("Shot Number: " + shotNumber + "   Air Pressure: " +
+        Robot.logger.println("Shot Number: " + shotNumber + " Full   Air Pressure: " +
         					 Robot.chassis.getPressure());
         SmartDashboard.putString("savePictureName", "Shot_" + shotNumber + "_begin");
         SmartDashboard.putBoolean("savePicture", true);
