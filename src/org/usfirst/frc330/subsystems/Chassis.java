@@ -191,6 +191,11 @@ public class Chassis extends Subsystem
     	};  
     	Robot.csvLogger.add("Shifter", temp);
     	
+    	temp = new CSVLoggable(true) {
+			public double get() { return imu.getPitch(); }  		
+    	};  
+    	Robot.csvLogger.add("ChassisPitch", temp);
+    	
 //    	temp = new CSVLoggable(true) {
 //    		public double get() { return Robot.powerDP.getChassisLeftDrive1Current(); }
 //    	};
