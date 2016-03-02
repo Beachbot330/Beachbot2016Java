@@ -25,12 +25,12 @@ public final class TurretConst {
 	// CCW = Counter Clock Wise
 	// CW  = Clock Wise
 	public static final double limitAngleCCW   		= -90.0; 	// JR 2-23
-	public static final double aimLeft				=  -70.0;   // JR 2-23
+	public static final double aimLeft				=  -60.0;   // JR 3-1
 	public static final double turretSafeLimitCCW 	=   -5.0; 	// AP 1-26
 	public static final double center				=    0.0;   // AP 2-6
 	public static final double neutral				=    0.0;   // AP 2-6
 	public static final double turretSafeLimitCW 	=    5.0; 	// AP 1-26
-	public static final double aimRight				=   70.0;   // JR 2-23
+	public static final double aimRight				=   60.0;   // JR 3-1
 	public static final double limitAngleCW    		=  90.0; 	// JR 2-23
 	
 	// Encoder Stuff
