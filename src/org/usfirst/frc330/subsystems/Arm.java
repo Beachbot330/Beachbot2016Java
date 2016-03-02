@@ -316,6 +316,10 @@ public class Arm extends Subsystem implements LiveWindowSendable {
     		portcullisWedge.set(true);
     }
     
+    public boolean isStingerDeployed() {
+    	return portcullisWedge.get();
+    }
+    
     public void setArmZero()
 	{        
         String name;
@@ -364,13 +368,14 @@ public class Arm extends Subsystem implements LiveWindowSendable {
     }
     
     public void monitorArm() {
-    	if (Robot.turret.isCentered()) {
+    	if (isStingerDeployed()) {
+    		setLowerSoftLimit(ArmConst.safeToDeployPortcullis);
+    	} else if (Robot.turret.isCentered()) {
         	setLowerSoftLimit(ArmConst.limitLowerAngle); 
-    	}
-    	else {
+    	} else {
     		setLowerSoftLimit(ArmConst.armSafeLimit);
-    			
     	}
+    	
     	if (Robot.arm.getArmAngle() <= ArmConst.armSafeLimit) {
     		Robot.turret.setSoftLimitsSafe(); 
     	}
