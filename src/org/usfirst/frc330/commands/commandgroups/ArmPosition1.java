@@ -25,6 +25,5 @@ public class ArmPosition1 extends BBCommandGroup {
     	addParallel(new PickupOn(0.5));
     	addParallel(new SetTurretPosition(TurretConst.aimRight));
     	addSequential(new SetArmPosition(ArmConst.shootAngleFloor));
-    	addSequential(new LidOpen());
     } 
 }
