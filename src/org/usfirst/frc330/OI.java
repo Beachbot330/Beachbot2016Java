@@ -12,11 +12,6 @@
 package org.usfirst.frc330;
 
 import org.usfirst.frc330.commands.*;
-import org.usfirst.frc330.commands.ArmPosition1;
-import org.usfirst.frc330.commands.ArmPosition2;
-import org.usfirst.frc330.commands.ArmPosition3;
-import org.usfirst.frc330.commands.ArmToNeutral;
-import org.usfirst.frc330.commands.ClimberDeploy;
 import org.usfirst.frc330.commands.commandgroups.*;
 import org.usfirst.frc330.commands.commandgroups.PickupBall;
 import org.usfirst.frc330.commands.commandgroups.Shoot;
