@@ -11,6 +11,7 @@ public final class TurretConst {
 	public static final double pickupTolerance	    = 5.0;  //AP 2-6 (WAG)
 	public static final double deadZone             = 0.05; // AP 2/21
 	public static final int    inertiaCounter	    = 25;   //JR 2-28 (loops after manual control before starting position control)
+	public static final double timeout              = 2.0;  //JR 3-6
 	
 	// PID Constants
 	public static final double proportional         = 1.2;  // AP 2/28 - Was 2.0JR 2-23 
