@@ -27,14 +27,14 @@ public final class ArmConst {
 	// Angles
 	public static final double limitLowerAngle   		=  5.5;  //AP 1-26
 	public static final double pickupAngle		 		=  7.5;  //JR 2-28 
-	public static final double lowBar            		=  3.5;  //JB 2/13 (wag)
-	public static final double armSafeLimit	     		= 45.0;  //AP 1-26
-	public static final double neutral	         		= 60.0;  //AP 2-6
+	public static final double lowBar            		=  8.5;  //JB 2/13 (wag)
+	public static final double armSafeLimit	     		= 50.0;  //AP 1-26
+	public static final double neutral	         		= 65.0;  //AP 2-6
 	public static final double safeToDeployPortcullis   = 60.0;  // JR 2-27
-	public static final double shootAngleRamp    		= 90.0;  //AP 2-6 (WAG)
-	public static final double shootAngleFloor   		= 90.0;  //AP 2-6 (WAG)
-	public static final double safeToDeployLowerClimber = 90.0;  //JR 2/23
-	public static final double safeToDeployUpperClimber = 105.0; //JR 2/23 (WAG)
+	public static final double shootAngleRamp    		= 95.0;  //AP 2-6 (WAG)
+	public static final double shootAngleFloor   		= 95.0;  //AP 2-6 (WAG)
+	public static final double safeToDeployLowerClimber = 95.0;  //JR 2/23
+	public static final double safeToDeployUpperClimber = 110.0; //JR 2/23 (WAG)
 	public static final double limitUpperAngle   		= 113.0; //AP 1-26
 	
 	// Encoder Stuff
