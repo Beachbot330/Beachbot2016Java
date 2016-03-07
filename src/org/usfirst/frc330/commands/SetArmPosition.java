@@ -24,6 +24,7 @@ public class  SetArmPosition extends BBCommand {
 	double angle;
 	double timeout;
 	double tolerance;
+	int toleranceCounter;
     
 	public SetArmPosition(double angle) {
 		this(angle, ArmConst.tolerance, ArmConst.defaultTimeout);
@@ -44,12 +45,14 @@ public class  SetArmPosition extends BBCommand {
         this.angle = angle;
         this.timeout = timeout;
         this.tolerance = tolerance;
+        toleranceCounter = 0;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.arm.setArmAngle(angle);
     	Robot.arm.setArmAbsoluteTolerance(tolerance);
+    	toleranceCounter = 0;
     	if (timeout >= 0.0)
     		{setTimeout(timeout);}
     	else
@@ -59,10 +62,14 @@ public class  SetArmPosition extends BBCommand {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	toleranceCounter++;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	if (toleranceCounter < 5)
+    		return false;
+
     	if (isTimedOut())
     	{
     		Robot.logger.println("SetArmPosition setpoint: " + this.angle + "   Position at timeout: " + Robot.arm.getArmAngle());
