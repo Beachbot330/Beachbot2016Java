@@ -1,5 +1,5 @@
 
-package org.usfirst.frc330.commands.driveAndShoot;
+package org.usfirst.frc330.commands.autocommands;
 import org.usfirst.frc330.commands.Aim;
 import org.usfirst.frc330.commands.SetArmPosition;
 import org.usfirst.frc330.commands.SetTurretPosition;
@@ -47,9 +47,9 @@ public class SpyboxShoot extends BBCommandGroup {
     	//  Shoot
     	
     	addSequential(new ShiftLow());
-    	addSequential(new SetTurretPosition(TurretConst.center, 3.0, 20.0));		    //angle, tol, timeout
-    	addSequential(new SetArmPosition(ArmConst.shootAngleFloor, 3.0, 20.0)); 		//angle, tol, timeout
-    	addSequential(new DriveDistance(40.0, 5.0, 3.0, true, ChassisConst.DriveLow) ); // distance, tol, timeout, stop
+    	addSequential(new SetTurretPosition(-15.0, 3.0, 5.0));		                    //angle, tol, timeout
+    	addSequential(new SetArmPosition(ArmConst.shootAngleFloor, 3.0, 5.0)); 		    //angle, tol, timeout
+    	addSequential(new DriveDistance(70.0, 2.0, 10.0, true, ChassisConst.DriveLow) ); // distance, tol, timeout, stop
     	addSequential(new Aim(2.0, 5.0));
     	addSequential(new Shoot());
     }

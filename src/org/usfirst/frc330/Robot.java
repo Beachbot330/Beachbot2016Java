@@ -85,6 +85,7 @@ public class Robot extends IterativeRobot {
         autoProgram.addObject("Breach Defense", new BreachDefense());
         autoProgram.addObject("Pure Awesome", new FullyLoadedAuto());
         autoProgram.addObject("Test Command", new TestCommand());
+        autoProgram.addObject("Spybox Shooter", new SpyboxShoot());
         
         autoStartPosition = new SendableChooser();
         autoStartPosition.addObject("Position 1", new PositionOne());
