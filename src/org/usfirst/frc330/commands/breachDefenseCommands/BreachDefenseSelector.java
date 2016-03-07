@@ -4,10 +4,11 @@ package org.usfirst.frc330.commands.breachDefenseCommands;
 
 import org.usfirst.frc330.Robot;
 import edu.wpi.first.wpilibj.command.BBCommand;
+import edu.wpi.first.wpilibj.command.BBCommandGroup;
 
-public class BreachDefenseSelector extends BBCommand {
+public class BreachDefenseSelector extends BBCommandGroup {
 
-	BBCommand defenseCommand;
+	BBCommandGroup defenseCommand;
 	
     public BreachDefenseSelector() {
     }
@@ -15,7 +16,7 @@ public class BreachDefenseSelector extends BBCommand {
     // Called just before this Command runs the first time
     protected void initialize() {
     	
-    	defenseCommand = (BBCommand)Robot.getObstacle();
+    	defenseCommand = (BBCommandGroup)Robot.getObstacle();
     	defenseCommand.start();
     }
 

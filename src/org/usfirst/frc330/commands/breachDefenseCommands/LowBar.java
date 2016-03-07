@@ -18,6 +18,9 @@ public class LowBar extends BBCommandGroup {
     	addSequential(new ShiftLow());
     	addSequential(new SetTurretPosition(TurretConst.center, 3.0, 20.0));  //angle, tol, timeout
     	addSequential(new SetArmPosition(ArmConst.lowBar, 3.0, 20.0));  //angle, tol, timeout
-    	addSequential(new DriveDistance(40.0, 5.0, 3.0, true, ChassisConst.DriveLow) ); // distance, tol, timeout, stop
+    	addSequential(new DriveDistance(152.0, 5.0, 3.0, false, ChassisConst.DriveLow) ); // distance, tol, timeout, stop
+    	addParallel(new PickupOn());
+    	addSequential(new SetArmPosition(ArmConst.shootAngleFloor, 5, 1));
+    	addSequential(new PickupOff());
     }
 }

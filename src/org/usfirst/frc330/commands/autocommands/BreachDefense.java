@@ -22,10 +22,6 @@ import edu.wpi.first.wpilibj.command.BBCommandGroup;
 public class BreachDefense extends BBCommandGroup {
     
     public  BreachDefense() {
-    	
-    	//Drive to the outer works to score points
-    	addSequential(new DriveToDefense());
-    	
     	//Run the breach program for the selected defense
     	addSequential(new BreachDefenseSelector());
     }

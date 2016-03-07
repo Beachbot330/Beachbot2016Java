@@ -27,6 +27,6 @@ public class DriveToDefense extends BBCommandGroup {
     	
     	//Drive to the outer works to score points
     	addSequential(new ShiftLow());
-    	addSequential(new DriveWaypoint(0.0, 48.0, 4.0, 3.0, true, ChassisConst.DriveLow,ChassisConst.GyroDriveLow));  //X Y Tol Timeout Stop
+    	addSequential(new DriveWaypoint(0.0, 45.0, 4.0, 3.0, true, ChassisConst.DriveLow,ChassisConst.GyroDriveLow));  //X Y Tol Timeout Stop
     }
 }

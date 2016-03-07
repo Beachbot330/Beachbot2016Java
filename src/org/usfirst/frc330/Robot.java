@@ -83,30 +83,30 @@ public class Robot extends IterativeRobot {
         autoProgram.addObject("Do Nothing", new DoNothing());
         autoProgram.addObject("Drive to Defense", new DriveToDefense());
         autoProgram.addObject("Breach Defense", new BreachDefense());
-        autoProgram.addObject("Pure Awesome", new FullyLoadedAuto());
-        autoProgram.addObject("Test Command", new TestCommand());
+//        autoProgram.addObject("Pure Awesome", new FullyLoadedAuto());
+//        autoProgram.addObject("Test Command", new TestCommand());
         autoProgram.addObject("Spybox Shooter", new SpyboxShoot());
         
         autoStartPosition = new SendableChooser();
-        autoStartPosition.addObject("Position 1", new PositionOne());
+        autoStartPosition.addObject("Pos 1 - Low Bar", new PositionOne());
         autoStartPosition.addObject("Position 2", new PositionTwo());
         autoStartPosition.addObject("Position 3", new PositionThree());
         autoStartPosition.addObject("Position 4", new PositionFour());
         autoStartPosition.addObject("Position 5", new PositionFive());
         
         autoObstacle = new SendableChooser();
-        autoObstacle.addObject("Drawbridge", new Drawbridge());
+//        autoObstacle.addObject("Drawbridge", new Drawbridge());
         autoObstacle.addObject("Low Bar", new LowBar());
         autoObstacle.addObject("Moat", new Moat());
-        autoObstacle.addObject("Portcullis", new Portcullis());
-        autoObstacle.addObject("Ramparts", new Ramparts());
-        autoObstacle.addObject("Rock Wall", new RockWall());
+//        autoObstacle.addObject("Portcullis", new Portcullis());
+//        autoObstacle.addObject("Ramparts", new Ramparts());
+//        autoObstacle.addObject("Rock Wall", new RockWall());
         autoObstacle.addObject("Rough Terrain", new RoughTerrain());
-        autoObstacle.addObject("Sally Port", new SallyPort());
-        autoObstacle.addObject("Teeter Totter", new TeeterTotter());
+//        autoObstacle.addObject("Sally Port", new SallyPort());
+//        autoObstacle.addObject("Teeter Totter", new TeeterTotter());
         
         /* Set to a default value */
-        autoObstacle.addDefault("Drawbridge", new Drawbridge());
+        autoObstacle.addObject("Rock Wall", new RockWall());
         
         SmartDashboard.putData("Auto Program", autoProgram);
         SmartDashboard.putData("Robot Start Position", autoStartPosition);

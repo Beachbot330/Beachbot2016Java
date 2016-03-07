@@ -50,15 +50,15 @@ public class SpyboxShoot extends BBCommandGroup {
     	//  Shoot
     	
     	addSequential(new ShiftLow());
-    	addSequential(new SetTurretPosition(-15.0, 3.0, 5.0));		                    //angle, tol, timeout
+    	addSequential(new SetTurretPosition(-38.0, 3.0, 5.0));		                    //angle, tol, timeout
     	addSequential(new SetArmPosition(ArmConst.shootAngleFloor, 3.0, 5.0)); 		    //angle, tol, timeout
     	addSequential(new LidOpen());
-    	addSequential(new DriveDistance(75.0, 2.0, 10.0, true, ChassisConst.DriveLow) ); // distance, tol, timeout, stop
+    	addSequential(new DriveDistance(94.0, 2.0, 10.0, true, ChassisConst.DriveLow) ); // distance, tol, timeout, stop
     	
-    	addSequential(new Wait(2.0));
+//    	addSequential(new Wait(2.0));
     	addSequential(new Aim(2.0, 10.0));
     	
-    	addSequential(new Wait(2.0));
+//    	addSequential(new Wait(2.0));
     	addSequential(new Shoot());
     }
 }
