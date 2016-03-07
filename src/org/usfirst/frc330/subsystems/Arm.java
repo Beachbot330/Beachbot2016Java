@@ -369,20 +369,20 @@ public class Arm extends Subsystem implements LiveWindowSendable {
     
     public void monitorArm() {
     	if (isStingerDeployed()) {
-    		/* setLowerSoftLimit(ArmConst.safeToDeployPortcullis); */
     		setUpperSoftLimit(ArmConst.safeToDeployPortcullis);
-    	} else if (Robot.turret.isCentered()) {
+    	} else {
+    		setUpperSoftLimit(ArmConst.limitUpperAngle);
+    	}
+    		
+    	if (Robot.turret.isCentered()) {
         	setLowerSoftLimit(ArmConst.limitLowerAngle);
-        	setUpperSoftLimit(ArmConst.limitUpperAngle);
     	} else {
     		setLowerSoftLimit(ArmConst.armSafeLimit);
-    		setUpperSoftLimit(ArmConst.limitUpperAngle);
     	}
     	
     	if (Robot.arm.getArmAngle() <= ArmConst.armSafeLimit) {
     		Robot.turret.setSoftLimitsSafe(); 
-    	}
-    	else {
+    	} else {
     		Robot.turret.setSoftLimitsArmUp();
     	}
     }
