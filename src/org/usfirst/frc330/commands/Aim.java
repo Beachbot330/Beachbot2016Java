@@ -67,7 +67,7 @@ public class Aim extends BBCommand {
     	{
     		Robot.logger.println("Aim setpoint: " + this.setpoint + "   Position at timeout: " + Robot.turret.getTurretAngle());
     	}
-    	return (Robot.turret.onTurretTarget() || isTimedOut());
+    	return ((Robot.turret.onTurretTarget() && setpoint != 0)|| isTimedOut());
     }
 
     // Called once after isFinished returns true
