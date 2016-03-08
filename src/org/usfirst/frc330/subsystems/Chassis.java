@@ -260,6 +260,8 @@ public class Chassis extends Subsystem
     	driveTrainEncoderL.reset();
     	driveTrainEncoderR.reset();
         imu.zeroYaw();
+        fFirstUse = true;
+        ctrRollOver = 0;
         setXY(0,0);
         this.prevLeftEncoderDistance = 0;
         this.prevRightEncoderDistance = 0;

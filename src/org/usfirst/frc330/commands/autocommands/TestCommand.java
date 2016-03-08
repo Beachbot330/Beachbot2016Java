@@ -7,6 +7,7 @@ import org.usfirst.frc330.commands.ShiftLow;
 import org.usfirst.frc330.commands.drivecommands.DriveDistance;
 import org.usfirst.frc330.commands.drivecommands.DriveTime;
 import org.usfirst.frc330.commands.drivecommands.DriveWaypoint;
+import org.usfirst.frc330.commands.drivecommands.TurnGyroAbs;
 import org.usfirst.frc330.commands.drivecommands.TurnGyroRel;
 import org.usfirst.frc330.constants.ArmConst;
 import org.usfirst.frc330.constants.ChassisConst;
@@ -40,9 +41,9 @@ public class TestCommand extends CommandGroup {
 //    	addSequential(new DriveDistance(60, ChassisConst.DriveHigh));
 //    	addSequential(new TurnGyroRel(30,ChassisConst.GyroTurnLow));
     	addSequential(new ShiftLow());
-    	addSequential(new SetTurretPosition(TurretConst.center, 3.0, 20.0));  //angle, tol, timeout
-    	addSequential(new SetArmPosition(ArmConst.lowBar, 3.0, 20.0));  //angle, tol, timeout
-    	addSequential(new DriveWaypoint(0.0, 48.0, 4.0, 3.0, true, ChassisConst.DriveLow,ChassisConst.GyroDriveLow));  //X Y Tol Timeout Stop
-    	
+//    	addSequential(new SetTurretPosition(TurretConst.center, 3.0, 20.0));  //angle, tol, timeout
+//    	addSequential(new SetArmPosition(ArmConst.lowBar, 3.0, 20.0));  //angle, tol, timeout
+//    	addSequential(new DriveWaypoint(0.0, 48.0, 4.0, 3.0, true, ChassisConst.DriveLow,ChassisConst.GyroDriveLow));  //X Y Tol Timeout Stop
+    	addSequential(new TurnGyroRel(45,1,5,false,ChassisConst.GyroTurnLow));
     }
 }

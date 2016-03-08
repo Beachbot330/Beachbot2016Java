@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.BBCommandGroup;
 
 import org.usfirst.frc330.commands.*;
 import org.usfirst.frc330.commands.drivecommands.DriveDistance;
+import org.usfirst.frc330.commands.drivecommands.DriveDistanceAtAbsAngle;
 
 /**
  *
@@ -17,9 +18,9 @@ public class LowBar extends BBCommandGroup {
     public  LowBar() {
     	addSequential(new ShiftLow());
     	addSequential(new SetTurretPosition(TurretConst.center, 3.0, 20.0));  //angle, tol, timeout
-    	addSequential(new SetArmPosition(ArmConst.lowBar, 3.0, 20.0));  //angle, tol, timeout
-    	addSequential(new DriveDistance(152.0, 5.0, 3.0, false, ChassisConst.DriveLow) ); // distance, tol, timeout, stop
     	addParallel(new PickupOn());
+    	addSequential(new SetArmPosition(ArmConst.lowBar, 3.0, 20.0));  //angle, tol, timeout
+    	addSequential(new DriveDistanceAtAbsAngle(164.0, 5.0, 0, 3.0, false, ChassisConst.DriveLow, ChassisConst.GyroDriveLow) ); // distance, tol, timeout, stop
     	addSequential(new SetArmPosition(ArmConst.shootAngleFloor, 5, 1));
     	addSequential(new PickupOff());
     }
