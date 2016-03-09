@@ -44,6 +44,7 @@ public class Climb extends BBCommand {
     static boolean initalized = false;
     // Called just before this Command runs the first time
     protected void initialize() {
+    	initalized = false;
     	if (Robot.oi.getDriverR().getRawButton(3)) {
     		init();
     	}
