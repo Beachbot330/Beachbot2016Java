@@ -25,8 +25,8 @@ public final class ArmConst {
 	public static final double MaxOutputVoltage  		= 9.0;   // JR 2/23
 	
 	// Angles
-	public static final double limitLowerAngle   		=  5.5;  //AP 1-26
-	public static final double pickupAngle		 		=  7.5;  //JR 2-28 
+	public static final double limitLowerAngle   		=  1.5;  //AP 1-26
+	public static final double pickupAngle		 		=  3.5;  //JR 2-28 
 	public static final double lowBar            		=  8.5;  //JB 2/13 (wag)
 	public static final double armSafeLimit	     		= 50.0;  //AP 1-26
 	public static final double neutral	         		= 60.0;  //AP 2-6    moved 65 to 60 (JED) 3/7
