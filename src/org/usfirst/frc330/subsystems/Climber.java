@@ -74,6 +74,11 @@ public class Climber extends Subsystem
     		pivotHigh.set(true);
     }
     
+    public void upperClimberDeployUnsafe()
+    {
+    	pivotHigh.set(true);
+    }
+    
     public void lockUpperClimber() {
     	pivotHigh.set(false);
     }

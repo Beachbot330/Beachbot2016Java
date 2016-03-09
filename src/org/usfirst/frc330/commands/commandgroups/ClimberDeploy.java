@@ -48,7 +48,7 @@ public class ClimberDeploy extends BBCommandGroup {
     	addParallel(new SetArmPosition(ArmConst.limitUpperAngle));
     	addSequential(new SetTurretPosition(TurretConst.center));
     	addSequential(new deployLowerClimber());
-    	addSequential(new Wait(2.0));
+    	addSequential(new Wait(3.0));
     	addSequential(new deployUpperClimber());
     	
     } 
