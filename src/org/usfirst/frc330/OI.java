@@ -63,6 +63,7 @@ public class OI {
     public Joystick driverL;
     public JoystickButton shoot_1;
     public JoystickButton shiftLow_2;
+    public JoystickButton deployStinger_4;
     public Joystick driverR;
     public JoystickButton killAll_10;
     public JoystickButton lidOpen_5;
@@ -113,6 +114,8 @@ public class OI {
         killAll_10.whenPressed(new KillAll());
         driverR = new Joystick(1);
         
+        deployStinger_4 = new JoystickButton(driverR, 4);
+        deployStinger_4.whenPressed(new DeployPortcullisStinger());
         shiftLow_2 = new JoystickButton(driverR, 2);
         shiftLow_2.whenPressed(new ShiftLow());
         shoot_1 = new JoystickButton(driverR, 1);
