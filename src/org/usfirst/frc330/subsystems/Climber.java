@@ -56,7 +56,12 @@ public class Climber extends Subsystem
     public void lowerClimberDeploy()
     {
     	if (Robot.arm.isSafeToDeployLowerClimber() && Robot.turret.isCentered())
+    	{
     		pivotLow.set(true);
+    		Robot.logger.println("Deploying lower climber", true);
+    	}
+    	else
+    		Robot.logger.println("Unsafe to deploy lower climber", true);
     }
     
     public void lockLowerClimber() {
@@ -70,8 +75,12 @@ public class Climber extends Subsystem
 
     public void upperClimberDeploy()
     {
-    	if (Robot.arm.isSafeToDeployUpperClimber() && Robot.turret.isCentered() && isLowerClimberDeployed())
+    	if (Robot.arm.isSafeToDeployUpperClimber() && Robot.turret.isCentered() && isLowerClimberDeployed()){
     		pivotHigh.set(true);
+    		Robot.logger.println("Deploying upper climber", true);
+    	}
+    	else
+    		Robot.logger.println("Unsafe to deploy upper climber", true);
     }
     
     public void upperClimberDeployUnsafe()

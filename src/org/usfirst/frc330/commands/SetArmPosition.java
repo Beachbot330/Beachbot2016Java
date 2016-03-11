@@ -58,6 +58,7 @@ public class  SetArmPosition extends BBCommand {
     	else
     		{setTimeout(9999999);}
     	Robot.arm.enableArm();
+    	Robot.logger.println("Arm set to: " + this.angle + " degrees, with tolerance: " + this.tolerance);
     }
 
     // Called repeatedly when this Command is scheduled to run

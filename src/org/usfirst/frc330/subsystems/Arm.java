@@ -460,9 +460,9 @@ public class Arm extends Subsystem implements LiveWindowSendable {
 			throw new RuntimeException("Unsupported control mode for arm: " + newControlMode.toString());
 		}
 		if (oldControlMode != newControlMode) {
-			Robot.logger.println("Old Arm Mode: " + oldControlMode);
+			//Robot.logger.println("Old Arm Mode: " + oldControlMode);
 			armL.changeControlMode(newControlMode);
-			Robot.logger.println("New Arm Mode: " + newControlMode);
+			//Robot.logger.println("New Arm Mode: " + newControlMode);
 			if (SCtable != null)
 				SCtable.putNumber("Mode", newControlMode.getValue());
 		}
@@ -475,10 +475,12 @@ public class Arm extends Subsystem implements LiveWindowSendable {
 	}
 	
 	public boolean isSafeToDeployLowerClimber() {
+		//TODO: check time
 		return getArmAngle() >= ArmConst.safeToDeployLowerClimber;
 	}
 	
 	public boolean isSafeToDeployUpperClimber() {
+		//TODO: check time
 		return getArmAngle() >= ArmConst.safeToDeployUpperClimber;
 	}
 }

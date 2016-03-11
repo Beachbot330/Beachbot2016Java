@@ -51,6 +51,7 @@ public class  SetTurretPosition extends BBCommand {
     	else
     		{setTimeout(9999999);}
     	Robot.turret.enableTurret();
+    	Robot.logger.println("Arm turret to: " + this.angle + " degrees, with tolerance: " + this.tolerance);
     }
 
     // Called repeatedly when this Command is scheduled to run
