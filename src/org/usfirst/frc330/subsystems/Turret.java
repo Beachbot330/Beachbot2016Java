@@ -243,14 +243,8 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 	double tempSetpoint;
 	int inertiaCounter;
 	public void manualTurret() {
-		double turretCommand = Robot.oi.armJoystick.getZ();
-		double gamePad = Robot.oi.armGamepad.getZ();
-		if (Math.abs(turretCommand) > TurretConst.deadZone){ //Driving via joystick
-			setTurret(turretCommand/Math.abs(turretCommand)*Math.pow(turretCommand,2));
-			inertiaCounter = TurretConst.inertiaCounter;
-		}
-		else if (Math.abs(gamePad) > TurretConst.deadZone){ //Driving via gamepad
-			turretCommand = gamePad;
+		double turretCommand =  Robot.oi.armGamepad.getZ();
+		if (Math.abs(turretCommand) > TurretConst.deadZone){ //Driving via gamepad
 			setTurret(turretCommand/Math.abs(turretCommand)*Math.pow(turretCommand,2));
 			inertiaCounter = TurretConst.inertiaCounter;
 		}

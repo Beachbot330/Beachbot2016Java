@@ -65,8 +65,6 @@ public class OI {
     public JoystickButton shoot_1;
     public JoystickButton shiftLow_2;
     public Joystick driverR;
-    public JoystickButton killAll_13;
-    public Joystick armJoystick;
     public JoystickButton killAll_10;
     public JoystickButton lidOpen_5;
     public JoystickButton lidClose_7;
@@ -111,10 +109,6 @@ public class OI {
         lidOpen_5.whenPressed(new LidOpen());
         killAll_10 = new JoystickButton(armGamepad, 10);
         killAll_10.whenPressed(new KillAll());
-        armJoystick = new Joystick(2);
-        
-        killAll_13 = new JoystickButton(armJoystick, 1);
-        killAll_13.whenPressed(new KillAll());
         driverR = new Joystick(1);
         
         shiftLow_2 = new JoystickButton(driverR, 2);
@@ -184,10 +178,6 @@ public class OI {
 
     public Joystick getDriverR() {
         return driverR;
-    }
-
-    public Joystick getArmJoystick() {
-        return armJoystick;
     }
 
     public Joystick getArmGamepad() {
