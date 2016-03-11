@@ -27,7 +27,7 @@ public final class ArmConst {
 	// Angles
 	public static final double limitLowerAngle   		=  1.5;  //AP 1-26
 	public static final double pickupAngle		 		=  3.5;  //JR 2-28 
-	public static final double lowBar            		=  8.5;  //JB 2/13 (wag)
+	public static final double lowBar            		=  2.0;  //AP 3-11
 	public static final double armSafeLimit	     		= 50.0;  //AP 1-26
 	public static final double neutral	         		= 60.0;  //AP 2-6    moved 65 to 60 (JED) 3/7
 	public static final double safeToDeployPortcullis   = 60.0;  // JR 2-27 
