@@ -166,6 +166,15 @@ public class Turret extends Subsystem implements LiveWindowSendable {
             SCtable.putNumber("d", D);
 		}
 	}
+	
+	public void setVoltageRampRate(double rate){
+		turret.setVoltageRampRate(rate);
+	}
+	
+	public void configMaxOutputVoltage(double voltage){
+		turret.configMaxOutputVoltage(voltage);
+	}
+	
 
 	public void setTurretAbsoluteTolerance(double absvalue) {
     	tolerance = absvalue;

@@ -59,6 +59,11 @@ public class Aim extends BBCommand {
     	}
         SmartDashboard.putString("savePictureName", "Aim_" + aimNumber + "_begin");
         SmartDashboard.putBoolean("savePicture", true);
+        
+        //Slow PID for aiming
+        Robot.turret.setPIDConstants(TurretConst.aimProportional, TurretConst.aimIntegral, TurretConst.aimDerivative);
+        Robot.turret.setVoltageRampRate(TurretConst.aimVoltageRampRate);
+    	Robot.turret.configMaxOutputVoltage(TurretConst.aimMaxOutputVoltage);
     }
 
 
@@ -87,6 +92,11 @@ public class Aim extends BBCommand {
     protected void end() {
     	SmartDashboard.putString("savePictureName", "Aim_ " + aimNumber + "_end");
     	SmartDashboard.putBoolean("savePicture", true); 
+    	
+    	//Return to fast PID
+    	Robot.turret.setPIDConstants(TurretConst.proportional, TurretConst.integral, TurretConst.derivative);
+        Robot.turret.setVoltageRampRate(TurretConst.VoltageRampRate);
+    	Robot.turret.configMaxOutputVoltage(TurretConst.MaxOutputVoltage);
     }
 
     // Called when another command which requires one or more of the same
@@ -94,5 +104,10 @@ public class Aim extends BBCommand {
     protected void interrupted() {
     	SmartDashboard.putString("savePictureName", "Aim_ " + aimNumber + "_interrupted");
     	SmartDashboard.putBoolean("savePicture", true); 
+    	
+    	//Return to fast PID
+    	Robot.turret.setPIDConstants(TurretConst.proportional, TurretConst.integral, TurretConst.derivative);
+        Robot.turret.setVoltageRampRate(TurretConst.VoltageRampRate);
+    	Robot.turret.configMaxOutputVoltage(TurretConst.MaxOutputVoltage);
     }
 }
