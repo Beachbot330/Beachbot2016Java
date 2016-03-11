@@ -755,6 +755,35 @@ Children:
           value: whenPressed
       Base: Joystick Button
       Name: ShiftLow_2
+    - Children: []
+      Properties:
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: DriverR}
+        Parameters: !!robotbuilder.data.properties.ParametersProperty
+          default: []
+          name: Parameters
+          validators: null
+          value: []
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id027
+          default: '1'
+          name: Button
+          validators: null
+          value: '4'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id028
+          value: DeployPortcullisStinger
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id029
+          default: whileHeld
+          name: When to Run
+          validators: null
+          value: whenPressed
+      Base: Joystick Button
+      Name: DeployStinger_4
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: *id030
