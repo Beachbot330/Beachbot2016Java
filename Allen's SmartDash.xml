@@ -1,5 +1,26 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Climb" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="685"/>
+	</widget>
+	<widget field="ShootLowerStage" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="651"/>
+	</widget>
+	<widget field="ShootUpperStage" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="291"/>
+	</widget>
+	<widget field="ChassisPitch" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="270"/>
+	</widget>
+	<widget field="Arm" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+		<location x="1281" y="637"/>
+	</widget>
+	<widget field="Turret" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+		<location x="6" y="372"/>
+	</widget>
+	<widget field="targetAngle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="249"/>
+	</widget>
 	<widget field="savePicture" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="163"/>
 	</widget>
@@ -14,12 +35,6 @@
 	</widget>
 	<widget field="savePictureName" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="142"/>
-	</widget>
-	<widget field="Arm" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-		<location x="0" y="364"/>
-	</widget>
-	<widget field="Turret" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-		<location x="0" y="0"/>
 	</widget>
 	<widget field="turretFault" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="169" y="188"/>

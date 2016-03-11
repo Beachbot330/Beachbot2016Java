@@ -87,6 +87,7 @@ public class Turret extends Subsystem implements LiveWindowSendable {
     	turret.enableReverseSoftLimit(true);
     	turret.enableBrakeMode(true);
     	turret.setVoltageRampRate(TurretConst.VoltageRampRate);
+    	turret.configMaxOutputVoltage(TurretConst.MaxOutputVoltage);
 
 		/////////////////////////////////////////////////////////////////
 		// LOG IT!
