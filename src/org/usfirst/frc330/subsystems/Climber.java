@@ -14,10 +14,11 @@ package org.usfirst.frc330.subsystems;
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.*;
+import org.usfirst.frc330.constants.ClimberConst;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
-
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -55,7 +56,7 @@ public class Climber extends Subsystem
     
     public void lowerClimberDeploy()
     {
-    	if (Robot.arm.isSafeToDeployLowerClimber() && Robot.turret.isCentered())
+    	if (Robot.arm.isSafeToDeployLowerClimber())
     	{
     		pivotLow.set(true);
     		Robot.logger.println("Deploying lower climber", true);
@@ -73,14 +74,17 @@ public class Climber extends Subsystem
     	return pivotLow.get();
     }
 
-    public void upperClimberDeploy()
+    public boolean upperClimberDeploy()
     {
-    	if (Robot.arm.isSafeToDeployUpperClimber() && Robot.turret.isCentered() && isLowerClimberDeployed()){
+    	if (Robot.arm.isSafeToDeployUpperClimber() && isLowerClimberDeployed()){
     		pivotHigh.set(true);
     		Robot.logger.println("Deploying upper climber", true);
+    		return true;
     	}
-    	else
+    	else{
     		Robot.logger.println("Unsafe to deploy upper climber", true);
+    		return false;
+    	}
     }
     
     public void upperClimberDeployUnsafe()

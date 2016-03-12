@@ -123,6 +123,7 @@ public class Robot extends IterativeRobot {
     
         Command beep = new BuzzerBeepTimed(0.75);
         beep.start();
+        (new SetQuadrantPosition(1)).start();
         
     }
     

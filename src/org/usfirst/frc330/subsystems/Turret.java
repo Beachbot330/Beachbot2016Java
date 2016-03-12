@@ -131,7 +131,7 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 		temp = new CSVLoggable(false) {
 			public double get() { return SmartDashboard.getNumber("targetAngle", 0); }
 		};
-		Robot.csvLogger.add("TurretCWSoftLimit", temp);
+		Robot.csvLogger.add("targetAngle", temp);
 	}
 	/////////////////////////////////////////////////////////////
 	// SET methods

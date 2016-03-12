@@ -97,6 +97,8 @@ public class Aim extends BBCommand {
     	Robot.turret.setPIDConstants(TurretConst.proportional, TurretConst.integral, TurretConst.derivative);
         Robot.turret.setVoltageRampRate(TurretConst.VoltageRampRate);
     	Robot.turret.configMaxOutputVoltage(TurretConst.MaxOutputVoltage);
+    	
+    	Robot.turret.setTurret(0.0);
     }
 
     // Called when another command which requires one or more of the same
@@ -109,5 +111,7 @@ public class Aim extends BBCommand {
     	Robot.turret.setPIDConstants(TurretConst.proportional, TurretConst.integral, TurretConst.derivative);
         Robot.turret.setVoltageRampRate(TurretConst.VoltageRampRate);
     	Robot.turret.configMaxOutputVoltage(TurretConst.MaxOutputVoltage);
+    	
+    	Robot.turret.setTurret(0.0);
     }
 }

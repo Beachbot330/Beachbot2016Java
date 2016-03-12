@@ -56,7 +56,7 @@ public class SpyboxShoot extends BBCommandGroup {
     	addSequential(new DriveDistance(94.0, 2.0, 10.0, true, ChassisConst.DriveLow) ); // distance, tol, timeout, stop
     	
 //    	addSequential(new Wait(2.0));
-    	addSequential(new Aim(2.0, 10.0));
+    	addSequential(new Aim(3.5, 10.0));
     	
 //    	addSequential(new Wait(2.0));
     	addSequential(new Shoot());

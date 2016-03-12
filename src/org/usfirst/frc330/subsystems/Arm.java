@@ -476,7 +476,14 @@ public class Arm extends Subsystem implements LiveWindowSendable {
 	
 	public boolean isSafeToDeployLowerClimber() {
 		//TODO: check time
-		return getArmAngle() >= ArmConst.safeToDeployLowerClimber;
+		double armAngle = getArmAngle();
+		if (armAngle >= ArmConst.safeToDeployLowerClimber){
+			return true;
+		}
+		else {
+			Robot.logger.println("Not safe to deploy lower climer. Current angle: " + armAngle);
+			return false;
+		}
 	}
 	
 	public boolean isSafeToDeployUpperClimber() {

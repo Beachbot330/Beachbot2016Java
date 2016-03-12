@@ -24,7 +24,7 @@ public class LowBarShoot extends BBCommandGroup {
         addSequential(new TurnGyroAbs(40, 5, 2, ChassisConst.GyroTurnLow));
         addParallel(new SetTurretPosition(0,3,3));
         addSequential(new DriveDistanceAtAbsAngle_NoTurn(144,5,40,2,false,ChassisConst.DriveLow,ChassisConst.GyroDriveLow));
-        addSequential(new Aim(2.0, 15.0));
+        addSequential(new Aim(3.5, 15.0));
         addSequential(new Shoot());
     }
 }

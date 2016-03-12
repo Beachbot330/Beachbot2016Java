@@ -33,7 +33,7 @@ public final class ArmConst {
 	public static final double safeToDeployPortcullis   = 60.0;  // JR 2-27 
 	public static final double shootAngleRamp    		= 90.0;  //AP 2-6 (WAG) - moved 95 to 90 (JED) 3/7
 	public static final double shootAngleFloor   		= 90.0;  //AP 2-6 (WAG) moved 95 to 90 (JED) 3/7
-	public static final double safeToDeployLowerClimber = 90.0;  //AP 3/10
+	public static final double safeToDeployLowerClimber = 95.0;  //AP 3/10
 	public static final double safeToDeployUpperClimber = 108.0; //AP 3/10 (could be reduced to 105
 	public static final double limitUpperAngle   		= 113.0; //AP 1-26
 	
