@@ -20,7 +20,7 @@ public class RoughTerrain extends BBCommandGroup {
     public  RoughTerrain() {
     	addParallel(new ShiftLow());
     	addParallel(new SetTurretPosition(TurretConst.center, 3.0, 1.0));			    //angle, tol, timeout
-    	addSequential(new SetArmPosition(ArmConst.neutral, 3.0, 1.0));   				//angle, tol, timeout
+    	addSequential(new SetArmPosition(ArmConst.defaultNeutral, 3.0, 1.0));   				//angle, tol, timeout
     	addSequential(new DriveDistance(152.0, 5.0, 3.0, false, ChassisConst.DriveLow) ); // distance, tol, timeout, stop
     	addParallel(new PickupOn());
     	addSequential(new SetArmPosition(ArmConst.shootAngleFloor, 5, 1));

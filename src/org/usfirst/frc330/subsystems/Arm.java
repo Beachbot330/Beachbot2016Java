@@ -490,4 +490,13 @@ public class Arm extends Subsystem implements LiveWindowSendable {
 		//TODO: check time
 		return getArmAngle() >= ArmConst.safeToDeployUpperClimber;
 	}
+	
+	public double getNeutralAngle() {
+		double neutralAngle = SmartDashboard.getNumber("ArmNeutralAngle", ArmConst.defaultNeutral);
+		if (neutralAngle > ArmConst.highLimitNeutral)
+			neutralAngle = ArmConst.highLimitNeutral;
+		else if (neutralAngle < ArmConst.lowLimitNeutral)
+			neutralAngle = ArmConst.lowLimitNeutral;
+		return neutralAngle;
+	}
 }

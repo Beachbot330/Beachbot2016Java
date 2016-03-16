@@ -13,6 +13,7 @@ package org.usfirst.frc330.commands.commandgroups;
 
 import edu.wpi.first.wpilibj.command.BBCommandGroup;
 
+import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.commands.*;
 import org.usfirst.frc330.constants.*;
 
@@ -25,6 +26,6 @@ public class ArmToNeutral extends BBCommandGroup {
     	
     	addParallel(new SetTurretPosition(TurretConst.neutral));
     	addParallel(new PickupOff());
-    	addSequential(new SetArmPosition(ArmConst.neutral, ArmConst.tolerance));
+    	addSequential(new SetArmPosition(Robot.arm.getNeutralAngle(), ArmConst.tolerance));
     } 
 }
