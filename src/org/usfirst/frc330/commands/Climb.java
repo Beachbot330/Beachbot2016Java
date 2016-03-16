@@ -13,6 +13,7 @@ package org.usfirst.frc330.commands;
 
 import edu.wpi.first.wpilibj.command.BBCommand;
 import org.usfirst.frc330.Robot;
+import org.usfirst.frc330.commands.commandgroups.Shoot;
 import org.usfirst.frc330.constants.ChassisConst;
 
 /**
@@ -62,6 +63,7 @@ public class Climb extends BBCommand {
 
     double leftDriven = 0;
     double rightDriven = 0;
+    boolean shot = false;
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if (!initalized)
@@ -73,6 +75,12 @@ public class Climb extends BBCommand {
     		Robot.chassis.tankDrive(-ChassisConst.climberSpeed, -ChassisConst.climberSpeed);
     	else 
     		Robot.chassis.tankDrive(0, 0);
+    	
+    	if (initalized && !shot && Robot.oi.getDriverR().getRawButton(3) && (leftDriven > -ChassisConst.climberShootDistance || rightDriven > -ChassisConst.climberShootDistance) ) {
+    		(new Shoot()).start();
+    		shot = true;
+    	}
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
