@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.constants.TurretConst;
+import org.usfirst.frc330.constants.TurretConstPract;
 
 /**
  *
@@ -61,9 +62,16 @@ public class Aim extends BBCommand {
         SmartDashboard.putBoolean("savePicture", true);
         
         //Slow PID for aiming
-        Robot.turret.setPIDConstants(TurretConst.aimProportional, TurretConst.aimIntegral, TurretConst.aimDerivative);
-        Robot.turret.setVoltageRampRate(TurretConst.aimVoltageRampRate);
-    	Robot.turret.configMaxOutputVoltage(TurretConst.aimMaxOutputVoltage);
+        if (!Robot.frills.isPracticeRobot()){
+        	Robot.turret.setPIDConstants(TurretConst.aimProportional, TurretConst.aimIntegral, TurretConst.aimDerivative);
+            Robot.turret.setVoltageRampRate(TurretConst.aimVoltageRampRate);
+        	Robot.turret.configMaxOutputVoltage(TurretConst.aimMaxOutputVoltage);
+        }
+        else{
+        	Robot.turret.setPIDConstants(TurretConstPract.aimProportional, TurretConstPract.aimIntegral, TurretConstPract.aimDerivative);
+            Robot.turret.setVoltageRampRate(TurretConstPract.aimVoltageRampRate);
+        	Robot.turret.configMaxOutputVoltage(TurretConstPract.aimMaxOutputVoltage);
+        }
     }
 
 

@@ -21,8 +21,8 @@ public final class ArmConst {
 	public static final double integral         		= 0.000; // JR 2/23
 	public static final double derivative        		= 1.0;   // JR 2/23
 	public static final double feedForward	     		= 0.0;   // JR 2/23
-	public static final double VoltageRampRate   		= 24.0;  // JR 2/23
-	public static final double MaxOutputVoltage  		= 9.0;   // JR 2/23
+	public static final double VoltageRampRate   		= 48.0;  // AP 3-15
+	public static final double MaxOutputVoltage  		= 12.0;   // AP 3-15
 	
 	// Angles
 	public static final double limitLowerAngle   		=  2.0;  //AP 1-26

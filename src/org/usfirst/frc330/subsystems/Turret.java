@@ -15,6 +15,7 @@ import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.ManualTurret;
 import org.usfirst.frc330.constants.TurretConst;
+import org.usfirst.frc330.constants.TurretConstPract;
 import org.usfirst.frc330.util.CSVLoggable;
 
 import edu.wpi.first.wpilibj.CANTalon;
@@ -80,14 +81,23 @@ public class Turret extends Subsystem implements LiveWindowSendable {
     	
     	turret.reverseSensor(false);
     	turret.reverseOutput(false);
-    	setPIDConstants(TurretConst.proportional, TurretConst.integral, TurretConst.derivative);
-    	setTurretAbsoluteTolerance(TurretConst.tolerance);
     	setSoftLimitsSafe();
     	turret.enableForwardSoftLimit(true);
     	turret.enableReverseSoftLimit(true);
     	turret.enableBrakeMode(true);
-    	turret.setVoltageRampRate(TurretConst.VoltageRampRate);
-    	turret.configMaxOutputVoltage(TurretConst.MaxOutputVoltage);
+    	if(!Robot.frills.isPracticeRobot()){
+    		setPIDConstants(TurretConst.proportional, TurretConst.integral, TurretConst.derivative);
+        	setTurretAbsoluteTolerance(TurretConst.tolerance);
+        	turret.setVoltageRampRate(TurretConst.VoltageRampRate);
+        	turret.configMaxOutputVoltage(TurretConst.MaxOutputVoltage);
+    	}
+    	else {
+    		setPIDConstants(TurretConstPract.proportional, TurretConstPract.integral, TurretConstPract.derivative);
+        	setTurretAbsoluteTolerance(TurretConstPract.tolerance);
+        	turret.setVoltageRampRate(TurretConstPract.VoltageRampRate);
+        	turret.configMaxOutputVoltage(TurretConstPract.MaxOutputVoltage);
+    	}
+    	
 
 		/////////////////////////////////////////////////////////////////
 		// LOG IT!
