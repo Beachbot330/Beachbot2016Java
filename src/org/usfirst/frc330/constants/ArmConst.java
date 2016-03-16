@@ -21,8 +21,8 @@ public final class ArmConst {
 	public static final double integral         		= 0.000; // JR 2/23
 	public static final double derivative        		= 1.0;   // JR 2/23
 	public static final double feedForward	     		= 0.0;   // JR 2/23
-	public static final double VoltageRampRate   		= 24.0;  // JR 2/23
-	public static final double MaxOutputVoltage  		= 9.0;   // JR 2/23
+	public static final double VoltageRampRate   		= 48.0;  // AP 3-15
+	public static final double MaxOutputVoltage  		= 12.0;   // AP 3-15
 	
 	// Angles
 	public static final double limitLowerAngle   		=  2.0;  //AP 1-26
@@ -33,8 +33,8 @@ public final class ArmConst {
 	public static final double defaultNeutral	        = 55.0;  //AP 3-11    moved from 60 to 55 to protect stinger
 	public static final double highLimitNeutral         = 60.0;  // JR 3-15 
 	public static final double safeToDeployPortcullis   = 60.0;  // JR 2-27 
-	public static final double shootAngleRamp    		= 90.0;  //AP 2-6 (WAG) - moved 95 to 90 (JED) 3/7
-	public static final double shootAngleFloor   		= 90.0;  //AP 2-6 (WAG) moved 95 to 90 (JED) 3/7
+	public static final double shootAngleRamp    		= 88.0;  //AP 3-12
+	public static final double shootAngleFloor   		= 88.0;  //AP 3-12
 	public static final double safeToDeployLowerClimber = 95.0;  //AP 3/10
 	public static final double safeToDeployUpperClimber = 108.0; //AP 3/10 (could be reduced to 105
 	public static final double limitUpperAngle   		= 113.0; //AP 1-26

@@ -45,8 +45,8 @@ public class Climb extends BBCommand {
     static boolean initalized = false;
     // Called just before this Command runs the first time
     protected void initialize() {
-    	initalized = false;
-    	if (Robot.oi.getDriverR().getRawButton(3)) {
+    	if (Robot.oi.getDriverR().getRawButton(3) && !initalized) {
+    		Robot.logger.println("Climber init calling init", true);
     		init();
     	}
     	
@@ -59,6 +59,7 @@ public class Climb extends BBCommand {
 		leftStartDistance = Robot.chassis.getLeftDistance();
 		rightStartDistance = Robot.chassis.getRightDistance();
 		initalized = true;
+		Robot.logger.println("One time climber init", true);
     }
 
     double leftDriven = 0;
@@ -71,6 +72,7 @@ public class Climb extends BBCommand {
     	
     	leftDriven = Robot.chassis.getLeftDistance() - leftStartDistance;
     	rightDriven = Robot.chassis.getRightDistance() - rightStartDistance;
+    	Robot.logger.println("Left Climber Distance: " + leftDriven + "  Right Climber Distance: " + rightDriven);
     	if (initalized && Robot.oi.getDriverR().getRawButton(3) && (leftDriven > -ChassisConst.climberMaxDistance || rightDriven > -ChassisConst.climberMaxDistance) )
     		Robot.chassis.tankDrive(-ChassisConst.climberSpeed, -ChassisConst.climberSpeed);
     	else 
