@@ -87,6 +87,7 @@ public class Robot extends IterativeRobot {
 //        autoProgram.addObject("Test Command", new TestCommand());
         autoProgram.addObject("Spybox Shooter", new SpyboxShoot());
         autoProgram.addObject("Low Bar Shoot", new LowBarShoot());
+        autoProgram.addObject("Low Bar Shoot Optimized", new LowBarOptimized());
         
         autoStartPosition = new SendableChooser();
         autoStartPosition.addObject("Pos 1 - Low Bar", new PositionOne());

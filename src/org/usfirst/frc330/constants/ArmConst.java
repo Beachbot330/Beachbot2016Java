@@ -28,6 +28,7 @@ public final class ArmConst {
 	public static final double limitLowerAngle   		=  2.0;  //AP 1-26
 	public static final double pickupAngle		 		=  3.5;  //JR 2-28 
 	public static final double lowBar            		=  3.0;  //AP 3-11
+	public static final double defenseStance			= 25.0;  //AP 3-19
 	public static final double lowLimitNeutral			= 30.0;  //JR 3-15
 	public static final double armSafeLimit	     		= 50.0;  //AP 1-26
 	public static final double defaultNeutral	        = 55.0;  //AP 3-11    moved from 60 to 55 to protect stinger

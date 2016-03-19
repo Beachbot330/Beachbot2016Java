@@ -14,6 +14,7 @@ package org.usfirst.frc330.commands.commandgroups;
 import edu.wpi.first.wpilibj.command.BBCommandGroup;
 
 import org.usfirst.frc330.commands.*;
+import org.usfirst.frc330.constants.ArmConst;
 import org.usfirst.frc330.subsystems.*;
 
 /**
@@ -48,7 +49,7 @@ public class LowShot extends BBCommandGroup {
  
     	addSequential(new LidClose());
     	addSequential(new SetTurretPosition(0.0, 5.0, 0.5)); //double angle, double tolerance, double timeout
-    	addSequential(new SetArmPosition(15.0, 3.0, 10.0)); //double angle, double tolerance, double timeout
+    	addSequential(new SetArmPosition(ArmConst.defenseStance, 3.0, 10.0)); //double angle, double tolerance, double timeout
     	
     } 
 }
