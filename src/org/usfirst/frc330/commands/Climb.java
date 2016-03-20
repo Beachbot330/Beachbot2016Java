@@ -14,6 +14,7 @@ package org.usfirst.frc330.commands;
 import edu.wpi.first.wpilibj.command.BBCommand;
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.commands.commandgroups.Shoot;
+import org.usfirst.frc330.commands.commandgroups.ShootUpperStage;
 import org.usfirst.frc330.constants.ChassisConst;
 
 /**
@@ -79,7 +80,7 @@ public class Climb extends BBCommand {
     		Robot.chassis.tankDrive(0, 0);
     	
     	if (initalized && !shot && Robot.oi.getDriverR().getRawButton(3) && (leftDriven > -ChassisConst.climberShootDistance || rightDriven > -ChassisConst.climberShootDistance) ) {
-    		(new Shoot()).start();
+    		(new ShootUpperStage()).start();
     		shot = true;
     	}
 
