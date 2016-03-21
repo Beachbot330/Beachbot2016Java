@@ -58,10 +58,8 @@ public class RobotMap {
     public static Solenoid armPortcullisWedge;
     public static SpeedController pickupPickupR;
     public static SpeedController pickupPickupL;
-    public static Solenoid pickupShooterFirstStage1;
-    public static Solenoid pickupShooterFirstStage2;
-    public static Solenoid pickupShooterSecondStage1;
-    public static Solenoid pickupShooterSecondStage2;
+    public static Solenoid pickupShooterFirstStage;
+    public static Solenoid pickupShooterSecondStage;
     public static DoubleSolenoid pickuppickupLid;
     public static DigitalOutput pickupCameraLED;
     public static CANTalon turretturret;
@@ -91,7 +89,7 @@ public class RobotMap {
         chassisSpeedControllerL3 = new VictorSP(4);
         LiveWindow.addActuator("Chassis", "Speed Controller L3", (VictorSP) chassisSpeedControllerL3);
         
-        chassisShifter = new DoubleSolenoid(1, 0, 1);
+        chassisShifter = new DoubleSolenoid(1, 3, 1);
         LiveWindow.addActuator("Chassis", "Shifter", chassisShifter);
         
         chassisSpeedControllerR1 = new VictorSP(5);
@@ -132,17 +130,11 @@ public class RobotMap {
         pickupPickupL = new Victor(0);
         LiveWindow.addActuator("Pickup", "PickupL", (Victor) pickupPickupL);
         
-        pickupShooterFirstStage1 = new Solenoid(1, 2);
-        LiveWindow.addActuator("Pickup", "ShooterFirstStage1", pickupShooterFirstStage1);
+        pickupShooterFirstStage = new Solenoid(1, 2);
+        LiveWindow.addActuator("Pickup", "ShooterFirstStage", pickupShooterFirstStage);
         
-        pickupShooterFirstStage2 = new Solenoid(1, 3);
-        LiveWindow.addActuator("Pickup", "ShooterFirstStage2", pickupShooterFirstStage2);
-        
-        pickupShooterSecondStage1 = new Solenoid(1, 4);
-        LiveWindow.addActuator("Pickup", "ShooterSecondStage1", pickupShooterSecondStage1);
-        
-        pickupShooterSecondStage2 = new Solenoid(1, 5);
-        LiveWindow.addActuator("Pickup", "ShooterSecondStage2", pickupShooterSecondStage2);
+        pickupShooterSecondStage = new Solenoid(1, 5);
+        LiveWindow.addActuator("Pickup", "ShooterSecondStage", pickupShooterSecondStage);
         
         pickuppickupLid = new DoubleSolenoid(1, 6, 7);
         LiveWindow.addActuator("Pickup", "pickupLid", pickuppickupLid);

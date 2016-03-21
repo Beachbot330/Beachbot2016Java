@@ -1,4 +1,4 @@
-Version 2.0.1BB
+Version 2.0.2BB
 
 ---
 Children:
@@ -131,7 +131,7 @@ Children:
           default: '0'
           name: Forward Channel (Solenoid)
           validators: &id024 [Solenoid]
-          value: '0'
+          value: '3'
       Base: Double Solenoid
       Name: Shifter
     - Children: []
@@ -389,39 +389,7 @@ Children:
           validators: *id016
           value: '1'
       Base: Solenoid
-      Name: ShooterFirstStage1
-    - Children: []
-      Properties:
-        Output Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id013
-          default: '0'
-          name: Output Channel (Solenoid)
-          validators: *id014
-          value: '3'
-        Output PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id015
-          default: '0'
-          name: Output PCM (Solenoid)
-          validators: *id016
-          value: '1'
-      Base: Solenoid
-      Name: ShooterFirstStage2
-    - Children: []
-      Properties:
-        Output Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id013
-          default: '0'
-          name: Output Channel (Solenoid)
-          validators: *id014
-          value: '4'
-        Output PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id015
-          default: '0'
-          name: Output PCM (Solenoid)
-          validators: *id016
-          value: '1'
-      Base: Solenoid
-      Name: ShooterSecondStage1
+      Name: ShooterFirstStage
     - Children: []
       Properties:
         Output Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
@@ -437,7 +405,7 @@ Children:
           validators: *id016
           value: '1'
       Base: Solenoid
-      Name: ShooterSecondStage2
+      Name: ShooterSecondStage
     - Children: []
       Properties:
         Forward PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
@@ -1847,7 +1815,7 @@ Children:
   Base: Commands
   Name: Commands
 Properties:
-  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\allenpeters\workspace',
+  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Joe-XPS13-W7\workspace',
     extension: null, folder: true, name: Eclipse Workspace, validators: null, value: ../}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
@@ -1866,7 +1834,7 @@ Properties:
     name: Export Subsystems, validators: null, value: true}
   Simulation World File: !!robotbuilder.data.properties.StringProperty {default: /usr/share/frcsim/worlds/GearsBotDemo.world,
     name: Simulation World File, validators: null, value: /usr/share/frcsim/worlds/GearsBotDemo.world}
-  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\allenpeters\',
+  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Joe-XPS13-W7\',
     extension: null, folder: true, name: Wiring file location, validators: null, value: .\}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
     name: Autonomous Command, type: Command, validators: null, value: Autonomous Command}
