@@ -83,7 +83,7 @@ public class Robot extends IterativeRobot {
         autoProgram.addObject("Do Nothing", new DoNothing());
         autoProgram.addObject("Drive to Defense", new DriveToDefense());
         autoProgram.addObject("Breach Defense", new BreachDefense());
-//        autoProgram.addObject("Pure Awesome", new FullyLoadedAuto());
+        autoProgram.addObject("Pure Awesome", new FullyLoadedAuto());
 //        autoProgram.addObject("Test Command", new TestCommand());
         autoProgram.addObject("Spybox Shooter", new SpyboxShoot());
         autoProgram.addObject("Low Bar Shoot", new LowBarShoot());
@@ -92,7 +92,7 @@ public class Robot extends IterativeRobot {
         
         autoStartPosition = new SendableChooser();
         autoStartPosition.addObject("Pos 1 - Low Bar", new PositionOne());
-        autoStartPosition.addObject("Position 2", new PositionTwo());
+//        autoStartPosition.addObject("Position 2", new PositionTwo());
         autoStartPosition.addObject("Position 3", new PositionThree());
         autoStartPosition.addObject("Position 4", new PositionFour());
         autoStartPosition.addObject("Position 5", new PositionFive());
@@ -102,8 +102,8 @@ public class Robot extends IterativeRobot {
         autoObstacle.addObject("Low Bar", new LowBar());
         autoObstacle.addObject("Moat", new Moat());
 //        autoObstacle.addObject("Portcullis", new Portcullis());
-//        autoObstacle.addObject("Ramparts", new Ramparts());
-        autoObstacle.addObject("Rock Wall", new RockWall());
+        autoObstacle.addObject("Ramparts", new Ramparts());
+//        autoObstacle.addObject("Rock Wall", new RockWall());
         autoObstacle.addObject("Rough Terrain", new RoughTerrain());
 //        autoObstacle.addObject("Sally Port", new SallyPort());
 //        autoObstacle.addObject("Teeter Totter", new TeeterTotter());

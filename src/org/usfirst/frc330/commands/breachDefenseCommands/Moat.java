@@ -4,6 +4,7 @@ import org.usfirst.frc330.commands.PickupOff;
 import org.usfirst.frc330.commands.PickupOn;
 import org.usfirst.frc330.commands.SetArmPosition;
 import org.usfirst.frc330.commands.SetTurretPosition;
+import org.usfirst.frc330.commands.SetXYOffset;
 import org.usfirst.frc330.commands.ShiftLow;
 import org.usfirst.frc330.commands.drivecommands.DriveDistance;
 import org.usfirst.frc330.constants.ArmConst;
@@ -25,5 +26,6 @@ public class Moat extends BBCommandGroup {
     	addParallel(new PickupOn());
     	addSequential(new SetArmPosition(ArmConst.shootAngleFloor, 5, 1));
     	addSequential(new PickupOff());
+    	addSequential(new SetXYOffset(0,-24));
     }
 }

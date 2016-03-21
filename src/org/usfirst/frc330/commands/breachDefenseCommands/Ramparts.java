@@ -1,5 +1,17 @@
 
 package org.usfirst.frc330.commands.breachDefenseCommands;
+import org.usfirst.frc330.commands.PickupOff;
+import org.usfirst.frc330.commands.PickupOn;
+import org.usfirst.frc330.commands.SetArmPosition;
+import org.usfirst.frc330.commands.SetTurretPosition;
+import org.usfirst.frc330.commands.SetXYOffset;
+import org.usfirst.frc330.commands.ShiftLow;
+import org.usfirst.frc330.commands.drivecommands.DriveDistance;
+import org.usfirst.frc330.commands.drivecommands.DriveDistanceAtAbsAngle;
+import org.usfirst.frc330.constants.ArmConst;
+import org.usfirst.frc330.constants.ChassisConst;
+import org.usfirst.frc330.constants.TurretConst;
+
 import edu.wpi.first.wpilibj.command.BBCommandGroup;
 
 /**
@@ -8,21 +20,13 @@ import edu.wpi.first.wpilibj.command.BBCommandGroup;
 public class Ramparts extends BBCommandGroup {
     
     public  Ramparts() {
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
+    	addSequential(new ShiftLow());
+    	addSequential(new SetTurretPosition(TurretConst.center, 3.0, 1.0));			    //angle, tol, timeout
+    	addSequential(new SetArmPosition(ArmConst.defaultNeutral, 3.0, 1.0));   				//angle, tol, timeout
+    	addSequential(new DriveDistanceAtAbsAngle(164.0, 5.0, 0.0, 3.0, false, ChassisConst.DriveLow, ChassisConst.GyroDriveLow) ); // distance, tol, timeout, stop
+    	addParallel(new PickupOn());
+    	addSequential(new SetArmPosition(ArmConst.shootAngleFloor, 5, 1));
+    	addSequential(new PickupOff());
+    	addSequential(new SetXYOffset(0,-12));
     }
 }

@@ -1,28 +1,30 @@
 
 package org.usfirst.frc330.commands.driveAndShoot;
+import org.usfirst.frc330.commands.Aim;
+import org.usfirst.frc330.commands.Wait;
+import org.usfirst.frc330.commands.commandgroups.Shoot;
+import org.usfirst.frc330.commands.drivecommands.DriveTime;
+import org.usfirst.frc330.commands.drivecommands.DriveWaypoint;
+import org.usfirst.frc330.commands.drivecommands.TurnGyroWaypoint;
+import org.usfirst.frc330.constants.ChassisConst;
+
 import edu.wpi.first.wpilibj.command.BBCommandGroup;
 
 /**
  *
  */
 public class PositionTwo extends BBCommandGroup {
-    
+    //WARNING. This might crash. Not much distance to straighten up
     public  PositionTwo() {
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
+        addSequential(new TurnGyroWaypoint(92, 92+152, 5, 3, ChassisConst.GyroTurnLow));
+        //double x, double y, double tolerance, double timeout, PIDGains gains
+        addSequential(new DriveWaypoint(92, 92+152, 5, 5, true, ChassisConst.DriveLow, ChassisConst.GyroDriveLow));
+        //double x, double y, double tolerance, double timeout, boolean stopAtEnd, PIDGains driveGains, PIDGains gyroGains
+        addSequential(new TurnGyroWaypoint(92, 252, 5, 3, ChassisConst.GyroTurnLow));
+        addSequential(new DriveWaypoint(92, 252, 5, 5, true, ChassisConst.DriveLow, ChassisConst.GyroDriveLow));
+        addParallel(new DriveTime(5.0,0.1,0.1));
+        addSequential(new Aim(3.5, 15.0));
+        addSequential(new Shoot());
+        addSequential(new Wait(0.2));
     }
 }

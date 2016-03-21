@@ -275,6 +275,11 @@ public class Chassis extends Subsystem
         this.y = y;
     } /* End setXY */
     
+    public void setXYoffset(double xOffset, double yOffset) {
+    	this.x += xOffset;
+    	this.y += yOffset;
+    }
+    
     // Function Name: getAngle()
     // Purpose: Return angle relative to 0 instead of -/+ 180 degrees
     public double getAngle()
