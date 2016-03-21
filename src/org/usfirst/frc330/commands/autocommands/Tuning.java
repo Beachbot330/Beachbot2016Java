@@ -20,8 +20,8 @@ public class Tuning extends BBCommandGroup {
     public  Tuning() {
     	addSequential(new ShiftHigh());
         
-    	PIDGains tuneGyroHigh  = new PIDGains(0.025,0,0.002,0,1,1, "TuneGyroHigh");
-        addSequential(new TurnGyroRel(45, 1, 5, true, tuneGyroHigh));
+    	PIDGains tuneGyroHigh  = new PIDGains(0.03,0,0.05,0,1,1, "TuneGyroHigh");
+        addSequential(new TurnGyroRel(45, 1, 5, false, tuneGyroHigh));
         //double angle, double tolerance, double timeout, boolean stopAtEnd, PIDGains gains
     }
 }

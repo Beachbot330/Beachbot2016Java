@@ -31,12 +31,13 @@ public final class ChassisConst {
     
     //Turn Gyro 
     public static final double rotateProportional 		  = 0.11;
+    public static final int    gyroTolerancebuffer        = 5;  //JR 3/20
     
-    public static final PIDGains DriveLow	   = new PIDGains(0.1,0,0,0,defaultMaxOutput,defaultMaxOutputStep, "DriveLow");
-    public static final PIDGains DriveHigh     = new PIDGains(0.05,0,0.010,0,defaultMaxOutput,defaultMaxOutputStep, "DriveHigh"); //AP 3-18
-    public static final PIDGains GyroTurnLow   = new PIDGains(0.02,0,0,0,0.5,1,"GyroTurnLow");
-    public static final PIDGains GyroTurnHigh  = new PIDGains(0.01,0,0.002,0,1,1, "GyroTurnHigh"); //AP 3-18
-    public static final PIDGains GyroDriveLow  = new PIDGains(0.01,0,0,0,1,1, "GyroDriveLow");
+    public static final PIDGains DriveLow	   = new PIDGains(0.100,0,0.000,0,defaultMaxOutput,defaultMaxOutputStep, "DriveLow");
+    public static final PIDGains DriveHigh     = new PIDGains(0.050,0,0.050,0,defaultMaxOutput,defaultMaxOutputStep, "DriveHigh"); //AP 3-18
+    public static final PIDGains GyroTurnLow   = new PIDGains(0.020,0,0.000,0,0.5,1,"GyroTurnLow");
+    public static final PIDGains GyroTurnHigh  = new PIDGains(0.030,0,0.050,0,1,1, "GyroTurnHigh"); //AP 3-18
+    public static final PIDGains GyroDriveLow  = new PIDGains(0.010,0,0.000,0,1,1, "GyroDriveLow");
     public static final PIDGains GyroDriveHigh = new PIDGains(0.005,0,0.001,0,1,1, "GyroDriveHigh"); //AP 3-18
     
     // Used for Frills for PDP

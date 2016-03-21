@@ -88,7 +88,7 @@ public class Robot extends IterativeRobot {
         autoProgram.addObject("Spybox Shooter", new SpyboxShoot());
         autoProgram.addObject("Low Bar Shoot", new LowBarShoot());
         autoProgram.addObject("Low Bar Shoot Optimized", new LowBarOptimized());
-        autoProgram.addObject("DO_NOT_SELECT - Tuning", new Tuning());
+//        autoProgram.addObject("DO_NOT_SELECT - Tuning", new Tuning());
         
         autoStartPosition = new SendableChooser();
         autoStartPosition.addObject("Pos 1 - Low Bar", new PositionOne());
@@ -103,7 +103,7 @@ public class Robot extends IterativeRobot {
         autoObstacle.addObject("Moat", new Moat());
 //        autoObstacle.addObject("Portcullis", new Portcullis());
 //        autoObstacle.addObject("Ramparts", new Ramparts());
-//        autoObstacle.addObject("Rock Wall", new RockWall());
+        autoObstacle.addObject("Rock Wall", new RockWall());
         autoObstacle.addObject("Rough Terrain", new RoughTerrain());
 //        autoObstacle.addObject("Sally Port", new SallyPort());
 //        autoObstacle.addObject("Teeter Totter", new TeeterTotter());
