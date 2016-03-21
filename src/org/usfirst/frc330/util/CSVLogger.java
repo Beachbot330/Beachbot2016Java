@@ -53,7 +53,7 @@ public class CSVLogger {
 	}
 	
 	public CSVLogger() {
-		this("/home/lvuser", "/media/sda1", "BB2015_CSV");
+		this("/home/lvuser", "/media/sda1", "BB2016_CSV");
 	}
 	
 	public void add(String name, CSVLoggable data) {

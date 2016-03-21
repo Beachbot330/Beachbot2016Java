@@ -79,7 +79,7 @@ public class Logger {
 	 * Default constructor using /home/lvuser for roboRIOPath, /media/sda1 for usbPath, and BB2015_Log for file prefix.
 	 */
 	public Logger() {
-		this("/home/lvuser", "/media/sda1", "BB2015_Log");
+		this("/home/lvuser", "/media/sda1", "BB2016_Log");
 	}
 	
 	/**
