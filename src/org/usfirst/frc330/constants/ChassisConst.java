@@ -14,7 +14,7 @@ public final class ChassisConst {
 	
 	// Climber constants
 	public static final double climberMaxDistance		  = 130.0;
-	public static final double climberShootDistance       = 80.0;
+	public static final double climberShootDistance       = 110.0;
 	public static final double climberSpeed				  = 0.75;
 	
 	// Pick Up Speed
