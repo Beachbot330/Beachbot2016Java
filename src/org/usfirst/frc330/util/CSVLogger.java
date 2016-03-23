@@ -57,6 +57,8 @@ public class CSVLogger {
 	}
 	
 	public void add(String name, CSVLoggable data) {
+		if (table.containsKey(name))
+			throw new UnsupportedOperationException("CSVLogger key " + name + " already exists");
 		table.put(name, data);
 	}
 
