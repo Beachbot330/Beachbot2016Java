@@ -198,6 +198,21 @@ public class Chassis extends Subsystem
     	};  
     	Robot.csvLogger.add("ChassisPitch", temp);
     	
+    	temp = new CSVLoggable(true) {
+			public double get() { return imu.getRoll(); }  		
+    	};  
+    	Robot.csvLogger.add("ChassisRoll", temp);
+    	
+/*    	temp = new CSVLoggable(true) {
+			public double get() { return imu.getDisplacementX(); }  		
+    	};  
+    	Robot.csvLogger.add("ChassisIMUX", temp);
+    	
+    	temp = new CSVLoggable(true) {
+			public double get() { return imu.getDisplacementY(); }  		
+    	};  
+    	Robot.csvLogger.add("ChassisIMUY", temp); */
+    	
 //    	temp = new CSVLoggable(true) {
 //    		public double get() { return Robot.powerDP.getChassisLeftDrive1Current(); }
 //    	};
@@ -267,6 +282,7 @@ public class Chassis extends Subsystem
         setXY(0,0);
         this.prevLeftEncoderDistance = 0;
         this.prevRightEncoderDistance = 0;
+        imu.resetDisplacement();
     } /* End resetPosition */
     
     public void setXY(double x, double y)
