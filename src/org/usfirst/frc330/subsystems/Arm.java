@@ -369,7 +369,10 @@ public class Arm extends Subsystem implements LiveWindowSendable {
     		setUpperSoftLimit(ArmConst.limitUpperAngle);
     	}
     		
-    	if (Robot.turret.isCentered()) {
+    	if (Robot.climber.isLowerClimberDeployed()) {
+    		setLowerSoftLimit(ArmConst.shootAngleRamp);
+    	}
+    	else if (Robot.turret.isCentered()) {
         	setLowerSoftLimit(ArmConst.limitLowerAngle);
     	} else {
     		setLowerSoftLimit(ArmConst.armSafeLimit);

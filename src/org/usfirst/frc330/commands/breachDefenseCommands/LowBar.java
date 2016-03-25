@@ -20,7 +20,8 @@ public class LowBar extends BBCommandGroup {
     	addSequential(new SetTurretPosition(TurretConst.center, 3.0, 20.0));  //angle, tol, timeout
     	addParallel(new PickupOn());
     	addSequential(new SetArmPosition(ArmConst.lowBar, 3.0, 20.0));  //angle, tol, timeout
-    	addSequential(new DriveDistanceAtAbsAngle(164.0, 5.0, 0, 3.0, false, ChassisConst.DriveLow, ChassisConst.GyroDriveLow) ); // distance, tol, timeout, stop
+    	addSequential(new DriveDistanceAtAbsAngle(167.0, 5.0, 0, 3.0, false, ChassisConst.DriveLow, ChassisConst.GyroDriveLow) ); 
+    	// distance, tol, timeout, stop  -- Was 164 inches before angle change
     	addSequential(new SetArmPosition(ArmConst.shootAngleFloor, 5, 1));
     	addSequential(new PickupOff());
     }
