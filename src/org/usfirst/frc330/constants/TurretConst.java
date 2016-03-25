@@ -14,13 +14,14 @@ public final class TurretConst {
 	public static final double timeout              = 2.0;  //JR 3-6
 	
 	// PID Constants
-	public static final double aimProportional         = 1.2;     // AP 3/10
+	public static final double aimProportional         = 1.2;     // AP 3/24
 	public static final double aimIntegral             = 0.0000;  // AP 3/10
-	public static final double aimDerivative           = 0.0;     // AP 3/10
+	public static final double aimDerivative           = 3000.0;     // AP 3/24
 	public static final double aimFeedForward	        = 0.0;     // AP 3/10
 	public static final double aimVoltageRampRate      = 100.0;    // AP 2/28 - Was 12 JR 2/23	, first idea by MD- V/s
-	public static final double aimMaxOutputVoltage		= 0.8;     // AP 2/28 - Was 6 JR 2/23
+	public static final double aimMaxOutputVoltage		= 3.0;     // AP 3/24
 	//Practice Robot b4 comp: P=1.2 I=0.0011 D=1.0
+	//Acceptable answer: 1.4, 0, 150, 1.5
 	
 	// PID Constants
 	public static final double proportional         = 1.2;     // AP 3/10

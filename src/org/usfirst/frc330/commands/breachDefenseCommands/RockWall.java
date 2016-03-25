@@ -26,6 +26,6 @@ public class RockWall extends BBCommandGroup {
     	addParallel(new PickupOn());
     	addSequential(new SetArmPosition(ArmConst.shootAngleFloor, 5, 1));
     	addSequential(new PickupOff());
-    	addSequential(new SetXYOffset(0,-12));
+    	addSequential(new SetXYOffset(0,-36));
     }
 }
