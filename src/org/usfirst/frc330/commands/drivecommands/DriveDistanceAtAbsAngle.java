@@ -30,7 +30,7 @@ public class  DriveDistanceAtAbsAngle extends BBCommandGroup{
     
     public DriveDistanceAtAbsAngle(double distance, double distanceTolerance, double angle, double timeout, boolean stopAtEnd, PIDGains driveGains, PIDGains gyroGains)
     {
-        addSequential(new TurnGyroAbs(angle,5,gyroGains));
+        addSequential(new TurnGyroAbs(angle,5,timeout,gyroGains));
         addSequential(new DriveDistanceAtAbsAngle_NoTurn(distance, distanceTolerance, angle, timeout, stopAtEnd, driveGains, gyroGains));
         this.angle = angle;
     }

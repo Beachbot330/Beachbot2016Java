@@ -193,6 +193,13 @@ public class Robot extends IterativeRobot {
         	logger.println("Start Position: " + ((Command) autoStartPosition.getSelected()).getName());
         	logger.println("Obstacle: " + ((Command) autoObstacle.getSelected()).getName());
         }
+        
+        if(Math.abs(Robot.chassis.getAngle()) > 0.2){
+        	Robot.chassis.resetPosition();
+        	logger.println("********************************************");
+        	logger.println("ERROR: gyro failed to reset, retrying");
+        	logger.println("********************************************");
+        }
     }
 
     /**
