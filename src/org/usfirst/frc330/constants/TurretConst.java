@@ -45,9 +45,14 @@ public final class TurretConst {
 	public static final double aimRight				=   60.0;   // JR 3-1
 	public static final double limitAngleCW    		=  90.0; 	// JR 2-23
 	
+	
 	// Encoder Stuff
 	public static final int    maxAngleDegrees   = 360;    //JR 2-19
 	public static final int    maxEncoderCounts  = 4096;  //JR 2-19  
+	
+	// Other Stuff
+	public static final double searchWidth = 25.0; // ZC 3-29
+	
 	
 	//Current
 	//public static final double currentLowerLimit = -50;

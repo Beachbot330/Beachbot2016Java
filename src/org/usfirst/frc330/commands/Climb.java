@@ -17,6 +17,7 @@ import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.commands.commandgroups.Shoot;
 import org.usfirst.frc330.commands.commandgroups.ShootUpperStage;
 import org.usfirst.frc330.constants.ChassisConst;
+import org.usfirst.frc330.constants.ClimberConst;
 
 /**
  *
@@ -75,12 +76,12 @@ public class Climb extends BBCommand {
     	leftDriven = Robot.chassis.getLeftDistance() - leftStartDistance;
     	rightDriven = Robot.chassis.getRightDistance() - rightStartDistance;
     	Robot.logger.println("Left Climber Distance: " + leftDriven + "  Right Climber Distance: " + rightDriven);
-    	if (initalized && Robot.oi.getDriverR().getRawButton(3) && (leftDriven > -ChassisConst.climberMaxDistance || rightDriven > -ChassisConst.climberMaxDistance) )
-    		Robot.chassis.tankDrive(-ChassisConst.climberSpeed, -ChassisConst.climberSpeed);
+    	if (initalized && Robot.oi.getDriverR().getRawButton(3) && (leftDriven > -ClimberConst.climberMaxDistance || rightDriven > -ClimberConst.climberMaxDistance) )
+    		Robot.chassis.tankDrive(-ClimberConst.climberSpeed, -ClimberConst.climberSpeed);
     	else 
     		Robot.chassis.tankDrive(0, 0);
     	
-    	if (initalized && !shot && Robot.oi.getDriverR().getRawButton(3) && (leftDriven < -ChassisConst.climberShootDistance || rightDriven < -ChassisConst.climberShootDistance) ) {
+    	if (initalized && !shot && Robot.oi.getDriverR().getRawButton(3) && (leftDriven < -ClimberConst.climberShootDistance || rightDriven < -ClimberConst.climberShootDistance) ) {
     		(new ShootUpperStage()).start();
     		shot = true;
     	}
