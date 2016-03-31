@@ -23,7 +23,7 @@ public class Ramparts extends BBCommandGroup {
     	addSequential(new ShiftLow());
     	addSequential(new SetTurretPosition(TurretConst.center, 3.0, 1.0));			    //angle, tol, timeout
     	addSequential(new SetArmPosition(ArmConst.defaultNeutral, 3.0, 1.0));   				//angle, tol, timeout
-    	addSequential(new DriveDistanceAtAbsAngle(164.0, 12.0, 0.0, 3.0, true, ChassisConst.DriveLow, ChassisConst.GyroDriveLow) ); // distance, tol, timeout, stop
+    	addSequential(new DriveDistanceAtAbsAngle(164.0, 12.0, 0.0, 3.0, true, ChassisConst.DriveLow, ChassisConst.GyroDriveLow, ChassisConst.GyroTurnLow) ); // distance, tol, timeout, stop
     	addParallel(new PickupOn());
     	addSequential(new SetArmPosition(ArmConst.shootAngleFloor, 5, 1));
     	addSequential(new PickupOff());

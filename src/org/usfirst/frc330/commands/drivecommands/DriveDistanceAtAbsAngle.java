@@ -17,22 +17,17 @@ import edu.wpi.first.wpilibj.command.BBCommandGroup;
  *
  */
 public class  DriveDistanceAtAbsAngle extends BBCommandGroup{
-    double angle;
-    double maxoutput = 0;
-    double stepSize;
-    double origDistance = 0;
     
-    public DriveDistanceAtAbsAngle(double distance, double angle, PIDGains driveGains, PIDGains gyroGains)
+    public DriveDistanceAtAbsAngle(double distance, double angle, PIDGains driveGains, PIDGains gyroDriveGains, PIDGains gyroTurnGains)
     {
-    	addSequential(new TurnGyroAbs(angle, 5,gyroGains));
-        addSequential(new DriveDistanceAtAbsAngle_NoTurn(distance, 6, angle, 5, true, driveGains, gyroGains));
+    	addSequential(new TurnGyroAbs(angle, 5,gyroTurnGains));
+        addSequential(new DriveDistanceAtAbsAngle_NoTurn(distance, 6, angle, 5, true, driveGains, gyroDriveGains));
     }
     
-    public DriveDistanceAtAbsAngle(double distance, double distanceTolerance, double angle, double timeout, boolean stopAtEnd, PIDGains driveGains, PIDGains gyroGains)
+    public DriveDistanceAtAbsAngle(double distance, double distanceTolerance, double angle, double timeout, boolean stopAtEnd, PIDGains driveGains, PIDGains gyroDriveGains, PIDGains gyroTurnGains)
     {
-        addSequential(new TurnGyroAbs(angle,5,timeout,gyroGains));
-        addSequential(new DriveDistanceAtAbsAngle_NoTurn(distance, distanceTolerance, angle, timeout, stopAtEnd, driveGains, gyroGains));
-        this.angle = angle;
+        addSequential(new TurnGyroAbs(angle,5,1.0,gyroTurnGains));
+        addSequential(new DriveDistanceAtAbsAngle_NoTurn(distance, distanceTolerance, angle, timeout, stopAtEnd, driveGains, gyroDriveGains));
     }
     
 }

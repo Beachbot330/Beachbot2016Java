@@ -23,7 +23,7 @@ public class LowBarOptimized extends BBCommandGroup {
     	addParallel(new PickupOn());
     	//addSequential(new SetArmPosition(ArmConst.lowBar, 3.0, 20.0));  //angle, tol, timeout
     	addSequential(new SetArmPosition(5.0, 3.0, 20.0));  //Practice Field Only!
-    	addSequential(new DriveDistanceAtAbsAngle(164.0, 5.0, 0, 3.0, false, ChassisConst.DriveHigh, ChassisConst.GyroDriveHigh) ); // distance, tol, timeout, stop
+    	addSequential(new DriveDistanceAtAbsAngle(164.0, 5.0, 0, 3.0, false, ChassisConst.DriveHigh, ChassisConst.GyroDriveHigh, ChassisConst.GyroTurnHigh) ); // distance, tol, timeout, stop
     	addSequential(new SetArmPosition(ArmConst.shootAngleRamp, 5, 1));
     	addSequential(new PickupOff());
     	
