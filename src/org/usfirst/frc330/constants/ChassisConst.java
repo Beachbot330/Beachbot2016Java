@@ -12,11 +12,6 @@ public final class ChassisConst {
 	public static final double defaultMaxOutput     	  = 0.8;
 	public static final double defaultMaxOutputStep 	  = 0.05;
 	
-	// Climber constants
-	//TODO: Move these to climber const
-	public static final double climberMaxDistance		  = 135.0;  //AP 3/26 -- Was 130
-	public static final double climberShootDistance       = 110.0;
-	public static final double climberSpeed				  = 0.75;
 	
 	// Pick Up Speed
 	public static final double pickupSpeed 				  = 1.0;
