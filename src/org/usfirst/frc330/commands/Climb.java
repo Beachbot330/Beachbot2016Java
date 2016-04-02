@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.command.BBCommand;
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.commands.commandgroups.Shoot;
 import org.usfirst.frc330.commands.commandgroups.ShootUpperStage;
-import org.usfirst.frc330.constants.ChassisConst;
+import org.usfirst.frc330.constants.ClimberConst;
 import org.usfirst.frc330.constants.ClimberConst;
 
 /**
@@ -46,6 +46,7 @@ public class Climb extends BBCommand {
     double leftStartDistance = 0;
     double rightStartDistance = 0;
     static boolean initalized = false;
+    static boolean climbed = false;
     // Called just before this Command runs the first time
     protected void initialize() {
     	if (Robot.oi.getDriverR().getRawButton(3) && !initalized) {
@@ -62,6 +63,7 @@ public class Climb extends BBCommand {
 		leftStartDistance = Robot.chassis.getLeftDistance();
 		rightStartDistance = Robot.chassis.getRightDistance();
 		initalized = true;
+		climbed = false;
 		Robot.logger.println("One time climber init", true);
     }
 
@@ -79,7 +81,15 @@ public class Climb extends BBCommand {
     	if (initalized && Robot.oi.getDriverR().getRawButton(3) && (leftDriven > -ClimberConst.climberMaxDistance || rightDriven > -ClimberConst.climberMaxDistance) )
     		Robot.chassis.tankDrive(-ClimberConst.climberSpeed, -ClimberConst.climberSpeed);
     	else 
+    	
+    	if (initalized && climbed && Robot.oi.getDriverR().getRawButton(3) && (leftDriven < -ClimberConst.climberShootDistance - ClimberConst.climberHysteresis || rightDriven < -ClimberConst.climberShootDistance-ClimberConst.climberHysteresis))
     		Robot.chassis.tankDrive(0, 0);
+    	if (initalized && Robot.oi.getDriverR().getRawButton(3) && (leftDriven > -ClimberConst.climberMaxDistance || rightDriven > -ClimberConst.climberMaxDistance) )
+    		Robot.chassis.tankDrive(-ClimberConst.climberSpeed, -ClimberConst.climberSpeed);
+    	else {
+    		Robot.chassis.tankDrive(0, 0);
+    		climbed = true;
+    	}
     	
     	if (initalized && !shot && Robot.oi.getDriverR().getRawButton(3) && (leftDriven < -ClimberConst.climberShootDistance || rightDriven < -ClimberConst.climberShootDistance) ) {
     		(new ShootUpperStage()).start();

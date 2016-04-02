@@ -2,6 +2,7 @@
 package org.usfirst.frc330.commands.autocommands;
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.commands.Aim;
+import org.usfirst.frc330.commands.AutoWait;
 import org.usfirst.frc330.commands.LidOpen;
 import org.usfirst.frc330.commands.SetArmPosition;
 import org.usfirst.frc330.commands.SetTurretPosition;
@@ -52,6 +53,7 @@ public class SpyboxShoot extends BBCommandGroup {
     	addSequential(new ShiftLow());
     	addSequential(new SetTurretPosition(-38.0, 3.0, 5.0));		                    //angle, tol, timeout
     	addSequential(new SetArmPosition(ArmConst.shootAngleFloor, 3.0, 5.0)); 		    //angle, tol, timeout
+    	addSequential(new AutoWait());
     	addSequential(new LidOpen());
     	addSequential(new DriveDistance(94.0, 2.0, 10.0, true, ChassisConst.DriveLow) ); // distance, tol, timeout, stop
     	

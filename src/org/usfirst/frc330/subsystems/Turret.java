@@ -98,6 +98,8 @@ public class Turret extends Subsystem implements LiveWindowSendable {
         	turret.configMaxOutputVoltage(TurretConstPract.MaxOutputVoltage);
     	}
     	
+    	SmartDashboard.putNumber("AimTolerance", TurretConst.aimTolerance);
+    	
 
 		/////////////////////////////////////////////////////////////////
 		// LOG IT!

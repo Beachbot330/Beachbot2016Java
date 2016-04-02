@@ -79,8 +79,6 @@ public class Pickup extends Subsystem
     public void pickupForward()
     {
     	
-    	//TODO: Implement
-    	
     	// Close the lid
     	closeLid();
     	
@@ -93,7 +91,6 @@ public class Pickup extends Subsystem
     // reverses pick up
     public void pickupReverse()
     {
-    	//TODO: Implement
     	
     	// Closes the lid
     	closeLid();
