@@ -12,6 +12,7 @@
 package org.usfirst.frc330.commands.autocommands;
 
 
+import org.usfirst.frc330.commands.AutoWait;
 import org.usfirst.frc330.commands.ShiftLow;
 import org.usfirst.frc330.commands.drivecommands.*;
 import org.usfirst.frc330.constants.ChassisConst;
@@ -27,6 +28,7 @@ public class DriveToDefense extends BBCommandGroup {
     	
     	//Drive to the outer works to score points
     	addSequential(new ShiftLow());
+    	addSequential(new AutoWait());
     	addSequential(new DriveWaypoint(0.0, 45.0, 4.0, 3.0, true, ChassisConst.DriveLow,ChassisConst.GyroDriveLow));  //X Y Tol Timeout Stop
     }
 }

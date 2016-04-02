@@ -12,6 +12,7 @@
 package org.usfirst.frc330.commands.autocommands;
 
 
+import org.usfirst.frc330.commands.AutoWait;
 import org.usfirst.frc330.commands.breachDefenseCommands.BreachDefenseSelector;
 
 import edu.wpi.first.wpilibj.command.BBCommandGroup;
@@ -23,6 +24,7 @@ public class BreachDefense extends BBCommandGroup {
     
     public  BreachDefense() {
     	//Run the breach program for the selected defense
+    	addSequential(new AutoWait());
     	addSequential(new BreachDefenseSelector());
     }
 }

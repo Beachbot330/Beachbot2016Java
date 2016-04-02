@@ -1,6 +1,7 @@
 package org.usfirst.frc330.commands.autocommands;
 
 import org.usfirst.frc330.commands.Aim;
+import org.usfirst.frc330.commands.AutoWait;
 import org.usfirst.frc330.commands.SetTurretPosition;
 import org.usfirst.frc330.commands.Wait;
 import org.usfirst.frc330.commands.breachDefenseCommands.LowBar;
@@ -11,7 +12,6 @@ import org.usfirst.frc330.commands.drivecommands.TurnGyroAbs;
 import org.usfirst.frc330.constants.ChassisConst;
 
 import edu.wpi.first.wpilibj.command.BBCommandGroup;
-import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LowBarShoot extends BBCommandGroup {
     
     public  LowBarShoot() {
+    	addSequential(new AutoWait());
         addSequential(new LowBar());
         addSequential(new Wait(0.1));
         addSequential(new TurnGyroAbs(41, 5, 2, ChassisConst.GyroTurnLow));  // Was 40 deg.
