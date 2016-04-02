@@ -72,12 +72,6 @@ public class Aim extends BBCommand {
             Robot.turret.setVoltageRampRate(TurretConstPract.aimVoltageRampRate);
         	Robot.turret.configMaxOutputVoltage(TurretConstPract.aimMaxOutputVoltage);
         }
-        
-        if (SmartDashboard.getNumber("targetAngle", 0) == 0){
-        	Robot.logger.println("Target not found during first attempt at aiming");
-        	Robot.turret.setTurretAngle(Robot.turret.getTurretAngle() + TurretConst.searchWidth);
-        	Robot.logger.println("Beginning sweep to " + Robot.turret.getTurretSetpoint() + " degrees");
-        }
     }
 
 
@@ -95,17 +89,10 @@ public class Aim extends BBCommand {
     	else
     		toleranceCount = 0;
     	
-    	if (Robot.turret.onTurretTarget() && setpoint == 0) {
-    		Robot.logger.println("Turret at " + Robot.turret.getTurretAngle() + " degrees, but does not see target.");
-    		Robot.turret.setTurretAngle(Robot.turret.getTurretAngle() - 2 * TurretConst.searchWidth);
-    		Robot.logger.println("Beginning sweep to " + Robot.turret.getTurretSetpoint() + " degrees" );
-    	}
-    	
     	if (isTimedOut())
     	{
     		Robot.logger.println("Aim setpoint: " + this.setpoint + "   Position at timeout: " + Robot.turret.getTurretAngle());
     	}
-    	
     	return (toleranceCount >= 25 || isTimedOut());
     }
 

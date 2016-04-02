@@ -15,15 +15,16 @@ import edu.wpi.first.wpilibj.command.BBCommandGroup;
  */
 public class LowBarShoot_waypoint extends BBCommandGroup {
     
-	double batterX = 94;
-	double batterY = 275;
+	double initialDriveY = 194;
+	double batterX = 98;
+	double batterY = 271;
 	
     public  LowBarShoot_waypoint() {
     	addSequential(new ShiftLow());
     	addSequential(new SetTurretPosition(TurretConst.center, 3.0, 20.0));  //angle, tol, timeout
     	addParallel(new PickupOn());
     	addSequential(new SetArmPosition(ArmConst.lowBar, 3.0, 20.0));  //angle, tol, timeout
-    	addSequential(new DriveDistanceAtAbsAngle(167.0, 5.0, 0, 3.0, false, ChassisConst.DriveLow, ChassisConst.GyroDriveLow) ); 
+    	addSequential(new DriveDistanceAtAbsAngle(initialDriveY, 5.0, 0, 3.0, false, ChassisConst.DriveLow, ChassisConst.GyroDriveLow) ); 
     	addSequential(new SetArmPosition(ArmConst.shootAngleFloor, 5, 1));
     	addSequential(new PickupOff());
     	

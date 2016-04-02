@@ -14,7 +14,7 @@ public final class TurretConstPract {
 	public static final double timeout              = 2.0;  //JR 3-6
 	
 	// PID Constants
-	public static final double aimProportional         = 1.2;     // AP 3/10
+	public static final double aimProportional         = 2.0;     // AP 4/1
 	public static final double aimIntegral             = 0.0000;  // AP 3/10
 	public static final double aimDerivative           = 0.0;     // AP 3/10
 	public static final double aimFeedForward	        = 0.0;     // AP 3/10
