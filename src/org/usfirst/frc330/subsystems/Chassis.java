@@ -167,6 +167,11 @@ public class Chassis extends Subsystem
     	Robot.csvLogger.add("GyroIsConnected", temp);
     	
     	temp = new CSVLoggable(true) {
+			public double get() { return imu.isCalibrating() ? 1: 0; }  		
+    	};    	
+    	Robot.csvLogger.add("GyroIsCalibrating", temp);
+    	
+    	temp = new CSVLoggable(true) {
 			public double get() { return getX(); }  		
     	};     	
     	Robot.csvLogger.add("ChassisX", temp);
