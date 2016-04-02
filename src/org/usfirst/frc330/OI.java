@@ -16,6 +16,7 @@ import org.usfirst.frc330.commands.commandgroups.*;
 import org.usfirst.frc330.commands.commandgroups.PickupBall;
 import org.usfirst.frc330.commands.commandgroups.Shoot;
 import org.usfirst.frc330.commands.commandgroups.ShootUpperStage;
+import org.usfirst.frc330.constants.ArmConst;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
@@ -186,7 +187,7 @@ public class OI {
         pickupIntakeR.whileHeld(new PickupOn());
         
         defensePickupD = new POVButton(armGamepad,0,180);
-        defensePickupD.whileHeld(new PickupBall());
+        defensePickupD.whileHeld(new PickupBall(ArmConst.pickupAngleDef));
         defensePickupD.whenReleased(new LowShot());
     }
 

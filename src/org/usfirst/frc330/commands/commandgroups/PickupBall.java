@@ -21,12 +21,16 @@ import org.usfirst.frc330.constants.*;
  */
 public class PickupBall extends BBCommandGroup {
 
-    public PickupBall() {
+    public PickupBall(double pickupHeight) {
     	addSequential (new RetractPortcullisStinger());
     	addParallel(new SetTurretPosition(TurretConst.center, TurretConst.pickupTolerance));
-    	addParallel(new SetArmPosition(ArmConst.pickupAngle, ArmConst.pickupTolerance));
+    	addParallel(new SetArmPosition(pickupHeight, ArmConst.pickupTolerance));
     	addSequential(new LidClose());
     	addSequential(new PickupOn()); 	
+    }
+    
+    public PickupBall(){
+    	this(ArmConst.pickupAngle);
     }
 
 	@Override
