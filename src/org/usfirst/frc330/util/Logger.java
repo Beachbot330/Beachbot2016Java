@@ -29,6 +29,10 @@ public class Logger {
 	private Date date;
 	boolean usbWorking = true;
 	
+	public enum Severity{
+		INFO,ERROR,WARNING,COMMAND
+	}
+	
 	/**
 	 * Constructor
 	 * 
@@ -112,7 +116,15 @@ public class Logger {
 	 * @param printToSystemOut write to System.out if true
 	 */
 	public void println(String data, boolean printToSystemOut) {
-		data = sdf.format(System.currentTimeMillis()) + " "  + data + "\r\n";
+		println(data, printToSystemOut, Severity.INFO);
+	}
+	/**
+	 * Print a string to the log file and optionally System.out
+	 * @param data string to write
+	 * @param printToSystemOut write to System.out if true
+	 */
+	public void println(String data, boolean printToSystemOut, Severity severity) {
+		data = sdf.format(System.currentTimeMillis()) + ", " + severity + ", "  + data + "\r\n";
 		if (usbWorking) {
 	    	try {
 				usbWriter.write(data);
@@ -135,11 +147,11 @@ public class Logger {
 	}
 	
 	/**
-	 * Print a string to both the log file and System.out
+	 * Print a string to both the log file
 	 * @param data string to write.
 	 */
 	public void println(String data) {
-		println(data, true);
+		println(data, false);
 	}
 	
 	/**
