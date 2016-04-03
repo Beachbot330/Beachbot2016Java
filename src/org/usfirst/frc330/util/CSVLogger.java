@@ -20,7 +20,7 @@ public class CSVLogger {
 	private BufferedWriter roboRIOWriter, usbWriter;
 	private String m_roboRIOPath, m_usbPath, m_filePrefix;
 	private GregorianCalendar calendar = new java.util.GregorianCalendar();
-	private java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy.MM.dd.HH.mm.ss.SSS");
+	private java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy,MM,dd,HH,mm,ss,SSS");
 	private Date date;
 	boolean usbWorking = true;
 	
@@ -63,7 +63,7 @@ public class CSVLogger {
 	}
 
 	public void writeHeader() {
-		String header = "Time, ";
+		String header = "Year, Month, Day, H, M, S, mS, ";
 		
 		for (String key : table.keySet()) {
 			header = header + key + ", ";
