@@ -6,6 +6,7 @@ package org.usfirst.frc330.commands.drivecommands;
 
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.constants.ChassisConst;
+import org.usfirst.frc330.util.Logger.Severity;
 import org.usfirst.frc330.wpilibj.PIDGains;
 /*
  * This will drive the robot forwards to a waypoint on the field based on its 
@@ -42,7 +43,7 @@ public class DriveWaypoint extends DriveDistanceAtAbsAngle_NoTurn {
         
         if (Double.isNaN(calcAngle) || Double.isInfinite(calcAngle))
         {
-        	Robot.logger.println("Infinite calcAngle in DriveWaypoint");
+        	Robot.logger.println("Infinite calcAngle in DriveWaypoint", Severity.ERROR);
             calcAngle = 0;
         }
         
@@ -50,7 +51,7 @@ public class DriveWaypoint extends DriveDistanceAtAbsAngle_NoTurn {
         
         if (Double.isNaN(robotAngle) || Double.isInfinite(robotAngle))
         {
-        	Robot.logger.println("Infinite robotAngle in DriveWaypoint");
+        	Robot.logger.println("Infinite robotAngle in DriveWaypoint", Severity.ERROR);
             robotAngle = 0;
         }
         if (Math.abs(robotAngle-calcAngle)<180)
@@ -76,8 +77,12 @@ public class DriveWaypoint extends DriveDistanceAtAbsAngle_NoTurn {
         
     }
     protected void end() {
-    	Robot.logger.println("DriveWaypoint Final Location   X: " + Robot.chassis.getX() + "  Y: " + Robot.chassis.getY());
-    	Robot.logger.println("DriveWaypoint Final DriveTrain Distances   Left: " + Robot.chassis.getLeftDistance() + "  Right: " + Robot.chassis.getRightDistance());
+    	Severity severity = Severity.INFO;
+    	if (isTimedOut()) {
+    		severity = Severity.WARNING;
+    	}
+    	Robot.logger.println("DriveWaypoint Final Location   X: " + Robot.chassis.getX() + "  Y: " + Robot.chassis.getY(), severity);
+    	Robot.logger.println("DriveWaypoint Final DriveTrain Distances   Left: " + Robot.chassis.getLeftDistance() + "  Right: " + Robot.chassis.getRightDistance(), severity);
         super.end();
     }
     

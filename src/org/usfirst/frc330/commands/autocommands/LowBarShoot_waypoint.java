@@ -23,6 +23,7 @@ public class LowBarShoot_waypoint extends BBCommandGroup {
     	addSequential(new ShiftLow());
     	addSequential(new SetTurretPosition(TurretConst.center, 3.0, 20.0));  //angle, tol, timeout
     	addParallel(new PickupOn());
+    	addParallel(new AutoWait());
     	addSequential(new SetArmPosition(ArmConst.lowBar, 3.0, 20.0));  //angle, tol, timeout
     	addSequential(new DriveDistanceAtAbsAngle(initialDriveY, 5.0, 0, 3.0, false, ChassisConst.DriveLow, ChassisConst.GyroDriveLow, ChassisConst.GyroTurnLow) ); 
     	addSequential(new SetArmPosition(ArmConst.shootAngleFloor, 5, 1));

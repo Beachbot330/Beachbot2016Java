@@ -14,6 +14,7 @@ package org.usfirst.frc330.commands;
 
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.constants.ArmConst;
+import org.usfirst.frc330.util.Logger.Severity;
 
 import edu.wpi.first.wpilibj.command.BBCommand;
 
@@ -73,7 +74,7 @@ public class  SetArmPosition extends BBCommand {
 
     	if (isTimedOut())
     	{
-    		Robot.logger.println("SetArmPosition setpoint: " + this.angle + "   Position at timeout: " + Robot.arm.getArmAngle());
+    		Robot.logger.println("SetArmPosition setpoint: " + this.angle + "   Position at timeout: " + Robot.arm.getArmAngle(), Severity.WARNING);
     	}
     	return (Robot.arm.onArmTarget() || isTimedOut());
     }

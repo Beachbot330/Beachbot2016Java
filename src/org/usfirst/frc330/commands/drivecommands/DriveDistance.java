@@ -14,6 +14,7 @@ package org.usfirst.frc330.commands.drivecommands;
 
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.constants.ChassisConst;
+import org.usfirst.frc330.util.Logger.Severity;
 import org.usfirst.frc330.wpilibj.PIDGains;
 
 import edu.wpi.first.wpilibj.command.BBCommand;
@@ -95,18 +96,20 @@ public class  DriveDistance extends BBCommand {
     }
     // Called once after isFinished returns true
     protected void end() {
+    	Severity severity = Severity.INFO;
         if (stopAtEnd)
         {
             Robot.chassis.stopDrive();
         }
         if (isTimedOut())
         {
-        	Robot.logger.println("Timeout Debug:");
-        	Robot.logger.println("Left Side On Target: " + Robot.chassis.leftDrivePID.onTarget());
-        	Robot.logger.println("Right Side On Target: " + Robot.chassis.rightDrivePID.onTarget());
-        	Robot.logger.println("Tolerance we think we set: " + tolerance);
+        	severity = Severity.WARNING;
+        	Robot.logger.println("Timeout Debug:", severity);
+        	Robot.logger.println("Left Side On Target: " + Robot.chassis.leftDrivePID.onTarget(),severity);
+        	Robot.logger.println("Right Side On Target: " + Robot.chassis.rightDrivePID.onTarget(), severity);
+        	Robot.logger.println("Tolerance we think we set: " + tolerance, severity);
         }
-        Robot.logger.println("DriveDistance Left Setpoint: " + leftSetpoint + " Left: " + Robot.chassis.getLeftDistance() + " Right Setpoint: " + rightSetpoint + " Right: " + Robot.chassis.getRightDistance(), false);
+        Robot.logger.println("DriveDistance Left Setpoint: " + leftSetpoint + " Left: " + Robot.chassis.getLeftDistance() + " Right Setpoint: " + rightSetpoint + " Right: " + Robot.chassis.getRightDistance(), false, severity);
         this.leftDistance = origDistance;
         this.rightDistance = origDistance;
     }

@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.BBCommand;
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.util.Logger;
+import org.usfirst.frc330.util.Logger.Severity;
 
 /**
  *
@@ -61,7 +62,7 @@ public class DisabledCheckSensors extends BBCommand {
     	sensorFault = Robot.turret.getSensorFault();
     	if(sensorFault){
     		if (!buzzerOn && !resting) {
-    			Robot.logger.println("Fault!", true);
+    			Robot.logger.println("Talon Sensor Fault!", true, Severity.ERROR);
     			Robot.buzzer.enable(time);
             	buzzerOn = true;
     			timeyWhimey.reset();

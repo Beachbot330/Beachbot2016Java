@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 
 
@@ -74,13 +75,13 @@ public class Logger {
 		
 		File programFile = new File("/home/lvuser/FRCUserProgram.jar");
 		
-		println("Logger filename: " + m_filePrefix + "_" + sdf.format(date));
-		println("Program date: " + sdf.format(programFile.lastModified()));
+		println("Logger filename: " + m_filePrefix + "_" + sdf.format(date),true);
+		println("Program date: " + sdf.format(programFile.lastModified()),true);
 
 	}
 	
 	/**
-	 * Default constructor using /home/lvuser for roboRIOPath, /media/sda1 for usbPath, and BB2015_Log for file prefix.
+	 * Default constructor using /home/lvuser for roboRIOPath, /media/sda1 for usbPath, and BB2016_Log for file prefix.
 	 */
 	public Logger() {
 		this("/home/lvuser", "/media/sda1", "BB2016_Log");
@@ -101,30 +102,58 @@ public class Logger {
 			if (calendar.get(GregorianCalendar.YEAR) >= 2015) {
 				File tempFile = new File(m_roboRIOPath + "/" + m_filePrefix + "_" + sdf.format(date) + ".txt");
 				success = roboRIOFile.renameTo(tempFile);
-				println("RoboRIO File Renamed: " + success + " " + m_filePrefix + "_" + sdf.format(date) + ".txt");
+				println("RoboRIO File Renamed: " + success + " " + m_filePrefix + "_" + sdf.format(date) + ".txt",true);
 				tempFile = new File(m_usbPath + "/" + m_filePrefix + "_" + sdf.format(date) + ".txt");
 				success = usbFile.renameTo(tempFile);
 				usbWorking &= success;
-				println("USB File Renamed: " + success + " " + m_filePrefix + "_" + sdf.format(date) + ".txt");
+				println("USB File Renamed: " + success + " " + m_filePrefix + "_" + sdf.format(date) + ".txt",true);
 			}
 		}
 	}
 	
 	/**
-	 * Print a string to the log file and optionally System.out
+	 * Print a string to the log file at info Severity
+	 * @param data string to write.
+	 */
+	public void println(String data) {
+		println(data, false);
+	}
+	
+	/**
+	 * Print a string to the log file and optionally System.out. Prints at severity Info.
 	 * @param data string to write
 	 * @param printToSystemOut write to System.out if true
 	 */
 	public void println(String data, boolean printToSystemOut) {
 		println(data, printToSystemOut, Severity.INFO);
 	}
+	
+	/**
+	 * Print a string to the log file and optionally System.out depending on severity
+	 * ERROR, WARNING, and DEBUG get printed to System.out.
+	 * @param data string to write
+	 * @param severity the Severity to print at.
+	 */
+	public void println(String data, Severity severity) {
+		println(data, false, severity);
+	}
+	
 	/**
 	 * Print a string to the log file and optionally System.out
 	 * @param data string to write
 	 * @param printToSystemOut write to System.out if true
+	 * @param severity the Severity to print at.
 	 */
 	public void println(String data, boolean printToSystemOut, Severity severity) {
 		data = sdf.format(System.currentTimeMillis()) + ", " + severity + ", "  + data + "\r\n";
+		
+		if (severity == Severity.ERROR)
+			DriverStation.reportError(data, false);
+		else if (severity == Severity.WARNING)
+			DriverStation.reportWarning(data, false);
+		if (printToSystemOut || severity == Severity.DEBUG)
+			System.out.println(data);
+		
 		if (usbWorking) {
 	    	try {
 				usbWriter.write(data);
@@ -141,17 +170,7 @@ public class Logger {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-    	}
-		if (printToSystemOut)
-			System.out.println(data);
-	}
-	
-	/**
-	 * Print a string to both the log file
-	 * @param data string to write.
-	 */
-	public void println(String data) {
-		println(data, false);
+    	}	
 	}
 	
 	/**
@@ -160,6 +179,6 @@ public class Logger {
 	 * @param ex exception to print the stacktrace of
 	 */
 	public void printStackTrace(Throwable ex) {
-		println(Arrays.toString(ex.getStackTrace()), true);
+		println(Arrays.toString(ex.getStackTrace()), true, Severity.ERROR);
 	}
 }

@@ -26,6 +26,7 @@ import org.usfirst.frc330.subsystems.*;
 import org.usfirst.frc330.util.Buzzer;
 import org.usfirst.frc330.util.CSVLogger;
 import org.usfirst.frc330.util.Logger;
+import org.usfirst.frc330.util.Logger.Severity;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -119,12 +120,12 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Obstacle", autoObstacle);
         
         csvLogger.writeHeader();
-        logger.println("Robot Init");
+        logger.println("Robot Init",true);
         
         if (isPracticeRobot())
-        	logger.println("Practice Robot Detected");
+        	logger.println("Practice Robot Detected",true);
         else
-        	logger.println("Competition Robot Detected");
+        	logger.println("Competition Robot Detected",true);
     
         //buzzer.enable(0.75);
         (new SetQuadrantPosition(1)).start();
@@ -142,7 +143,7 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
-    	logger.println("Disabled Init");
+    	logger.println("Disabled Init",true);
     	logger.updateDate();
     	//buzzer.enable(0.75);
     	new DisabledCheckSensors().start();
@@ -185,7 +186,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousInit() {
     	buzzer.enable(1.25);
-    	logger.println("Autonomous Init");
+    	logger.println("Autonomous Init",true);
     	logger.updateDate();
     	
     	Robot.chassis.resetPosition();
@@ -193,16 +194,14 @@ public class Robot extends IterativeRobot {
     	autonomousCommand = (Command) autoProgram.getSelected();
         if (autonomousCommand != null) {
         	autonomousCommand.start();
-        	logger.println("Running Auto: " + autonomousCommand.getName());
-        	logger.println("Start Position: " + ((Command) autoStartPosition.getSelected()).getName());
-        	logger.println("Obstacle: " + ((Command) autoObstacle.getSelected()).getName());
+        	logger.println("Running Auto: " + autonomousCommand.getName(),true);
+        	logger.println("Start Position: " + ((Command) autoStartPosition.getSelected()).getName(),true);
+        	logger.println("Obstacle: " + ((Command) autoObstacle.getSelected()).getName(),true);
         }
         
         if(Math.abs(Robot.chassis.getAngle()) > 0.2){
         	Robot.chassis.resetPosition();
-        	logger.println("********************************************");
-        	logger.println("ERROR: gyro failed to reset, retrying");
-        	logger.println("********************************************");
+        	logger.println("Gyro failed to reset, retrying", Severity.ERROR);
         }
     }
 
@@ -233,7 +232,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopInit() {
     	
-    	logger.println("Teleop Init");
+    	logger.println("Teleop Init", true);
     	logger.updateDate();
     	buzzer.enable(1.25);
     	
@@ -269,7 +268,7 @@ public class Robot extends IterativeRobot {
      */
     public void testInit() {
     	buzzer.enable(1.25);
-        logger.println("Test Init");
+        logger.println("Test Init", true);
     }
 
     /**

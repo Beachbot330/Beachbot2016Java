@@ -16,6 +16,7 @@ import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.ManualArm;
 import org.usfirst.frc330.constants.ArmConst;
 import org.usfirst.frc330.util.CSVLoggable;
+import org.usfirst.frc330.util.Logger.Severity;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
@@ -225,11 +226,14 @@ public class Arm extends Subsystem implements LiveWindowSendable {
     	int currentQuadrant = getCurrentQuadrant();
     	double angleChange = (quadrant-currentQuadrant)*ArmConst.maxAngleDegrees;
     	
+    	if (currentQuadrant == quadrant)
+    		return;
+    	
     	if ( quadrant >= ArmConst.minQuadrant && quadrant <= ArmConst.maxQuadrant )
     	{
     		// Set the position
-    		Robot.logger.println("Original Quadrant: " + currentQuadrant, true);
-    		Robot.logger.println("New Quadrant: " + quadrant, true);
+    		Robot.logger.println("Original Quadrant: " + currentQuadrant, true, Severity.WARNING);
+    		Robot.logger.println("New Quadrant: " + quadrant, true, Severity.WARNING);
     		armL.setPosition(convertDegreesToRotations(currentArmAngle + angleChange));
     		if (armL.getControlMode() == TalonControlMode.Position)
     			setArmAngle(getArmAngle() + angleChange);
@@ -484,7 +488,7 @@ public class Arm extends Subsystem implements LiveWindowSendable {
 			return true;
 		}
 		else {
-			Robot.logger.println("Not safe to deploy lower climer. Current angle: " + armAngle);
+			Robot.logger.println("Not safe to deploy lower climer. Current angle: " + armAngle, Severity.WARNING);
 			return false;
 		}
 	}

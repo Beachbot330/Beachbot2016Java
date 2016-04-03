@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.constants.TurretConst;
 import org.usfirst.frc330.constants.TurretConstPract;
+import org.usfirst.frc330.util.Logger.Severity;
 
 /**
  *
@@ -91,7 +92,7 @@ public class Aim extends BBCommand {
     	
     	if (isTimedOut())
     	{
-    		Robot.logger.println("Aim setpoint: " + this.setpoint + "   Position at timeout: " + Robot.turret.getTurretAngle());
+    		Robot.logger.println("Aim Timed Out. Aim setpoint: " + this.setpoint + "   Position at timeout: " + Robot.turret.getTurretAngle(),Severity.WARNING);
     	}
     	return (toleranceCount >= 25 || isTimedOut());
     }

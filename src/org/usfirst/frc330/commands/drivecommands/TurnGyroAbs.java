@@ -11,6 +11,7 @@ package org.usfirst.frc330.commands.drivecommands;
 
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.constants.ChassisConst;
+import org.usfirst.frc330.util.Logger.Severity;
 import org.usfirst.frc330.wpilibj.PIDGains;
 
 import edu.wpi.first.wpilibj.command.BBCommand;
@@ -95,11 +96,14 @@ public class  TurnGyroAbs extends BBCommand {
     }
     // Called once after isFinished returns true
     protected void end() {
+    	Severity severity = Severity.INFO;
         if (stopAtEnd)
         {
             Robot.chassis.stopDrive();
         }
-        Robot.logger.println("TurnGyroAbs Final Angle: " + Robot.chassis.getAngle() + "  Setpoint: " + angle, true);
+        if (isTimedOut())
+        	severity = Severity.WARNING;
+        Robot.logger.println("TurnGyroAbs Final Angle: " + Robot.chassis.getAngle() + "  Setpoint: " + angle, severity);
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
