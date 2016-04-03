@@ -30,7 +30,7 @@ public class Logger {
 	boolean usbWorking = true;
 	
 	public enum Severity{
-		INFO,ERROR,WARNING,COMMAND
+		INFO,ERROR,WARNING,COMMAND,DEBUG
 	}
 	
 	/**
