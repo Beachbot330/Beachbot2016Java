@@ -62,7 +62,7 @@ public class DisabledCheckSensors extends BBCommand {
     	if(sensorFault){
     		if (!buzzerOn && !resting) {
     			Robot.logger.println("Fault!", true);
-    			Robot.frills.buzzerOn();
+    			Robot.buzzer.enable(time);
             	buzzerOn = true;
     			timeyWhimey.reset();
     			timeyWhimey.start();
@@ -70,8 +70,6 @@ public class DisabledCheckSensors extends BBCommand {
     	}
     	if (timeyWhimey.hasPeriodPassed(time)){
     		if (buzzerOn){
-    			Robot.logger.println("timeyWhimey: " + timeyWhimey.get(), true);
-        		Robot.frills.buzzerOff();
         		timeyWhimey.stop();
         		buzzerOn = false;
         		resting = true;
@@ -79,7 +77,6 @@ public class DisabledCheckSensors extends BBCommand {
     			timeyWhimey.start();
     		}
     		else if (resting){
-	    		Robot.logger.println("Finished Resting", true);
 	    		resting = false;
 	    		timeyWhimey.stop();
 	    	}
@@ -93,7 +90,6 @@ public class DisabledCheckSensors extends BBCommand {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.frills.buzzerOff();
     	timeyWhimey.stop();  
     }
 

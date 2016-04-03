@@ -23,6 +23,7 @@ import org.usfirst.frc330.commands.autocommands.*;
 import org.usfirst.frc330.commands.breachDefenseCommands.*;
 import org.usfirst.frc330.commands.driveAndShoot.*;
 import org.usfirst.frc330.subsystems.*;
+import org.usfirst.frc330.util.Buzzer;
 import org.usfirst.frc330.util.CSVLogger;
 import org.usfirst.frc330.util.Logger;
 
@@ -53,6 +54,7 @@ public class Robot extends IterativeRobot {
 
     public static Logger logger;
     public static CSVLogger csvLogger;
+    public static Buzzer buzzer;
     
     /**
      * This function is run when the robot is first started up and should be
@@ -123,8 +125,7 @@ public class Robot extends IterativeRobot {
         else
         	logger.println("Competition Robot Detected");
     
-        Command beep = new BuzzerBeepTimed(0.75);
-        beep.start();
+        buzzer.enable(0.75);
         (new SetQuadrantPosition(1)).start();
         
     }
@@ -148,6 +149,7 @@ public class Robot extends IterativeRobot {
 
     
     public void disabledPeriodic() {
+    	buzzer.update();
     	Scheduler.getInstance().run();
     	chassis.calcXY();
     	csvLogger.writeData();
@@ -180,7 +182,7 @@ public class Robot extends IterativeRobot {
      * 3. Autonomous command
      */
     public void autonomousInit() {
-    	
+    	buzzer.enable(1.25);
     	logger.println("Autonomous Init");
     	logger.updateDate();
     	
@@ -206,6 +208,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+    	buzzer.update();
         Scheduler.getInstance().run();
         chassis.calcXY();
         chassis.pidDriveAuto();
@@ -230,8 +233,7 @@ public class Robot extends IterativeRobot {
     	
     	logger.println("Teleop Init");
     	logger.updateDate();
-    	Command beep= new BuzzerBeepTimed(1.25);
-    	beep.start();
+    	buzzer.enable(1.25);
     	
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to
@@ -244,6 +246,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+    	buzzer.update();
     	Scheduler.getInstance().run();
         chassis.calcXY();
         chassis.pidDrive();
@@ -263,6 +266,7 @@ public class Robot extends IterativeRobot {
      * 1. Log entry for Test Initialization
      */
     public void testInit() {
+    	buzzer.enable(1.25);
         logger.println("Test Init");
     }
 
@@ -270,6 +274,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during test mode
      */
     public void testPeriodic() {
+    	buzzer.update();
     	LiveWindow.run();
         chassis.calcXY();
         arm.monitorArm();
