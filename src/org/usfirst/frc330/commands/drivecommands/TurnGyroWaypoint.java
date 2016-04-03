@@ -6,6 +6,7 @@ package org.usfirst.frc330.commands.drivecommands;
 
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.constants.ChassisConst;
+import org.usfirst.frc330.util.Logger.Severity;
 import org.usfirst.frc330.wpilibj.PIDGains;
  
 /**
@@ -41,7 +42,7 @@ public class TurnGyroWaypoint extends TurnGyroAbs {
         
         if (Double.isNaN(calcAngle) || Double.isInfinite(calcAngle))
         {
-        	Robot.logger.println("Infinite calcAngle in TurnGyroWaypoint");
+        	Robot.logger.println("Infinite calcAngle in TurnGyroWaypoint", Severity.ERROR);
             calcAngle = 0;
         }
         
@@ -49,7 +50,7 @@ public class TurnGyroWaypoint extends TurnGyroAbs {
         
         if (Double.isNaN(robotAngle) || Double.isInfinite(robotAngle))
         {
-        	Robot.logger.println("Infinite robotAngle in TurnWaypoint");
+        	Robot.logger.println("Infinite robotAngle in TurnWaypoint", Severity.ERROR);
             robotAngle = 0;
         }
         

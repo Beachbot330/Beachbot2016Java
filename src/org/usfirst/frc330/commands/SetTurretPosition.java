@@ -14,6 +14,7 @@ package org.usfirst.frc330.commands;
 
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.constants.TurretConst;
+import org.usfirst.frc330.util.Logger.Severity;
 
 import edu.wpi.first.wpilibj.command.BBCommand;
 
@@ -65,7 +66,7 @@ public class  SetTurretPosition extends BBCommand {
     		Robot.logger.println("SetTurretPosition setpoint: " 
     								+ this.angle
     								+ "   Position at timeout: " 
-    								+ Robot.turret.getTurretAngle());
+    								+ Robot.turret.getTurretAngle(), Severity.WARNING);
     	}
     	return (Robot.turret.onTurretTarget() || isTimedOut());
     }

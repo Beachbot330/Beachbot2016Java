@@ -470,9 +470,9 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 			throw new RuntimeException("Unsupported control mode for arm: " + newControlMode.toString());
 		}
 		if (newControlMode != oldControlMode) {
-			Robot.logger.println("Old Arm Mode: " + oldControlMode);
+			Robot.logger.println("Old Turret Mode: " + oldControlMode);
 			turret.changeControlMode(newControlMode);
-			Robot.logger.println("New Arm Mode: " + newControlMode);
+			Robot.logger.println("New Turret Mode: " + newControlMode);
 			if (SCtable != null)
 				SCtable.putNumber("Mode", newControlMode.getValue());
 		}

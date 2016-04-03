@@ -15,6 +15,7 @@ import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.*;
 import org.usfirst.frc330.constants.ClimberConst;
+import org.usfirst.frc330.util.Logger.Severity;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -62,7 +63,7 @@ public class Climber extends Subsystem
     		Robot.logger.println("Deploying lower climber", true);
     	}
     	else
-    		Robot.logger.println("Unsafe to deploy lower climber", true);
+    		Robot.logger.println("Unsafe to deploy lower climber", true, Severity.WARNING);
     }
     
     public void lockLowerClimber() {
@@ -82,7 +83,7 @@ public class Climber extends Subsystem
     		return true;
     	}
     	else{
-    		Robot.logger.println("Unsafe to deploy upper climber", true);
+    		Robot.logger.println("Unsafe to deploy upper climber", true, Severity.WARNING);
     		return false;
     	}
     }
