@@ -89,7 +89,7 @@ public class Robot extends IterativeRobot {
         autoProgram.addObject("Pure Awesome", new FullyLoadedAuto());
 //        autoProgram.addObject("Test Command", new TestCommand());
         autoProgram.addObject("Spybox Shooter", new SpyboxShoot());
-        autoProgram.addObject("Low Bar Shoot", new LowBarShoot_waypoint());
+        autoProgram.addObject("Low Bar Shoot", new LowBarShoot_waypoint_high());
         autoProgram.addObject("Low Bar Shoot Optimized", new LowBarOptimized());
 //        autoProgram.addObject("DO_NOT_SELECT - Tuning", new Tuning());
         
@@ -144,7 +144,7 @@ public class Robot extends IterativeRobot {
     public void disabledInit(){
     	logger.println("Disabled Init");
     	logger.updateDate();
-    	buzzer.enable(0.75);
+    	//buzzer.enable(0.75);
     	new DisabledCheckSensors().start();
     	new LockClimber().start();
     }
