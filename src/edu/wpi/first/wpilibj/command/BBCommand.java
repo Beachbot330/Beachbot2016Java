@@ -39,7 +39,7 @@ public abstract class BBCommand extends Command {
 	@Override
 	void _interrupted(){
 		super._interrupted();
-		Robot.logger.println(this.getClass().getName() + " interrupted", false, Severity.WARNING);
+		Robot.logger.println(this.getClass().getName() + " interrupted", false, Severity.COMMAND);
 		m_initialized = false;
 		m_completed = true;
 	}
