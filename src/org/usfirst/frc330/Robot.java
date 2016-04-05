@@ -92,7 +92,7 @@ public class Robot extends BBIterativeRobot {
         autoProgram.addObject("Pure Awesome", new FullyLoadedAuto());
 //        autoProgram.addObject("Test Command", new TestCommand());
         autoProgram.addObject("Spybox Shooter", new SpyboxShoot());
-        autoProgram.addObject("Low Bar Shoot", new LowBarShoot_waypoint());
+        autoProgram.addObject("Low Bar Shoot", new LowBarShoot_waypoint_high());
         autoProgram.addObject("Low Bar Shoot Optimized", new LowBarOptimized());
 //        autoProgram.addObject("DO_NOT_SELECT - Tuning", new Tuning());
         
@@ -205,7 +205,7 @@ public class Robot extends BBIterativeRobot {
         
         if(Math.abs(Robot.chassis.getAngle()) > 0.2){
         	Robot.chassis.resetPosition();
-        	logger.println("ERROR: gyro failed to reset, retrying", Severity.ERROR);
+        	logger.println("Gyro failed to reset, retrying", Severity.ERROR);
         }
     }
 

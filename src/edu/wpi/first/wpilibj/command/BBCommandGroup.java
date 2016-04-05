@@ -24,7 +24,7 @@ public class BBCommandGroup extends CommandGroup {
 	@Override
 	void _interrupted(){
 		super._interrupted();
-		Robot.logger.println(this.getClass().getName() + " interrupted", false, Severity.WARNING);
+		Robot.logger.println(this.getClass().getName() + " interrupted", false, Severity.COMMAND);
 	}
 	
 	public boolean isCompleted(){
