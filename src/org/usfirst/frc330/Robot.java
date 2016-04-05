@@ -129,7 +129,7 @@ public class Robot extends BBIterativeRobot {
         else
         	logger.println("Competition Robot Detected",true);
     
-        //buzzer.enable(0.75);
+        buzzer.enable(0.75);
         (new SetQuadrantPosition(1)).start();
         
     }
@@ -298,7 +298,7 @@ public class Robot extends BBIterativeRobot {
      ****************************************************************/
     
     /**
-     * This function is responsible for initialization for test mode. 
+     * This function is responsible for initialization for disconnected mode. 
      * 
      * 1. Log entry for Test Initialization
      */
@@ -309,13 +309,10 @@ public class Robot extends BBIterativeRobot {
     }
 
     /**
-     * This function is called periodically during test mode
+     * This function is called periodically during disconnected mode
      */
     @Override
     public void disconnectedPeriodic() {
-    	buzzer.update();
-        chassis.calcXY();
-        arm.monitorArm();
-        csvLogger.writeData();
+    	disabledPeriodic();
     }
 }
