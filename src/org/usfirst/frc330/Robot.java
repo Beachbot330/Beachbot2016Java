@@ -11,6 +11,7 @@
 
 package org.usfirst.frc330;
 
+import edu.wpi.first.wpilibj.BBIterativeRobot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -35,7 +36,7 @@ import org.usfirst.frc330.util.Logger.Severity;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
-public class Robot extends IterativeRobot {
+public class Robot extends BBIterativeRobot {
 
     Command autonomousCommand;
     SendableChooser autoProgram;
@@ -61,6 +62,7 @@ public class Robot extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
+    @Override
     public void robotInit() {
     	RobotMap.init();
     	logger = new Logger();
@@ -142,6 +144,7 @@ public class Robot extends IterativeRobot {
      * This function is called when the disabled button is hit.
      * You can use it to reset subsystems before shutting down.
      */
+    @Override
     public void disabledInit(){
     	logger.println("Disabled Init",true);
     	logger.updateDate();
@@ -150,7 +153,7 @@ public class Robot extends IterativeRobot {
     	new LockClimber().start();
     }
 
-    
+    @Override
     public void disabledPeriodic() {
     	buzzer.update();
     	Scheduler.getInstance().run();
@@ -184,6 +187,7 @@ public class Robot extends IterativeRobot {
      * 2. Reset position
      * 3. Autonomous command
      */
+    @Override
     public void autonomousInit() {
     	buzzer.enable(1.25);
     	logger.println("Autonomous Init",true);
@@ -208,6 +212,7 @@ public class Robot extends IterativeRobot {
     /**
      * This function is called periodically during autonomous
      */
+    @Override
     public void autonomousPeriodic() {
     	buzzer.update();
         Scheduler.getInstance().run();
@@ -230,6 +235,7 @@ public class Robot extends IterativeRobot {
      * 1. Log entry for Teleop Initialization
      * 2. Sound the buzzer
      */
+    @Override
     public void teleopInit() {
     	
     	logger.println("Teleop Init", true);
@@ -246,6 +252,7 @@ public class Robot extends IterativeRobot {
     /**
      * This function is called periodically during operator control
      */
+    @Override
     public void teleopPeriodic() {
     	buzzer.update();
     	Scheduler.getInstance().run();
@@ -266,6 +273,7 @@ public class Robot extends IterativeRobot {
      * 
      * 1. Log entry for Test Initialization
      */
+    @Override
     public void testInit() {
     	buzzer.enable(1.25);
         logger.println("Test Init", true);
@@ -274,9 +282,38 @@ public class Robot extends IterativeRobot {
     /**
      * This function is called periodically during test mode
      */
+    @Override
     public void testPeriodic() {
     	buzzer.update();
     	LiveWindow.run();
+        chassis.calcXY();
+        arm.monitorArm();
+        csvLogger.writeData();
+    }
+    
+    /*****************************************************************
+     * 
+     * Disconnected METHODS
+     * 
+     ****************************************************************/
+    
+    /**
+     * This function is responsible for initialization for test mode. 
+     * 
+     * 1. Log entry for Test Initialization
+     */
+    @Override
+    public void disconnectedInit() {
+    	buzzer.enable(0.1);
+        logger.println("Disconnected Init", true);
+    }
+
+    /**
+     * This function is called periodically during test mode
+     */
+    @Override
+    public void disconnectedPeriodic() {
+    	buzzer.update();
         chassis.calcXY();
         arm.monitorArm();
         csvLogger.writeData();
