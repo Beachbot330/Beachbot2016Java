@@ -112,7 +112,7 @@ public class Robot extends BBIterativeRobot {
 //        autoObstacle.addObject("Rock Wall", new RockWall());
         autoObstacle.addObject("Rough Terrain", new RoughTerrain());
 //        autoObstacle.addObject("Sally Port", new SallyPort());
-//        autoObstacle.addObject("Teeter Totter", new TeeterTotter());
+        autoObstacle.addObject("Teeter Totter", new TeeterTotter());
         
         /* Set to a default value */
         autoObstacle.addObject("Rock Wall", new RockWall());
@@ -148,7 +148,6 @@ public class Robot extends BBIterativeRobot {
     public void disabledInit(){
     	logger.println("Disabled Init",true);
     	logger.updateDate();
-    	buzzer.enable(0.75);
     	new DisabledCheckSensors().start();
     	new LockClimber().start();
     }
@@ -304,7 +303,7 @@ public class Robot extends BBIterativeRobot {
      */
     @Override
     public void disconnectedInit() {
-    	buzzer.enable(0.1);
+    	buzzer.enable(0.2);
         logger.println("Disconnected Init", true);
     }
 
@@ -313,6 +312,7 @@ public class Robot extends BBIterativeRobot {
      */
     @Override
     public void disconnectedPeriodic() {
+    	buzzer.update();
     	disabledPeriodic();
     }
 }
