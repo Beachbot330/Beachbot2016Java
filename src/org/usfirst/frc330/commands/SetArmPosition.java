@@ -15,6 +15,7 @@ package org.usfirst.frc330.commands;
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.constants.ArmConst;
 import org.usfirst.frc330.util.Logger.Severity;
+import org.usfirst.frc330.wpilibj.PIDGains;
 
 import edu.wpi.first.wpilibj.command.BBCommand;
 
@@ -26,6 +27,7 @@ public class  SetArmPosition extends BBCommand {
 	double timeout;
 	double tolerance;
 	int toleranceCounter;
+	PIDGains gains;
     
 	public SetArmPosition(double angle) {
 		this(angle, ArmConst.tolerance, ArmConst.defaultTimeout);
@@ -36,6 +38,10 @@ public class  SetArmPosition extends BBCommand {
 	}
 	
 	public SetArmPosition(double angle, double tolerance, double timeout) {
+		this(angle, tolerance, timeout, ArmConst.fullPID);
+	}
+	
+	public SetArmPosition(double angle, double tolerance, double timeout, PIDGains gains) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 
@@ -47,6 +53,7 @@ public class  SetArmPosition extends BBCommand {
         this.timeout = timeout;
         this.tolerance = tolerance;
         toleranceCounter = 0;
+        this.gains = gains;
     }
 
     // Called just before this Command runs the first time
@@ -60,6 +67,9 @@ public class  SetArmPosition extends BBCommand {
     		{setTimeout(9999999);}
     	Robot.arm.enableArm();
     	Robot.logger.println("Arm set to: " + this.angle + " degrees, with tolerance: " + this.tolerance);
+    	
+    	Robot.arm.setPIDConstants(gains.getP(), gains.getI(), gains.getD());
+    	Robot.arm.setMaxOutput(gains.getMaxOutput());
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -81,10 +91,14 @@ public class  SetArmPosition extends BBCommand {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.arm.setPIDConstants(ArmConst.fullPID.getP(), ArmConst.fullPID.getI(), ArmConst.fullPID.getD());
+    	Robot.arm.setMaxOutput(ArmConst.fullPID.getMaxOutput());
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.arm.setPIDConstants(ArmConst.fullPID.getP(), ArmConst.fullPID.getI(), ArmConst.fullPID.getD());
+    	Robot.arm.setMaxOutput(ArmConst.fullPID.getMaxOutput());
     }
 }

@@ -3,6 +3,7 @@
 package org.usfirst.frc330.constants;
 
 import org.usfirst.frc330.Robot;
+import org.usfirst.frc330.wpilibj.PIDGains;
 
 public final class ArmConst {
 	
@@ -23,6 +24,8 @@ public final class ArmConst {
 	public static final double feedForward	     		= 0.0;   // JR 2/23
 	public static final double VoltageRampRate   		= 48.0;  // AP 3-15
 	public static final double MaxOutputVoltage  		= 12.0;   // AP 3-15
+	public static final PIDGains fullPID = new PIDGains(proportional, integral, derivative, 
+														feedForward, MaxOutputVoltage, MaxOutputVoltage, "default");
 	
 	// Angles
 	public static final double limitLowerAngle   		=  2.0;  //AP 1-26

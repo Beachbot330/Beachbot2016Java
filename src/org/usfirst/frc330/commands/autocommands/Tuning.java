@@ -17,11 +17,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class Tuning extends BBCommandGroup {
     
+	double maxArmSpeed = 1.0;
+	PIDGains slowArm = new PIDGains(ArmConst.proportional, ArmConst.integral, ArmConst.derivative, ArmConst.feedForward,
+									maxArmSpeed, maxArmSpeed, "slowArm");
+	//double p, double i, double d, double f, double maxOutput, double maxOutputStep, String name
+	
     public  Tuning() {
-    	addSequential(new ShiftHigh());
-        
-    	PIDGains tuneGyroHigh  = new PIDGains(0.03,0,0.05,0,1,1, "TuneGyroHigh");
-        addSequential(new TurnGyroRel(45, 1, 5, false, tuneGyroHigh));
-        //double angle, double tolerance, double timeout, boolean stopAtEnd, PIDGains gains
+    	addSequential(new SetArmPosition(ArmConst.pickupAngle, 5.0, 20.0, slowArm));
+    	addSequential(new SetArmPosition(ArmConst.shootAngleFloor, 5.0, 20.0, slowArm));
     }
 }

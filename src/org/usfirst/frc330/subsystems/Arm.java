@@ -210,8 +210,14 @@ public class Arm extends Subsystem implements LiveWindowSendable {
             SCtable.putNumber("p", P);
             SCtable.putNumber("i", I);
             SCtable.putNumber("d", D);
+            Robot.logger.println("Arm PID set to: " + P + ", " + I + ", " + D, Severity.INFO);
 		}
 	}
+    
+    public void setMaxOutput(double maxOutput){
+    	armL.configMaxOutputVoltage(maxOutput);
+    	Robot.logger.println("Max arm output set to: " + maxOutput, Severity.INFO);
+    }
     
     public int getCurrentQuadrant() {
     	return (int)(getArmAngle()/ArmConst.maxAngleDegrees);
