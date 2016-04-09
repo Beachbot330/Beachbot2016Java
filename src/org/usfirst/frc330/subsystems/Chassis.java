@@ -372,7 +372,7 @@ public class Chassis extends Subsystem
     double gyroComp = 0;
     
     public void setGyroComp(double compensation) {
-    	gyroComp = 0;
+    	gyroComp = compensation;
     }
     
     public double getGyroComp() {
