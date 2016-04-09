@@ -162,6 +162,11 @@ public class Chassis extends Subsystem
     	Robot.csvLogger.add("ChassisAngle", temp);
     	
     	temp = new CSVLoggable(true) {
+			public double get() { return getGyroComp(); }  		
+    	};    	
+    	Robot.csvLogger.add("GyroCompensation", temp);
+    	
+    	temp = new CSVLoggable(true) {
 			public double get() { return imu.isConnected() ? 1: 0; }  		
     	};    	
     	Robot.csvLogger.add("GyroIsConnected", temp);
@@ -361,8 +366,18 @@ public class Chassis extends Subsystem
     	gyroVal = yawVal + (360.0 * ctrRollOver);
     	gyro_prevVal = yawVal;
     	
-    	return gyroVal;
+    	return gyroVal + gyroComp;
     } /* End getAngle() */
+    
+    double gyroComp = 0;
+    
+    public void setGyroComp(double compensation) {
+    	gyroComp = 0;
+    }
+    
+    public double getGyroComp() {
+    	return gyroComp;
+    }
     
     public void tankDrive(Joystick leftJoystick, Joystick rightJoystick)
     {
