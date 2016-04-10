@@ -22,8 +22,8 @@ public class PositionFive extends BBCommandGroup {
 	double startY = 176;
 	double pivotPointY = 288-35;
 	
-	double batterX = -37;
-	double batterY = 290;
+	double batterX = -35;
+	double batterY = 294;
 	
     public  PositionFive() {
     	addSequential(new DriveWaypoint(pivotPointX, pivotPointY, 5, 5, true, ChassisConst.DriveLow, ChassisConst.GyroDriveLow));
