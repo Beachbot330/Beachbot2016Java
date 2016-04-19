@@ -19,13 +19,14 @@ import edu.wpi.first.wpilibj.command.BBCommandGroup;
 public class PositionFive extends BBCommandGroup {
     
 	double pivotPointX = 0;
-	double startY = 176;
+	double startY = 160;
 	double pivotPointY = 288-35;
 	
 	double batterX = -35;
-	double batterY = 294;
+	double batterY = 288;
 	
     public  PositionFive() {
+    	addParallel(new SetArmPosition(ArmConst.shootAngleFloor, 5, 1));
     	addSequential(new DriveWaypoint(pivotPointX, pivotPointY, 5, 5, true, ChassisConst.DriveLow, ChassisConst.GyroDriveLow));
         addSequential(new TurnGyroWaypoint(batterX, batterY, 8, 2, ChassisConst.GyroTurnLow));
         //double x, double y, double tolerance, double timeout, PIDGains gains
@@ -42,7 +43,7 @@ public class PositionFive extends BBCommandGroup {
         //double x, double y, double tolerance, double timeout, boolean stopAtEnd, PIDGains driveGains, PIDGains gyroGains
         addSequential(new Wait(0.5));
         addParallel(new SetTurretPosition(TurretConst.center, 3.0, 20.0));  //angle, tol, timeout
-        addParallel(new SetArmPosition(ArmConst.defenseStance, 3.0, 20.0));  //angle, tol, timeout
+        //addParallel(new SetArmPosition(ArmConst.defenseStance, 3.0, 20.0));  //angle, tol, timeout
         
         addSequential(new CheckDone(driveCommand));
         

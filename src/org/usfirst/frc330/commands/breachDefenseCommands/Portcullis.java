@@ -21,7 +21,7 @@ public class Portcullis extends BBCommandGroup {
 	double CarefulDriving = 0.5;
 	PIDGains carefulDrive	   = new PIDGains(0.10,0,0.000,0,CarefulDriving,CarefulDriving, "Careful");
 	
-	double maxArmVoltage = 4.5;
+	double maxArmVoltage = 8;
 	PIDGains slowArm = new PIDGains(ArmConst.proportional, ArmConst.integral, ArmConst.derivative, ArmConst.feedForward,
 									maxArmVoltage, maxArmVoltage, "slowArm");
 	
@@ -56,20 +56,18 @@ public class Portcullis extends BBCommandGroup {
     	
     	addParallel(new DriveWaypointBackward(0, distanceToPort-4.0, 1.0, 4.0, false, creepForward, ChassisConst.GyroDriveLow));
     	addSequential(new Wait(0.1));
-    	addSequential(new SetArmPosition(ArmConst.pickupAngle, 5.0, 20.0, slowArm));
-    	
-    	addSequential(new Wait(0.8));
+    	addSequential(new SetArmPosition(ArmConst.pickupAngle, 10.0, 20.0, slowArm));
     	
     	addSequential(new DriveWaypointBackward(0, destination+24, 1.0, 6.0, false, carefulDrive, ChassisConst.GyroDriveLow));
     	
     	//addSequential(new Wait(1.0));
     	
     	addSequential(new RetractPortcullisStinger());
-    	addSequential(new TurnGyroWaypoint(0, destination, 1.0, 6.0, ChassisConst.GyroTurnLow));
-    	addSequential(new DriveWaypoint(0, destination, 1.0, 6.0, true, ChassisConst.DriveLow, ChassisConst.GyroDriveLow));
-    	
+    	addParallel(new SetArmPosition(ArmConst.defaultNeutral, 5.0, 20.0));
+    	addSequential(new TurnGyroWaypoint(0, destination, 5.0, 6.0, ChassisConst.GyroTurnLow));
+    	addSequential(new DriveWaypoint(0, destination, 5.0, 6.0, true, ChassisConst.DriveLow, ChassisConst.GyroDriveLow));
     	addSequential(new RotatePosition());
-    	addSequential(new SetArmPosition(ArmConst.shootAngleFloor, 5.0, 20.0));
+    	
     	
     }
 }

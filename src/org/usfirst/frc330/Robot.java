@@ -98,7 +98,7 @@ public class Robot extends BBIterativeRobot {
         
         autoStartPosition = new SendableChooser();
         autoStartPosition.addObject("Pos 1 - Low Bar", new PositionOne());
-//        autoStartPosition.addObject("Position 2", new PositionTwo());
+        autoStartPosition.addObject("Position 2", new PositionTwo());
         autoStartPosition.addObject("Position 3", new PositionThree());
         autoStartPosition.addObject("Position 4", new PositionFour());
         autoStartPosition.addObject("Position 5", new PositionFive());

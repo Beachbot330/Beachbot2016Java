@@ -53,6 +53,9 @@ public class TurnGyroWaypoint extends TurnGyroAbs {
         	Robot.logger.println("Infinite robotAngle in TurnWaypoint", Severity.ERROR);
             robotAngle = 0;
         }
+ 
+        Robot.logger.println("Robot angle: " + robotAngle, Severity.DEBUG);
+        Robot.logger.println("Calc angle: " + calcAngle, Severity.DEBUG);
         
         if (Math.abs(robotAngle-calcAngle)<180)
         {
@@ -60,12 +63,12 @@ public class TurnGyroWaypoint extends TurnGyroAbs {
         }
         else if (robotAngle > calcAngle)
         {
-            while (Math.abs(robotAngle-calcAngle)<180)
+            while (Math.abs(robotAngle-calcAngle)>180)
                 calcAngle += 360;
         }
         else 
         {
-            while (Math.abs(robotAngle-calcAngle)<180)
+            while (Math.abs(robotAngle-calcAngle)>180)
                 calcAngle -= 360;
         }
        Robot.logger.println("angle: " + calcAngle);

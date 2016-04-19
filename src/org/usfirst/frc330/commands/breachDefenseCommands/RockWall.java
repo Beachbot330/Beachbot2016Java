@@ -22,7 +22,7 @@ public class RockWall extends BBCommandGroup {
 	PIDGains creepForward	   = new PIDGains(0.080,0,0.000,0,superCarefulDriving,superCarefulDriving, "DriveLow");
 	
 	double centerOfWallY = 82;
-	double finishPositionY = 176.0;
+	double finishPositionY = 160.0;
 	
     public  RockWall() {
     	addParallel(new SetTurretPosition(TurretConst.center, 3.0, 20.0));
@@ -36,9 +36,10 @@ public class RockWall extends BBCommandGroup {
     	
     	addSequential(new DriveWaypoint(0.0, centerOfWallY+36, 2.0, 15.0, false, driveCareful, gyroDriveLow));
     	
-    	addParallel(new SetArmPosition(ArmConst.shootAngleFloor, 5.0, 20.0));    	
+    	addParallel(new SetArmPosition(ArmConst.defaultNeutral, 5.0, 20.0));    	
     	addParallel(new DriveWaypoint(0.0, finishPositionY, 10.0, 15.0, true, ChassisConst.DriveLow, gyroDriveLow));
     	addSequential(new PickupOff());
+    	addSequential(new SetXYOffset(4,0));
     }
 }
 
