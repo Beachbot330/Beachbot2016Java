@@ -292,7 +292,6 @@ public class Chassis extends Subsystem
         setXY(0,0);
         this.prevLeftEncoderDistance = 0;
         this.prevRightEncoderDistance = 0;
-        imu.resetDisplacement();
     } /* End resetPosition */
     
     public void setXY(double x, double y)
