@@ -38,7 +38,7 @@ public class LowBarOptimized extends BBCommandGroup {
         addSequential(new Shoot());
         addSequential(new Wait(0.2));
         addParallel(new SetTurretPosition(TurretConst.center, 3.0, 20.0));  //angle, tol, timeout)
-        addParallel(new SetArmPosition(ArmConst.lowBar, 3.0, 20.0));
+        addParallel(new SetArmPosition(ArmConst.defaultNeutral, 3.0, 20.0));
         addSequential(new DriveWaypointBackward(35, 165, 5.0, 5.0, false, ChassisConst.DriveHigh, ChassisConst.GyroDriveHigh));
         //double x, double y, double tolerance, double timeout, boolean stopAtEnd, PIDGains driveGains, PIDGains gyroGains
         addSequential(new TurnGyroAbs(180,5,5,false,ChassisConst.GyroTurnHigh));

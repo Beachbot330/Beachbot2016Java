@@ -43,7 +43,7 @@ public class PositionFive extends BBCommandGroup {
         //double x, double y, double tolerance, double timeout, boolean stopAtEnd, PIDGains driveGains, PIDGains gyroGains
         addSequential(new Wait(0.5));
         addParallel(new SetTurretPosition(TurretConst.center, 3.0, 20.0));  //angle, tol, timeout
-        //addParallel(new SetArmPosition(ArmConst.defenseStance, 3.0, 20.0));  //angle, tol, timeout
+        addParallel(new SetArmPosition(ArmConst.defaultNeutral, 3.0, 20.0));  //angle, tol, timeout
         
         addSequential(new CheckDone(driveCommand));
         

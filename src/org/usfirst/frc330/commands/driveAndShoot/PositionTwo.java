@@ -56,7 +56,9 @@ public class PositionTwo extends BBCommandGroup {
         addSequential(new Wait(0.2));
         
         addParallel(new SetTurretPosition(TurretConst.center, 3.0, 20.0));
+        addParallel(new SetArmPosition(ArmConst.defaultNeutral, 3.0, 20.0));  //angle, tol, timeout
         addSequential(new DriveWaypointBackward(pivotPointX, pivotPointY, 10, 5, false, ChassisConst.GyroDriveLow, ChassisConst.GyroTurnLow));
+        
         
         addSequential(new ShiftLow());
         addSequential(new TurnGyroWaypoint(0, startY, 5, 2, ChassisConst.GyroTurnLow));
