@@ -6,6 +6,7 @@ import org.usfirst.frc330.commands.SetTurretPosition;
 import org.usfirst.frc330.commands.ShiftHigh;
 import org.usfirst.frc330.commands.ShiftLow;
 import org.usfirst.frc330.commands.Wait;
+import org.usfirst.frc330.commands.WaitUntilTeleopConditional;
 import org.usfirst.frc330.commands.commandgroups.Shoot;
 import org.usfirst.frc330.commands.drivecommands.DriveTime;
 import org.usfirst.frc330.commands.drivecommands.DriveWaypoint;
@@ -23,7 +24,7 @@ import edu.wpi.first.wpilibj.command.BBCommandGroup;
  */
 public class PositionTwo extends BBCommandGroup {
     
-	double positionOffset = 4*12;
+	double positionOffset = 4*12+4;
 	
 	double pivotPointX = 44 + positionOffset;
 	double pivotPointY = 210;
@@ -54,6 +55,8 @@ public class PositionTwo extends BBCommandGroup {
         addSequential(new Aim(3.5, 15.0));
         addSequential(new Shoot());
         addSequential(new Wait(0.2));
+        
+        addSequential(new WaitUntilTeleopConditional());
         
         addParallel(new SetTurretPosition(TurretConst.center, 3.0, 20.0));
         addParallel(new SetArmPosition(ArmConst.defaultNeutral, 3.0, 20.0));  //angle, tol, timeout

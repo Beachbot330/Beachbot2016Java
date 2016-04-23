@@ -26,6 +26,7 @@ public class PositionFive extends BBCommandGroup {
 	double batterY = 288;
 	
     public  PositionFive() {
+    	addSequential(new ShiftLow());
     	addParallel(new SetArmPosition(ArmConst.shootAngleFloor, 5, 1));
     	addSequential(new DriveWaypoint(pivotPointX, pivotPointY, 5, 5, true, ChassisConst.DriveLow, ChassisConst.GyroDriveLow));
         addSequential(new TurnGyroWaypoint(batterX, batterY, 8, 2, ChassisConst.GyroTurnLow));
@@ -36,6 +37,8 @@ public class PositionFive extends BBCommandGroup {
         addSequential(new Aim(3.5, 15.0));
         addSequential(new Shoot());
         addSequential(new Wait(0.2));
+        
+        addSequential(new WaitUntilTeleopConditional());
         
         addSequential(new ShiftHigh());
         BBCommand driveCommand = new DriveWaypointBackward(pivotPointX, pivotPointY, 10, 5, false, ChassisConst.GyroDriveHigh, ChassisConst.GyroTurnHigh);

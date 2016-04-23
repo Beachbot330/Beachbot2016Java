@@ -7,6 +7,7 @@ import org.usfirst.frc330.commands.SetTurretPosition;
 import org.usfirst.frc330.commands.ShiftHigh;
 import org.usfirst.frc330.commands.ShiftLow;
 import org.usfirst.frc330.commands.Wait;
+import org.usfirst.frc330.commands.WaitUntilTeleopConditional;
 import org.usfirst.frc330.commands.commandgroups.Shoot;
 import org.usfirst.frc330.commands.drivecommands.DriveTime;
 import org.usfirst.frc330.commands.drivecommands.DriveWaypoint;
@@ -30,6 +31,7 @@ public class PositionFour extends BBCommandGroup {
 	double startY = 176;
 	
     public  PositionFour() {
+    	addSequential(new ShiftLow());
         addSequential(new TurnGyroWaypoint(batterX, batterY, 5, 3, ChassisConst.GyroTurnLow));
         //double x, double y, double tolerance, double timeout, PIDGains gains
         addParallel(new SetArmPosition(ArmConst.shootAngleFloor, 5, 1));
@@ -39,6 +41,8 @@ public class PositionFour extends BBCommandGroup {
         addSequential(new Aim(3.5, 15.0));
         addSequential(new Shoot());
         addSequential(new Wait(0.2));
+        
+        addSequential(new WaitUntilTeleopConditional());
         
         addSequential(new ShiftHigh());
         BBCommand driveCommand = new DriveWaypointBackward(batterX, startY, 10, 5, false, ChassisConst.GyroDriveHigh, ChassisConst.GyroTurnHigh);
