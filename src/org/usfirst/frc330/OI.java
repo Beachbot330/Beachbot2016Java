@@ -186,7 +186,7 @@ public class OI {
         pickupIntakeU.whileHeld(new PickupOn());
         pickupIntakeR.whileHeld(new PickupOn());
         
-        defensePickupD = new POVButton(armGamepad,0,180);
+        defensePickupD = new POVButton(armGamepad,0,180,135,225);
         defensePickupD.whileHeld(new PickupBall(ArmConst.pickupAngleDef));
         defensePickupD.whenReleased(new LowShot());
     }
