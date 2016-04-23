@@ -17,6 +17,11 @@ public abstract class BBCommand extends Command {
 	boolean m_initialized = false;
 	boolean m_completed = false;
 	
+	public void start(){
+		m_completed = false;
+		super.start();
+	}
+	
 	@Override
 	void _initialize(){
 		super._initialize();
