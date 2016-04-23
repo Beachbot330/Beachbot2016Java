@@ -39,7 +39,6 @@ public class RockWall extends BBCommandGroup {
     	addParallel(new SetArmPosition(ArmConst.defaultNeutral, 5.0, 20.0));    	
     	addParallel(new DriveWaypoint(0.0, finishPositionY, 10.0, 15.0, true, ChassisConst.DriveLow, gyroDriveLow));
     	addSequential(new PickupOff());
-    	addSequential(new SetXYOffset(4,0));
     }
 }
 
