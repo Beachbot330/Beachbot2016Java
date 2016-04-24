@@ -90,6 +90,7 @@ public class AimSmart extends BBCommand {
 
     int counter =0;
     double searchAngle =0;
+    double stopAngle = 0;
     AimState prevState = AimState.none;
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
@@ -106,13 +107,13 @@ public class AimSmart extends BBCommand {
 		case Aiming:
 	    	setpoint = SmartDashboard.getNumber("targetAngle", prevSetpoint);
 	    	Robot.turret.setTurretAngle(Robot.turret.getTurretAngle()+setpoint);
-	    	if (Robot.turret.onTurretTarget() && SmartDashboard.getBoolean("targetDetected", false))
+	    	if (Robot.turret.onTurretTarget() && isTargetRightDistance())
 	    		toleranceCount++;
 	    	else
 	    		toleranceCount = 0;
 	    	if (toleranceCount >= 25)
 	    		state = AimState.Aimed;
-	    	//TODO, what happens if target lost?
+	    	prevSetpoint = setpoint;
 			break;
 		case Aimed:
 			break;
@@ -120,7 +121,7 @@ public class AimSmart extends BBCommand {
 		case Aiming3:
 	    	setpoint = SmartDashboard.getNumber("targetAngle", prevSetpoint);
 	    	Robot.turret.setTurretAngle(Robot.turret.getTurretAngle()+setpoint);
-	    	if (Robot.turret.onTurretTarget() && SmartDashboard.getBoolean("targetDetected", false))
+	    	if (Robot.turret.onTurretTarget() && isTargetRightDistance())
 	    		toleranceCount++;
 	    	else
 	    		toleranceCount = 0;
@@ -129,54 +130,55 @@ public class AimSmart extends BBCommand {
 			break;
 		case Search2:
 			searchAngle = -30;
-			Robot.turret.setTurretAngle(Robot.turret.getTurretAngle()+searchAngle);
+			stopAngle = Robot.turret.getTurretAngle()+searchAngle;
+			Robot.turret.setTurret(searchAngle/Math.abs(searchAngle)/4);
 			state = AimState.Move2;
 			break;
 		case Search3:
 			searchAngle *= -2.0;
-			Robot.turret.setTurretAngle(Robot.turret.getTurretAngle()+searchAngle);
+			stopAngle = Robot.turret.getTurretAngle()+searchAngle;
+			Robot.turret.setTurret(searchAngle/Math.abs(searchAngle)/4);
 			state = AimState.Move3;
 			break;
 		case Move2:
-			if (Robot.turret.onTurretTarget()) {
+			if (Robot.turret.getTurretAngle() <= stopAngle) {
 				state = AimState.Wait2;
-				counter = 0;
 			}
-			if (SmartDashboard.getBoolean("targetDetected", false))
+			if (isTargetRightDistance())
 				state = AimState.Aiming2;
 			break;
 		case Move3:
-			if (Robot.turret.onTurretTarget()) {
+			if (Robot.turret.getTurretAngle() >= stopAngle) {
 				state = AimState.Wait3;
-				counter = 0;
 			}
-			if (SmartDashboard.getBoolean("targetDetected", false))
+			if (isTargetRightDistance())
 				state = AimState.Aiming3;
 			break;
 		case Wait2:
-			if (SmartDashboard.getBoolean("targetDetected", false))
+			Robot.turret.setTurret(0);
+			if (isTargetRightDistance())
 				state = AimState.Aiming2;
 			if (counter > 50)
 				state = AimState.Search3;
 			counter++;
-			toleranceCount =0;
 			break;
 		case Wait3:
-			if (SmartDashboard.getBoolean("targetDetected", false))
+			Robot.turret.setTurret(0);
+			if (isTargetRightDistance())
 				state = AimState.Aiming3;
 			if (counter > 50)
 				state = AimState.Aiming3;
-			toleranceCount =0;
 			counter++;
 			break;
 		default:
+			Robot.logger.println("Got to default case in AimSmart", true, Severity.ERROR);
 			break;
-
-    	
     	}
     	if (prevState != state) {
-    		//Robot.logger.println("Aim Smart Old State: " + prevState + " New State: " + state, Severity.INFO);
+    		Robot.logger.println("Aim Smart Old State: " + prevState + " New State: " + state, true, Severity.INFO);
     		prevState = state;
+    		counter = 0;
+    		toleranceCount = 0;
     	}
 
     }
@@ -184,13 +186,15 @@ public class AimSmart extends BBCommand {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-
-    	
     	if (isTimedOut())
     	{
-    		Robot.logger.println("Aim Timed Out. Aim setpoint: " + this.setpoint + "   Position at timeout: " + Robot.turret.getTurretAngle(),Severity.WARNING);
+    		Robot.logger.println("Aim Timed Out. Aim setpoint: " + this.setpoint + "   Position at timeout: " + Robot.turret.getTurretAngle() + " Aim State: " + state,Severity.WARNING);
     	}
-    	return ( (state == AimState.Aimed && SmartDashboard.getNumber("targetDistance", 0.0) >= 3.0 && SmartDashboard.getNumber("targetDistance", 0.0) <= 5.5) || isTimedOut() );
+    	return ( (state == AimState.Aimed && isTargetRightDistance()) || isTimedOut() );
+    }
+    
+    private boolean isTargetRightDistance() {
+    	return (SmartDashboard.getBoolean("targetDetected", false) && SmartDashboard.getNumber("targetDistance", 0.0) >= 3.0 && SmartDashboard.getNumber("targetDistance", 0.0) <= 5.5);
     }
 
     // Called once after isFinished returns true
