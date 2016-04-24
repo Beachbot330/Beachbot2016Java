@@ -54,7 +54,8 @@ public class LowBarShoot_waypoint_high extends BBCommandGroup {
         addSequential(new DriveWaypoint(batterX,batterY,3,4,false,DriveHigh,GyroDriveHigh));
         //double x, double y, double tolerance, double timeout, boolean stopAtEnd, PIDGains driveGains, PIDGains gyroGains
         addSequential(new Wait(0.7));
-        addSequential(new Aim(4.5, 15.0)); //was 3.5 tolerance
+        //addSequential(new Aim(4.5, 15.0)); //was 3.5 tolerance
+        addSequential(new Aim(4.5, 15.0));
         addSequential(new Shoot());
         
         addSequential(new WaitUntilTeleopConditional());

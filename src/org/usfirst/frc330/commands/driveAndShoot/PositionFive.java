@@ -34,7 +34,8 @@ public class PositionFive extends BBCommandGroup {
         addSequential(new DriveWaypoint(batterX, batterY, 5, 5, true, ChassisConst.DriveLow, ChassisConst.GyroDriveLow));
         //double x, double y, double tolerance, double timeout, boolean stopAtEnd, PIDGains driveGains, PIDGains gyroGains
         addParallel(new DriveTime(5.0,0.1,0.1));
-        addSequential(new Aim(3.5, 15.0));
+//        addSequential(new Aim(3.5, 15.0));
+        addSequential(new AimSmart(3.5, 15.0));
         addSequential(new Shoot());
         addSequential(new Wait(0.2));
         

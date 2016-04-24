@@ -1,6 +1,7 @@
 
 package org.usfirst.frc330.commands.driveAndShoot;
 import org.usfirst.frc330.commands.Aim;
+import org.usfirst.frc330.commands.AimSmart;
 import org.usfirst.frc330.commands.SetArmPosition;
 import org.usfirst.frc330.commands.SetTurretPosition;
 import org.usfirst.frc330.commands.commandgroups.Shoot;
@@ -53,7 +54,8 @@ public class PositionOne extends BBCommandGroup {
     	addSequential(new DriveDistance(60.0, 5.0, 3.0, true, ChassisConst.DriveLow) );  // distance, tol, timeout, stop
     	addSequential(new SetTurretPosition(TurretConst.center, 3.0, 20.0));		     //angle, tol, timeout
     	addSequential(new SetArmPosition(ArmConst.shootAngleFloor, 3.0, 20.0)); 		 //angle, tol, timeout
-    	addSequential(new Aim());
+    	//addSequential(new Aim());
+    	addSequential(new AimSmart());
     	addSequential(new Shoot());   	
     }
 }

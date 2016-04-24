@@ -1,6 +1,7 @@
 
 package org.usfirst.frc330.commands.driveAndShoot;
 import org.usfirst.frc330.commands.Aim;
+import org.usfirst.frc330.commands.AimSmart;
 import org.usfirst.frc330.commands.SetArmPosition;
 import org.usfirst.frc330.commands.SetTurretPosition;
 import org.usfirst.frc330.commands.ShiftHigh;
@@ -52,7 +53,8 @@ public class PositionTwo extends BBCommandGroup {
         addSequential(new ShiftHigh());
         addSequential(new DriveWaypoint(batterX, batterY, 5, 5, false, DriveHigh, GyroDriveHigh));
         
-        addSequential(new Aim(3.5, 15.0));
+        //addSequential(new Aim(3.5, 15.0));
+        addSequential(new AimSmart(3.5, 15.0));
         addSequential(new Shoot());
         addSequential(new Wait(0.2));
         

@@ -34,7 +34,8 @@ public class LowBarOptimized extends BBCommandGroup {
         //double x, double y, double tolerance, double timeout, boolean stopAtEnd, PIDGains driveGains, PIDGains gyroGains
         addParallel(new DriveTime(5.0,0.1,0.1));
         //92,274 (110)
-        addSequential(new Aim(3.5, 15.0));
+        //addSequential(new Aim(3.5, 15.0));
+        addSequential(new AimSmart(3.5, 15.0));
         addSequential(new Shoot());
         addSequential(new Wait(0.2));
         addParallel(new SetTurretPosition(TurretConst.center, 3.0, 20.0));  //angle, tol, timeout)

@@ -35,7 +35,8 @@ public class LowBarShoot_waypoint extends BBCommandGroup {
         addParallel(new SetTurretPosition(0,3,3));
         addSequential(new DriveWaypoint(batterX,batterY,3,4,false,ChassisConst.DriveLow,ChassisConst.GyroDriveLow));
         //double x, double y, double tolerance, double timeout, boolean stopAtEnd, PIDGains driveGains, PIDGains gyroGains
-        addSequential(new Aim(3.5, 15.0));
+        //addSequential(new Aim(3.5, 15.0));
+        addSequential(new AimSmart(3.5, 15.0));
         addSequential(new Shoot());
     }
 }
