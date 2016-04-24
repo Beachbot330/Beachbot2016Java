@@ -76,7 +76,7 @@ public class Climb extends BBCommand {
     boolean shot = false;
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (!initalized)
+    	if (!initalized && Robot.oi.getDriverR().getRawButton(3))
     		init();
     	
     	leftDriven = Robot.chassis.getLeftDistance() - leftStartDistance;
