@@ -8,6 +8,12 @@ public class BBCommandGroup extends CommandGroup {
 	boolean m_completed = false;
 	
 	@Override
+	public void start(){
+		m_completed = false;
+		super.start();
+	}
+	
+	@Override
 	void _initialize(){
 		super._initialize();
 		Robot.logger.println(this.getClass().getName() + " initialized", false, Severity.COMMAND);
