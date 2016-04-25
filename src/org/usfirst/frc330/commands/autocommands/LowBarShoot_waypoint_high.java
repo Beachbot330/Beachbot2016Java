@@ -55,14 +55,14 @@ public class LowBarShoot_waypoint_high extends BBCommandGroup {
         //double x, double y, double tolerance, double timeout, boolean stopAtEnd, PIDGains driveGains, PIDGains gyroGains
         addSequential(new Wait(0.7));
         //addSequential(new Aim(4.5, 15.0)); //was 3.5 tolerance
-        addSequential(new Aim(4.5, 15.0));
+        addSequential(new AimSmart(4.5, 15.0));
         addSequential(new Shoot());
         
         addSequential(new WaitUntilTeleopConditional());
         
         addSequential(new Wait(0.1));
         
-        BBCommand driveCommand = new DriveWaypointBackward(0, initialDriveY, 5, 5, false, ChassisConst.GyroDriveHigh, ChassisConst.GyroTurnHigh);
+        BBCommand driveCommand = new DriveWaypointBackward(30, initialDriveY, 5, 5, false, DriveHigh, GyroDriveHigh);
         addParallel(driveCommand);
         //double x, double y, double tolerance, double timeout, boolean stopAtEnd, PIDGains driveGains, PIDGains gyroGains
         addSequential(new Wait(0.5));
