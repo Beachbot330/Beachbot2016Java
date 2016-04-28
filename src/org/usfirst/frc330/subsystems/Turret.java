@@ -194,10 +194,10 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 	
 	public void setTurretAngle(double position)
 	{
-		changeControlMode(TalonControlMode.Position);
-		turret.setSetpoint(convertDegreesToRotations(position));
-    	if (SCtable != null)
-    		SCtable.putNumber("setpoint", position);
+		//changeControlMode(TalonControlMode.Position);
+		//turret.setSetpoint(convertDegreesToRotations(position));
+    	//if (SCtable != null)
+    	//	SCtable.putNumber("setpoint", position);
 	}
 
 	/////////////////////////////////////////////////////////////
