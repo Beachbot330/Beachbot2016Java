@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -194,10 +195,15 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 	
 	public void setTurretAngle(double position)
 	{
-		//changeControlMode(TalonControlMode.Position);
-		//turret.setSetpoint(convertDegreesToRotations(position));
-    	//if (SCtable != null)
-    	//	SCtable.putNumber("setpoint", position);
+		if(this.getSensorFault()){
+			Robot.pickup.turnOnLEDs();
+		}
+		else{
+			changeControlMode(TalonControlMode.Position);
+			turret.setSetpoint(convertDegreesToRotations(position));
+			if (SCtable != null)
+				SCtable.putNumber("setpoint", position);
+		}
 	}
 
 	/////////////////////////////////////////////////////////////
@@ -213,8 +219,14 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 	}
 	
 	public boolean isCentered() {
-    	return Robot.turret.getTurretAngle() < TurretConst.turretSafeLimitCW &&
-				   Robot.turret.getTurretAngle() > TurretConst.turretSafeLimitCCW;
+		if (this.getSensorFault() && DriverStation.getInstance().isFMSAttached() && DriverStation.getInstance().isOperatorControl()){
+			Robot.pickup.turnOnLEDs();
+			return true;
+		}
+		else {
+	    	return Robot.turret.getTurretAngle() < TurretConst.turretSafeLimitCW &&
+					   Robot.turret.getTurretAngle() > TurretConst.turretSafeLimitCCW;
+		}  
 	}
 
 	/////////////////////////////////////////////////////////////
