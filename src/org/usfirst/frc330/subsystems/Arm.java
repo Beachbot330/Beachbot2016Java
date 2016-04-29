@@ -287,33 +287,40 @@ public class Arm extends Subsystem implements LiveWindowSendable {
     	
     }
     
+    public boolean isSecondaryActive() {
+    	return activeSide == armR;
+    }
+    
     public void switchToSecondary(){
     	activeSide = armR;
     	
-    	int absolutePosition = activeSide.getPulseWidthPosition() & 0xFFF; /* mask out the bottom12 bits, we don't care about the wrap arounds */
-        /* use the low level API to set the quad encoder signal */
-        armL.setEncPosition(absolutePosition - getArmZero());
-    	
-    	armR.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-    	armR.reverseSensor(true);
-    	armR.reverseOutput(true);
-    	setPIDConstants(ArmConst.proportional, ArmConst.integral, ArmConst.derivative);
-    	setArmAbsoluteTolerance(ArmConst.tolerance);
-    	setLowerSoftLimit(ArmConst.limitLowerAngle); //Todo: Check
-    	setUpperSoftLimit(ArmConst.limitUpperAngle); //Todo: Check
-    	armR.enableForwardSoftLimit(true);
-    	armR.enableReverseSoftLimit(true);
-    	armR.enableBrakeMode(true);
-    	armR.setVoltageRampRate(ArmConst.VoltageRampRate);
-    	armR.configMaxOutputVoltage(ArmConst.MaxOutputVoltage);
-    	
-    	//set armL to follow armR, reversed
-    	armL.changeControlMode(TalonControlMode.Follower);
-    	armL.set(armR.getDeviceID());
-    	armL.reverseOutput(false);
-    	armL.enableBrakeMode(false);
-    	armR.enableForwardSoftLimit(false);
-    	armR.enableReverseSoftLimit(false);
+    	if (!isSecondaryActive()) {
+
+    		int absolutePosition = armR.getPulseWidthPosition() & 0xFFF; /* mask out the bottom12 bits, we don't care about the wrap arounds */
+    		/* use the low level API to set the quad encoder signal */
+    		armR.setEncPosition(absolutePosition - getArmZero());
+
+    		armR.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+    		armR.reverseSensor(true);
+    		armR.reverseOutput(true);
+    		setPIDConstants(ArmConst.proportional, ArmConst.integral, ArmConst.derivative);
+    		setArmAbsoluteTolerance(ArmConst.tolerance);
+    		setLowerSoftLimit(ArmConst.limitLowerAngle); //Todo: Check
+    		setUpperSoftLimit(ArmConst.limitUpperAngle); //Todo: Check
+    		armR.enableForwardSoftLimit(true);
+    		armR.enableReverseSoftLimit(true);
+    		armR.enableBrakeMode(true);
+    		armR.setVoltageRampRate(ArmConst.VoltageRampRate);
+    		armR.configMaxOutputVoltage(ArmConst.MaxOutputVoltage);
+
+    		//set armL to follow armR, reversed
+    		armL.changeControlMode(TalonControlMode.Follower);
+    		armL.set(armR.getDeviceID());
+    		armL.reverseOutput(false);
+    		armL.enableBrakeMode(false);
+    		armL.enableForwardSoftLimit(false);
+    		armL.enableReverseSoftLimit(false);
+    	}
     }
     
 
