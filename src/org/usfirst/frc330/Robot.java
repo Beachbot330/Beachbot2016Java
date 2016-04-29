@@ -157,6 +157,11 @@ public class Robot extends BBIterativeRobot {
     	Scheduler.getInstance().run();
     	chassis.calcXY();
     	csvLogger.writeData();
+    	if(arm.getSensorFault()){
+    		logger.println("Arm sensor has failed, switching sensors", Severity.ERROR);
+    		arm.switchToSecondary();
+    		pickup.turnOnLEDs();
+    	}
     }
 
     public static boolean isPracticeRobot() {
@@ -218,6 +223,11 @@ public class Robot extends BBIterativeRobot {
         chassis.pidDriveAuto();
         arm.monitorArm();
     	csvLogger.writeData();
+    	if(arm.getSensorFault()){
+    		logger.println("Arm sensor has failed, switching sensors", Severity.ERROR);
+    		arm.switchToSecondary();
+    		pickup.turnOnLEDs();
+    	}
     }
 
     /*****************************************************************
@@ -258,6 +268,11 @@ public class Robot extends BBIterativeRobot {
         chassis.pidDrive();
         arm.monitorArm();
     	csvLogger.writeData();
+    	if(arm.getSensorFault()){
+    		logger.println("Arm sensor has failed, switching sensors", Severity.ERROR);
+    		arm.switchToSecondary();
+    		pickup.turnOnLEDs();
+    	}
     }
     
     /*****************************************************************
