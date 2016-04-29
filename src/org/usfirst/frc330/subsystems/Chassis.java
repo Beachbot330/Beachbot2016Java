@@ -136,12 +136,12 @@ public class Chassis extends Subsystem
     	};
     	Robot.csvLogger.add("DriveTrainDistanceR", temp);
     	
-    	temp = new CSVLoggable() {
+    	temp = new CSVLoggable(true) {
 			public double get() { return driveTrainEncoderL.getRate(); }  		
     	};
     	Robot.csvLogger.add("DriveTrainRateL", temp);
     	
-    	temp = new CSVLoggable() {
+    	temp = new CSVLoggable(true) {
 			public double get() { return driveTrainEncoderR.getRate(); }  		
     	};
     	Robot.csvLogger.add("DriveTrainRateR", temp);    	

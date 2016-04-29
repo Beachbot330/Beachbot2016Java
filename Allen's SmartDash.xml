@@ -1,5 +1,14 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="targetDistance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="54"/>
+	</widget>
+	<widget field="driveHome" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="27"/>
+	</widget>
+	<widget field="Mode" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="0"/>
+	</widget>
 	<widget field="AimTolerance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="160"/>
 	</widget>
@@ -13,7 +22,7 @@
 		<location x="0" y="97"/>
 	</widget>
 	<widget field="ChassisRoll" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="774" y="339"/>
+		<location x="1172" y="1434"/>
 	</widget>
 	<widget field="ChassisIMUY" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="922" y="364"/>
@@ -22,7 +31,7 @@
 		<location x="920" y="339"/>
 	</widget>
 	<widget field="ResetGyro" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="0" y="0"/>
+		<location x="1452" y="1408"/>
 	</widget>
 	<widget field="Climb" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="615" y="759"/>
@@ -37,10 +46,10 @@
 		<location x="0" y="270"/>
 	</widget>
 	<widget field="Arm" type="CANSpeedController" class="edu.wpi.first.smartdashboard.gui.elements.CANSpeedController">
-		<location x="1281" y="637"/>
+		<location x="1389" y="864"/>
 	</widget>
 	<widget field="Turret" type="CANSpeedController" class="edu.wpi.first.smartdashboard.gui.elements.CANSpeedController">
-		<location x="18" y="369"/>
+		<location x="29" y="839"/>
 	</widget>
 	<widget field="targetAngle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="274" y="541"/>
@@ -100,7 +109,9 @@
 		<location x="782" y="48"/>
 	</widget>
 	<widget field="Pressure" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.SimpleDial">
-		<location x="602" y="50"/>
+		<location x="56" y="1099"/>
+		<width>314</width>
+		<height>327</height>
 		<property name="Upper Limit" value="130.0"/>
 	</widget>
 	<widget field="GyroIsConnected" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
@@ -116,60 +127,30 @@
 		<location x="1071" y="337"/>
 	</widget>
 	<widget field="ChassisAngle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="998" y="312"/>
+		<location x="1164" y="1401"/>
 	</widget>
 	<widget field="ChassisX" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="1072" y="362"/>
 	</widget>
 	<widget field="DriveTrainDistanceR" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="1411" y="434"/>
+		<location x="1307" y="1800"/>
 		<height>20</height>
 	</widget>
 	<widget field="DriveTrainDistanceL" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="1223" y="435"/>
+		<location x="954" y="1790"/>
 	</widget>
 	<widget field="ArmOutput" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="1140" y="593"/>
+		<location x="1132" y="544"/>
 	</widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
-		<location x="26" y="217"/>
-		<width>158</width>
-		<height>118</height>
-		<property name="Image File" value="C:\Users\allenpeters\git\Beachbot2016Dash\Photos\Turret small.jpg"/>
-		<property name="Maintain Aspect Ratio" value="true"/>
-	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
-		<location x="16" y="620"/>
-		<property name="Image File" value="C:\Users\allenpeters\git\Beachbot2016Dash\Photos\Shooter.jpg"/>
-		<property name="Maintain Aspect Ratio" value="true"/>
-	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
-		<location x="565" y="430"/>
-		<width>138</width>
-		<height>103</height>
-		<property name="Image File" value="C:\Users\allenpeters\git\Beachbot2016Dash\Photos\Pickup small.jpg"/>
-		<property name="Maintain Aspect Ratio" value="true"/>
-	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
-		<location x="973" y="413"/>
-		<width>234</width>
-		<height>166</height>
-		<property name="Image File" value="C:\Users\allenpeters\git\Beachbot2016Dash\Photos\Arm Small.jpg"/>
-		<property name="Maintain Aspect Ratio" value="true"/>
-	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
-		<location x="1268" y="85"/>
-		<width>234</width>
-		<height>175</height>
-		<property name="Image File" value="C:\Users\allenpeters\git\Beachbot2016Dash\Photos\20160216_202203_2.jpg"/>
-		<property name="Maintain Aspect Ratio" value="true"/>
-	</static-widget>
+	<widget field="GyroCompensation" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1118" y="1481"/>
+	</widget>
 	<widget field="TurretAngle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="34" y="342"/>
 		<height>20</height>
 	</widget>
 	<widget field="ArmAngle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="999" y="594"/>
+		<location x="1108" y="586"/>
 	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
 		<location x="1254" y="4"/>
@@ -183,7 +164,7 @@
 		<location x="866" y="269"/>
 	</widget>
 	<widget field="rightDrivePID" type="PIDController" class="edu.wpi.first.smartdashboard.gui.elements.PIDEditor">
-		<location x="1422" y="270"/>
+		<location x="1353" y="1560"/>
 	</widget>
 	<widget field="SetQuadrantPosition: Quadrant2" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="1024" y="694"/>
@@ -202,7 +183,7 @@
 		<location x="592" y="541"/>
 	</widget>
 	<widget field="ShiftHigh" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="1436" y="509"/>
+		<location x="1671" y="1554"/>
 	</widget>
 	<widget field="deployUpperClimber" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="865" y="212"/>
@@ -214,13 +195,13 @@
 		<location x="431" y="544"/>
 	</widget>
 	<widget field="leftDrivePID" type="PIDController" class="edu.wpi.first.smartdashboard.gui.elements.PIDEditor">
-		<location x="1253" y="273"/>
+		<location x="1025" y="1563"/>
 	</widget>
 	<widget field="gyroPID" type="PIDController" class="edu.wpi.first.smartdashboard.gui.elements.PIDEditor">
 		<location x="1102" y="101"/>
 	</widget>
 	<widget field="ShiftLow" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="1438" y="539"/>
+		<location x="1671" y="1593"/>
 	</widget>
 	<widget field="Robot Start Position" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
 		<location x="1257" y="30"/>
@@ -301,20 +282,20 @@
 	</widget>
 </dashboard>
 <live-window>
-	<widget field="Climber" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="PivotHigh" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
+	<widget field="Frills" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="buzzer" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
 			<location x="0" y="0"/>
 			<height>0</height>
 			<width>0</width>
 		</widget>
-		<widget field="PivotHigh" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
+		<widget field="buzzer" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
 			<location x="0" y="0"/>
 			<height>0</height>
 			<width>0</width>
 		</widget>
-		<location x="0" y="120"/>
-		<width>159</width>
-		<height>89</height>
+		<location x="0" y="48"/>
+		<width>280</width>
+		<height>261</height>
 	</widget>
 	<widget field="Chassis" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
 		<widget field="driveTrainEncoderL" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
@@ -330,6 +311,21 @@
 		<location x="0" y="0"/>
 		<width>305</width>
 		<height>685</height>
+	</widget>
+	<widget field="Climber" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="PivotHigh" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="PivotHigh" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<location x="0" y="120"/>
+		<width>159</width>
+		<height>89</height>
 	</widget>
 	<widget field="Arm" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
 		<widget field="armL" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
@@ -375,21 +371,6 @@
 		<location x="0" y="72"/>
 		<width>96</width>
 		<height>103</height>
-	</widget>
-	<widget field="Frills" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="buzzer" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
-			<location x="0" y="0"/>
-			<height>0</height>
-			<width>0</width>
-		</widget>
-		<widget field="buzzer" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
-			<location x="0" y="0"/>
-			<height>0</height>
-			<width>0</width>
-		</widget>
-		<location x="0" y="48"/>
-		<width>280</width>
-		<height>261</height>
 	</widget>
 	<widget field="Pickup" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
 		<widget field="PickupR" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">

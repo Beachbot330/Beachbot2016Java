@@ -38,8 +38,8 @@ public final class ArmConst {
 	public static final double defaultNeutral	        = 55.0;  //AP 3-11    moved from 60 to 55 to protect stinger
 	public static final double highLimitNeutral         = 60.0;  // JR 3-15 
 	public static final double safeToDeployPortcullis   = 60.0;  // JR 2-27 
-	public static final double shootAngleRamp    		= 90;  	 //AP 4-28 adjusted for new arm bends and welds, was 87
-	public static final double shootAngleFloor   		= 90;    //AP 4-28
+	public static final double shootAngleRamp    		= 89.5;  	 //AP 4-28 adjusted for new arm bends and welds, was 87
+	public static final double shootAngleFloor   		= 89.5;    //AP 4-28
 	public static final double safeToDeployLowerClimber = 95.0;  //AP 3/10
 	public static final double safeToDeployUpperClimber = 108.0; //AP 3/10 (could be reduced to 105
 	public static final double limitUpperAngle   		= 113.0; //AP 1-26

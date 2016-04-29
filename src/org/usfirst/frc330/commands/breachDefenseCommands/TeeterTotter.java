@@ -38,7 +38,7 @@ public class TeeterTotter extends BBCommandGroup {
     	addSequential(new DriveWaypoint(xOffset, onRamps, 2.0, 15.0, false, driveLow, gyroDriveLow));
     	
     	addParallel(new SetArmPosition(ArmConst.defaultNeutral, 5.0, 20.0));
-    	addSequential(new DriveWaypoint(xOffset, tippingPoint, 2.0, 15.0, true, creepForward, gyroDriveLow));
+    	addSequential(new DriveWaypoint(xOffset, tippingPoint, 5.0, 15.0, true, creepForward, gyroDriveLow));
     	addSequential(new Wait(0.7)); //time to tip
     	
     	addParallel(new SetArmPosition(ArmConst.defaultNeutral, 5, 1));

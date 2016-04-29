@@ -27,10 +27,10 @@ import edu.wpi.first.wpilibj.command.BBCommandGroup;
  */
 public class PositionThree extends BBCommandGroup {
     
-	double pivotPointX = 44;
+	double pivotPointX = 40;  //adjusted from 44
 	double pivotPointY = 210;
 	
-	double batterX = 44;
+	double batterX = 40;  //adjusted from 44
 	double batterY = 262;
 			
 	double startY = 160;
