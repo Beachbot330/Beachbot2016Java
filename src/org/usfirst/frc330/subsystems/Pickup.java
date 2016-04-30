@@ -139,6 +139,14 @@ public class Pickup extends Subsystem
     	cameraLED.set(false);
     	pickupLid.set(DoubleSolenoid.Value.kReverse);
     }
+
+	public void turnOnLEDs() {
+		cameraLED.set(true);
+	}
+	public void turnOffLEDs() {
+		cameraLED.set(false);
+		
+	}
     
 }
 

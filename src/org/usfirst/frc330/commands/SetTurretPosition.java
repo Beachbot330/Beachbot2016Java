@@ -68,7 +68,7 @@ public class  SetTurretPosition extends BBCommand {
     								+ "   Position at timeout: " 
     								+ Robot.turret.getTurretAngle(), Severity.WARNING);
     	}
-    	return (Robot.turret.onTurretTarget() || isTimedOut());
+    	return (Robot.turret.onTurretTarget() || isTimedOut()) || Robot.turret.getSensorFault();
     }
 
     // Called once after isFinished returns true
