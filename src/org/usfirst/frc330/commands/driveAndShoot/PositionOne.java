@@ -53,7 +53,7 @@ public class PositionOne extends BBCommandGroup {
     	addSequential(new TurnGyroAbs(0, 3.0, 10.0, ChassisConst.GyroDriveLow)); 		 // angle, tolerance, timeout, PID gain
     	addSequential(new DriveDistance(60.0, 5.0, 3.0, true, ChassisConst.DriveLow) );  // distance, tol, timeout, stop
     	addSequential(new SetTurretPosition(TurretConst.center, 3.0, 20.0));		     //angle, tol, timeout
-    	addSequential(new SetArmPosition(ArmConst.shootAngleFloor, 3.0, 20.0)); 		 //angle, tol, timeout
+    	addSequential(new SetArmPosition(ArmConst.shootAngleAuto, 3.0, 20.0)); 		 //angle, tol, timeout
     	//addSequential(new Aim());
     	addSequential(new AimSmart());
     	addSequential(new Shoot());   	

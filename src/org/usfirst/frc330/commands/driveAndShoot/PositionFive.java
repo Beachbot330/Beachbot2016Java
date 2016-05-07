@@ -27,7 +27,7 @@ public class PositionFive extends BBCommandGroup {
 	
     public  PositionFive() {
     	addSequential(new ShiftLow());
-    	addParallel(new SetArmPosition(ArmConst.shootAngleFloor, 5, 1));
+    	addParallel(new SetArmPosition(ArmConst.shootAngleAuto, 5, 1));
     	addSequential(new DriveWaypoint(pivotPointX, pivotPointY, 5, 5, true, ChassisConst.DriveLow, ChassisConst.GyroDriveLow));
         addSequential(new TurnGyroWaypoint(batterX, batterY, 8, 2, ChassisConst.GyroTurnLow));
         //double x, double y, double tolerance, double timeout, PIDGains gains

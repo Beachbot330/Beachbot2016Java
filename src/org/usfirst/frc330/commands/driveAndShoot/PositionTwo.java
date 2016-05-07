@@ -27,10 +27,10 @@ public class PositionTwo extends BBCommandGroup {
     
 	double positionOffset = 4*12+4;
 	
-	double pivotPointX = 44 + positionOffset;
+	double pivotPointX = 44-4 + positionOffset;
 	double pivotPointY = 210;
 	
-	double batterX = 44 + positionOffset;
+	double batterX = 44-4 + positionOffset;
 	double batterY = 265;
 			
 	double startY = 160;
@@ -49,7 +49,7 @@ public class PositionTwo extends BBCommandGroup {
         addSequential(new ShiftLow());
         addSequential(new TurnGyroWaypoint(batterX, batterY, 5, 3, GyroTurnLow));
         
-        addParallel(new SetArmPosition(ArmConst.shootAngleFloor, 5, 1));
+        addParallel(new SetArmPosition(ArmConst.shootAngleAuto, 5, 1));
         addSequential(new ShiftHigh());
         addSequential(new DriveWaypoint(batterX, batterY, 5, 5, false, DriveHigh, GyroDriveHigh));
         
