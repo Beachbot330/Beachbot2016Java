@@ -49,7 +49,7 @@ public class PositionThree extends BBCommandGroup {
         addSequential(new ShiftLow());
         addSequential(new TurnGyroWaypoint(batterX, batterY, 5, 3, GyroTurnLow));
         
-        addParallel(new SetArmPosition(ArmConst.shootAngleAuto, 5, 1));
+        addParallel(new SetArmPosition(ArmConst.shootAngleFloor, 5, 1));
         addSequential(new ShiftHigh());
         addSequential(new DriveWaypoint(batterX, batterY, 5, 5, false, DriveHigh, GyroDriveHigh));
         
