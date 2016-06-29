@@ -47,7 +47,7 @@ public class deployLowerClimber extends BBCommand {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return Robot.climber.isLowerClimberDeployed();
     }
 
     // Called once after isFinished returns true
