@@ -49,8 +49,9 @@ public class ClimberDeploy extends BBCommandGroup {
     	addSequential(new SetTurretPosition(TurretConst.center, 5.0, 1.0));
     	addSequential(new Wait(0.2));
     	addSequential(new deployLowerClimber());
-    	addSequential(new Wait(0.2));
+    	addSequential(new Wait(0.4));  //increased from 0.2, 7/15, AP
     	addSequential(new deployUpperClimber());
-    	
+    	addSequential(new Wait(0.5));
+    	addSequential(new RetryUpperClimber());
     } 
 }

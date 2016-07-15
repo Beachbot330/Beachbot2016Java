@@ -78,13 +78,14 @@ public class Climber extends Subsystem
     	if (Robot.arm.isSafeToDeployLowerClimber())
     	{
     		pivotLow.set(true);
-    		Robot.logger.println("Deploying lower climber", true);
+    		Robot.logger.println("Deploying (Unlocking) Lower Climber Stage", Severity.INFO);
     	}
     	else
     		Robot.logger.println("Unsafe to deploy lower climber", true, Severity.WARNING);
     }
     
     public void lockLowerClimber() {
+    	Robot.logger.println("Locking Lower Climber Stage", Severity.INFO);
     	pivotLow.set(false);
     }
     
@@ -102,7 +103,7 @@ public class Climber extends Subsystem
     {
     	if (Robot.arm.isSafeToDeployUpperClimber() && isLowerClimberDeployed()){
     		pivotHigh.set(true);
-    		Robot.logger.println("Deploying upper climber", true);
+    		Robot.logger.println("Deploying (Unlocking) Upper Climber Stage", Severity.INFO);
     		return true;
     	}
     	else{
@@ -117,6 +118,7 @@ public class Climber extends Subsystem
     }
     
     public void lockUpperClimber() {
+    	Robot.logger.println("Locking Upper Climber Stage", Severity.INFO);
     	pivotHigh.set(false);
     }
 
