@@ -38,7 +38,7 @@ public class PositionFour extends BBCommandGroup {
         addParallel(new SetArmPosition(ArmConst.shootAngleFloor, 5, 1));
         addSequential(new DriveWaypoint(batterX, batterY, 5, 5, true, ChassisConst.DriveLow, ChassisConst.GyroDriveLow));
         //double x, double y, double tolerance, double timeout, boolean stopAtEnd, PIDGains driveGains, PIDGains gyroGains
-        addParallel(new DriveTime(5.0,0.1,0.1));
+        //addParallel(new DriveTime(5.0,0.1,0.1));
         //addSequential(new Aim(3.5, 15.0));
         addSequential(new AimSmart(3.5, 15.0));
         addSequential(new Shoot());
