@@ -2,41 +2,44 @@ package edu.wpi.first.wpilibj;
 
 import org.usfirst.frc330.util.Logger;
 
-import edu.wpi.first.wpilibj.communication.FRCNetworkCommunicationsLibrary;
-import edu.wpi.first.wpilibj.communication.HALControlWord;
-import edu.wpi.first.wpilibj.communication.UsageReporting;
-import edu.wpi.first.wpilibj.communication.FRCNetworkCommunicationsLibrary.tInstances;
-import edu.wpi.first.wpilibj.communication.FRCNetworkCommunicationsLibrary.tResourceType;
+import edu.wpi.first.wpilibj.hal.FRCNetComm.tInstances;
+import edu.wpi.first.wpilibj.hal.FRCNetComm.tResourceType;
+import edu.wpi.first.wpilibj.hal.HAL;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 public class BBIterativeRobot extends IterativeRobot {
 	
 	protected boolean m_disconnectedInitialized;
+    protected boolean m_disabledInitialized;
+    protected boolean m_autonomousInitialized;
+    protected boolean m_teleopInitialized;
+    protected boolean m_testInitialized;
 	
 	public BBIterativeRobot() {
 		super();
 		m_disconnectedInitialized = false;
+        m_disabledInitialized = false;
+        m_autonomousInitialized = false;
+        m_teleopInitialized = false;
+        m_testInitialized = false;
 	}
 
 	@Override
 	public void startCompetition() {
-//		System.out.println("In BBIterativeRobot StartCompetition");
-		UsageReporting.report(tResourceType.kResourceType_Framework, tInstances.kFramework_Iterative);
+        HAL.report(tResourceType.kResourceType_Framework,
+                                   tInstances.kFramework_Iterative);
 
 		robotInit();
 
 		// Tell the DS that the robot is ready to be enabled
-		FRCNetworkCommunicationsLibrary.FRCNetworkCommunicationObserveUserProgramStarting();
-		
-//		System.out.println("after observe user program starting");
+        HAL.observeUserProgramStarting();
 
 		// loop forever, calling the appropriate mode-dependent function
 		LiveWindow.setEnabled(false);
-//		System.out.println("after live window disable");
 		while (true) {
 			// Call the appropriate function depending upon the current robot mode
+			m_ds.waitForData(50);
 			if (isDisabled()) {
-//				System.out.println("Disabled");
 				// call DisabledInit() if we are now just entering disabled mode from
 				// either a different mode or from power-on
 				if (!m_disabledInitialized) {
@@ -49,12 +52,10 @@ public class BBIterativeRobot extends IterativeRobot {
 					m_testInitialized = false;
 					m_disconnectedInitialized = false;
 				}
-				if (nextPeriodReady()) {
-					FRCNetworkCommunicationsLibrary.FRCNetworkCommunicationObserveUserProgramDisabled();
-					disabledPeriodic();
-				}
+
+				HAL.observeUserProgramDisabled();
+				disabledPeriodic();
 			} else if (isTest()) {
-//				System.out.println("Test");
 				// call TestInit() if we are now just entering test mode from either
 				// a different mode or from power-on
 				if (!m_testInitialized) {
@@ -66,12 +67,10 @@ public class BBIterativeRobot extends IterativeRobot {
 					m_disabledInitialized = false;
 					m_disconnectedInitialized = false;
 				}
-				if (nextPeriodReady()) {
-					FRCNetworkCommunicationsLibrary.FRCNetworkCommunicationObserveUserProgramTest();
-					testPeriodic();
-				}
+				HAL.observeUserProgramTest();
+				testPeriodic();
+				
 			} else if (isAutonomous()) {
-//				System.out.println("Autonomous");
 				// call Autonomous_Init() if this is the first time
 				// we've entered autonomous_mode
 				if (!m_autonomousInitialized) {
@@ -86,12 +85,9 @@ public class BBIterativeRobot extends IterativeRobot {
 					m_disabledInitialized = false;
 					m_disconnectedInitialized = false;
 				}
-				if (nextPeriodReady()) {
-					FRCNetworkCommunicationsLibrary.FRCNetworkCommunicationObserveUserProgramAutonomous();
-					autonomousPeriodic();
-				}
+				HAL.observeUserProgramAutonomous();
+				autonomousPeriodic();
 			} else if (isEnabled()){
-//				System.out.println("Teleop");
 				// call Teleop_Init() if this is the first time
 				// we've entered teleop_mode
 				if (!m_teleopInitialized) {
@@ -103,13 +99,10 @@ public class BBIterativeRobot extends IterativeRobot {
 					m_disabledInitialized = false;
 					m_disconnectedInitialized = false;
 				}
-				if (nextPeriodReady()) {
-					FRCNetworkCommunicationsLibrary.FRCNetworkCommunicationObserveUserProgramTeleop();
-					teleopPeriodic();
-				}
+				HAL.observeUserProgramTeleop();
+				teleopPeriodic();
 			}
 				else {
-//					System.out.println("Disconnected");
 					// call Disconnected_Init() if this is the first time
 					// we've entered disconnected_mode
 					if (!m_disconnectedInitialized) {
@@ -121,25 +114,18 @@ public class BBIterativeRobot extends IterativeRobot {
 						m_disabledInitialized = false;
 						m_disconnectedInitialized = true;
 					}
-					//FRCNetworkCommunicationsLibrary.FRCNetworkCommunicationObserveUserProgramDisabled();
 					disconnectedPeriodic();
-					m_ds.waitForData(20);
-				}
-			
-			m_ds.waitForData(20);
+				}			
 		}
 	}
 
 	@Override
 	public boolean isDisabled() {
-	    HALControlWord controlWord = FRCNetworkCommunicationsLibrary.HALGetControlWord();
-	    //System.out.println("In BBisDisabled. IsDisabled " + (!controlWord.getEnabled() && controlWord.getDSAttached()));
-	    return !controlWord.getEnabled() && controlWord.getDSAttached();
+	    return !m_ds.isEnabled() && m_ds.isDSAttached();
 	}
 	
 	public boolean isDisconnected() {
-	    HALControlWord controlWord = FRCNetworkCommunicationsLibrary.HALGetControlWord();
-	    return !controlWord.getDSAttached();
+		return !m_ds.isDSAttached();
 	}
 	
 	  /**
@@ -165,7 +151,6 @@ public class BBIterativeRobot extends IterativeRobot {
 	      System.out.println("Default BBIterativeRobot.disconnectedPeriodic() method... Overload me!");
 	      dipFirstRun = false;
 	    }
-	    Timer.delay(0.001);
 	  }
 	
 }
