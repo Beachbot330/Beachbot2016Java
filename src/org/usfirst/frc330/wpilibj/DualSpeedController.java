@@ -30,12 +30,6 @@ public class DualSpeedController implements SpeedController, LiveWindowSendable 
 	}
 
 	@Override
-	/**@deprecated do not use*/
-	public void set(double speed, byte syncGroup) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
 	public void set(double speed) {
 		motor1.set(speed);
 		motor2.set(speed);
