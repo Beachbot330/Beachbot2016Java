@@ -12,6 +12,7 @@
 package org.usfirst.frc330;
 
 import edu.wpi.first.wpilibj.BBIterativeRobot;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -83,6 +84,9 @@ public class Robot extends BBIterativeRobot {
         // constructed yet. Thus, their requires() statements may grab null
         // pointers. Bad news. Don't move it.
         oi = new OI();
+        
+        CameraServer.getInstance().startAutomaticCapture();
+        
     
         //Populate the auto modes and options
         autoProgram = new SendableChooser();
