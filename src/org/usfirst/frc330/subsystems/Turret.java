@@ -17,6 +17,7 @@ import org.usfirst.frc330.commands.ManualTurret;
 import org.usfirst.frc330.constants.TurretConst;
 import org.usfirst.frc330.constants.TurretConstPract;
 import org.usfirst.frc330.util.CSVLoggable;
+import org.usfirst.frc330.util.CSVLogger;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
@@ -110,27 +111,27 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 		CSVLoggable temp = new CSVLoggable(true) {
 			public double get() { return getTurretAngle(); }
 		};
-		Robot.csvLogger.add("TurretAngle", temp);
+		CSVLogger.getInstance().add("TurretAngle", temp);
 		
 		temp = new CSVLoggable(true) {
 			public double get() { return getTurretOutput(); }
 		};
-		Robot.csvLogger.add("TurretOutput", temp);
+		CSVLogger.getInstance().add("TurretOutput", temp);
 		
 		temp = new CSVLoggable(true) {
 			public double get() { return getTurretSetpoint(); }
 		};
-		Robot.csvLogger.add("TurretSetpoint", temp);
+		CSVLogger.getInstance().add("TurretSetpoint", temp);
 		
 		temp = new CSVLoggable(true) {
 			public double get() { return getCCWSoftLimit(); }
 		};
-		Robot.csvLogger.add("TurretCCWSoftLimit", temp);
+		CSVLogger.getInstance().add("TurretCCWSoftLimit", temp);
 		
 		temp = new CSVLoggable(true) {
 			public double get() { return getCWSoftLimit(); }
 		};
-		Robot.csvLogger.add("TurretCWSoftLimit", temp);
+		CSVLogger.getInstance().add("TurretCWSoftLimit", temp);
 
 		temp = new CSVLoggable(true) {
 			public double get() { 
@@ -140,12 +141,12 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 					return 0.0;
 			}
 		};
-		Robot.csvLogger.add("turretFault", temp);
+		CSVLogger.getInstance().add("turretFault", temp);
 		
 		temp = new CSVLoggable(false) {
 			public double get() { return SmartDashboard.getNumber("targetAngle", 0); }
 		};
-		Robot.csvLogger.add("targetAngle", temp);
+		CSVLogger.getInstance().add("targetAngle", temp);
 	}
 	/////////////////////////////////////////////////////////////
 	// SET methods

@@ -16,6 +16,7 @@ import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.ManualArm;
 import org.usfirst.frc330.constants.ArmConst;
 import org.usfirst.frc330.util.CSVLoggable;
+import org.usfirst.frc330.util.CSVLogger;
 import org.usfirst.frc330.util.Logger.Severity;
 
 import com.ctre.CANTalon;
@@ -106,37 +107,37 @@ public class Arm extends Subsystem implements LiveWindowSendable {
 		CSVLoggable temp = new CSVLoggable(true) {
 			public double get() { return getArmAngle(); }
 		};
-		Robot.csvLogger.add("ArmAngle", temp);
+		CSVLogger.getInstance().add("ArmAngle", temp);
 
 		temp = new CSVLoggable(true) {
 			public double get() { return getArmOutput(); }
 		};
-		Robot.csvLogger.add("ArmOutput", temp);
+		CSVLogger.getInstance().add("ArmOutput", temp);
 		
 		temp = new CSVLoggable(true) {
 			public double get() { return getCurrentQuadrant(); }
 		};
-		Robot.csvLogger.add("ArmQuadrant", temp);
+		CSVLogger.getInstance().add("ArmQuadrant", temp);
 		
 		temp = new CSVLoggable(true) {
 			public double get() { return getSetpoint(); }
 		};
-		Robot.csvLogger.add("ArmSetpoint", temp);
+		CSVLogger.getInstance().add("ArmSetpoint", temp);
 		
 //		temp = new CSVLoggable(true) {
 //			public double get() { return getArmPositionTicks(); }
 //		};
-//		Robot.csvLogger.add("ArmTicks", temp);
+//		CSVLogger.getInstance().add("ArmTicks", temp);
 		
 		temp = new CSVLoggable(true) {
 			public double get() { return getLowerLimit(); }
 		};
-		Robot.csvLogger.add("ArmLowerLimit", temp);
+		CSVLogger.getInstance().add("ArmLowerLimit", temp);
 		
 		temp = new CSVLoggable(true) {
 			public double get() { return getUpperLimit(); }
 		};
-		Robot.csvLogger.add("ArmUpperLimit", temp);
+		CSVLogger.getInstance().add("ArmUpperLimit", temp);
 		
     }
     

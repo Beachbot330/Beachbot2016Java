@@ -16,6 +16,7 @@ import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.*;
 import org.usfirst.frc330.constants.ChassisConst;
 import org.usfirst.frc330.util.CSVLoggable;
+import org.usfirst.frc330.util.CSVLogger;
 import org.usfirst.frc330.wpilibj.DummyPIDOutput;
 import org.usfirst.frc330.wpilibj.MultiPIDController;
 
@@ -126,67 +127,67 @@ public class Chassis extends Subsystem
         CSVLoggable temp = new CSVLoggable(true) {
 			public double get() { return driveTrainEncoderL.getDistance(); }
     	};
-    	Robot.csvLogger.add("DriveTrainDistanceL", temp);
+    	CSVLogger.getInstance().add("DriveTrainDistanceL", temp);
     	
     	temp = new CSVLoggable(true) {
 			public double get() { return driveTrainEncoderR.getDistance(); }
     	};
-    	Robot.csvLogger.add("DriveTrainDistanceR", temp);
+    	CSVLogger.getInstance().add("DriveTrainDistanceR", temp);
     	
     	temp = new CSVLoggable(true) {
 			public double get() { return driveTrainEncoderL.getRate(); }  		
     	};
-    	Robot.csvLogger.add("DriveTrainRateL", temp);
+    	CSVLogger.getInstance().add("DriveTrainRateL", temp);
     	
     	temp = new CSVLoggable(true) {
 			public double get() { return driveTrainEncoderR.getRate(); }  		
     	};
-    	Robot.csvLogger.add("DriveTrainRateR", temp);    	
+    	CSVLogger.getInstance().add("DriveTrainRateR", temp);    	
 
     	temp = new CSVLoggable() {
 			public double get() { return speedControllerL1.get(); }  		
     	};
-    	Robot.csvLogger.add("DriveTrainLeft", temp);
+    	CSVLogger.getInstance().add("DriveTrainLeft", temp);
     	
     	temp = new CSVLoggable() {
 			public double get() { return speedControllerR1.get(); }  		
     	};
-    	Robot.csvLogger.add("DriveTrainRight", temp);
+    	CSVLogger.getInstance().add("DriveTrainRight", temp);
     	
     	temp = new CSVLoggable(true) {
 			public double get() { return getAngle(); }  		
     	};    	
-    	Robot.csvLogger.add("ChassisAngle", temp);
+    	CSVLogger.getInstance().add("ChassisAngle", temp);
     	
     	temp = new CSVLoggable(true) {
 			public double get() { return getGyroComp(); }  		
     	};    	
-    	Robot.csvLogger.add("GyroCompensation", temp);
+    	CSVLogger.getInstance().add("GyroCompensation", temp);
     	
     	temp = new CSVLoggable(true) {
 			public double get() { return imu.isConnected() ? 1: 0; }  		
     	};    	
-    	Robot.csvLogger.add("GyroIsConnected", temp);
+    	CSVLogger.getInstance().add("GyroIsConnected", temp);
     	
     	temp = new CSVLoggable(true) {
 			public double get() { return imu.isCalibrating() ? 1: 0; }  		
     	};    	
-    	Robot.csvLogger.add("GyroIsCalibrating", temp);
+    	CSVLogger.getInstance().add("GyroIsCalibrating", temp);
     	
     	temp = new CSVLoggable(true) {
 			public double get() { return getX(); }  		
     	};     	
-    	Robot.csvLogger.add("ChassisX", temp);
+    	CSVLogger.getInstance().add("ChassisX", temp);
     	
     	temp = new CSVLoggable(true) {
 			public double get() { return getY(); }  		
     	};      	
-    	Robot.csvLogger.add("ChassisY", temp);
+    	CSVLogger.getInstance().add("ChassisY", temp);
     	
     	temp = new CSVLoggable(true) {
 			public double get() { return getPressure(); }  		
     	};  
-    	Robot.csvLogger.add("Pressure", temp);
+    	CSVLogger.getInstance().add("Pressure", temp);
     	
     	temp = new CSVLoggable(true) {
 			public double get() { 
@@ -198,47 +199,47 @@ public class Chassis extends Subsystem
 					state_int = 0.0;
 				return state_int;}  		
     	};  
-    	Robot.csvLogger.add("Shifter", temp);
+    	CSVLogger.getInstance().add("Shifter", temp);
     	
     	temp = new CSVLoggable(true) {
 			public double get() { return imu.getPitch(); }  		
     	};  
-    	Robot.csvLogger.add("ChassisPitch", temp);
+    	CSVLogger.getInstance().add("ChassisPitch", temp);
     	
     	temp = new CSVLoggable(true) {
 			public double get() { return imu.getRoll(); }  		
     	};  
-    	Robot.csvLogger.add("ChassisRoll", temp);
+    	CSVLogger.getInstance().add("ChassisRoll", temp);
     	
 /*    	temp = new CSVLoggable(true) {
 			public double get() { return imu.getDisplacementX(); }  		
     	};  
-    	Robot.csvLogger.add("ChassisIMUX", temp);
+    	CSVLogger.getInstance().add("ChassisIMUX", temp);
     	
     	temp = new CSVLoggable(true) {
 			public double get() { return imu.getDisplacementY(); }  		
     	};  
-    	Robot.csvLogger.add("ChassisIMUY", temp); */
+    	CSVLogger.getInstance().add("ChassisIMUY", temp); */
     	
 //    	temp = new CSVLoggable(true) {
 //    		public double get() { return Robot.powerDP.getChassisLeftDrive1Current(); }
 //    	};
-//    	Robot.csvLogger.add("LeftDrive1Current", temp);
+//    	CSVLogger.getInstance().add("LeftDrive1Current", temp);
 //    	
 //    	temp = new CSVLoggable() {
 //    		public double get() { return Robot.powerDP.getChassisLeftDrive2Current(); }
 //    	};
-//    	Robot.csvLogger.add("LeftDrive2Current", temp);
+//    	CSVLogger.getInstance().add("LeftDrive2Current", temp);
 //    	
 //    	temp = new CSVLoggable(true) {
 //    		public double get() { return Robot.powerDP.getChassisRightDrive1Current(); }
 //    	};
-//    	Robot.csvLogger.add("RightDrive1Current", temp);
+//    	CSVLogger.getInstance().add("RightDrive1Current", temp);
 //    	
 //    	temp = new CSVLoggable() {
 //    		public double get() { return Robot.powerDP.getChassisRightDrive2Current(); }
 //    	};
-//    	Robot.csvLogger.add("RightDrive2Current", temp);
+//    	CSVLogger.getInstance().add("RightDrive2Current", temp);
         
     }
 

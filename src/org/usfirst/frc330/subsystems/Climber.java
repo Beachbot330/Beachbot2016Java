@@ -15,6 +15,7 @@ import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.*;
 import org.usfirst.frc330.util.CSVLoggable;
+import org.usfirst.frc330.util.CSVLogger;
 import org.usfirst.frc330.util.Logger.Severity;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -50,12 +51,12 @@ public class Climber extends Subsystem
 		CSVLoggable temp = new CSVLoggable(true) {
 			public double get() { return isLowerClimberDeployed()?1:0; }
 		};
-		Robot.csvLogger.add("LowerClimberDeployed", temp);
+		CSVLogger.getInstance().add("LowerClimberDeployed", temp);
 
 		temp = new CSVLoggable(true) {
 			public double get() { return isUpperClimberDeployed()?1:0; }
 		};
-		Robot.csvLogger.add("UpperClimberDeployed", temp);
+		CSVLogger.getInstance().add("UpperClimberDeployed", temp);
     }
     
 
