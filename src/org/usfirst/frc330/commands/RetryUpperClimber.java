@@ -13,6 +13,7 @@ package org.usfirst.frc330.commands;
 
 import edu.wpi.first.wpilibj.command.BBCommand;
 import org.usfirst.frc330.Robot;
+import org.usfirst.frc330.util.Logger;
 import org.usfirst.frc330.util.Logger.Severity;
 
 /**
@@ -44,10 +45,10 @@ public class RetryUpperClimber extends BBCommand {
     protected void initialize() {
     	if(Robot.climber.isUpperClimberDeployed()){
     		debounce_count = debounce + 1;
-    		Robot.logger.println("Climber deploy confirmed!", Severity.INFO);
+    		Logger.getInstance().println("Climber deploy confirmed!", Severity.INFO);
     	}
     	else{
-    		Robot.logger.println("Climber deploy failed! Attempt Retry...", Severity.ERROR);
+    		Logger.getInstance().println("Climber deploy failed! Attempt Retry...", Severity.ERROR);
     		deployed = Robot.climber.upperClimberDeploy();
     		debounce_count = 0;
     	}

@@ -6,6 +6,7 @@ package org.usfirst.frc330.commands.drivecommands;
 
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.constants.ChassisConst;
+import org.usfirst.frc330.util.Logger;
 /*
  * This will drive the robot forwards to a waypoint on the field based on its 
  * original starting position.
@@ -33,6 +34,6 @@ public class DriveWaypointBackward extends DriveWaypoint {
             angle = angle-180;
         else
             angle = angle+180;
-        Robot.logger.println("Backward Angle: " + angle);
+        Logger.getInstance().println("Backward Angle: " + angle);
     }
 }

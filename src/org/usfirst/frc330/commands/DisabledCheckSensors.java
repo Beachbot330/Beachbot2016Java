@@ -62,7 +62,7 @@ public class DisabledCheckSensors extends BBCommand {
     	sensorFault = Robot.turret.getSensorFault();
     	if(sensorFault){
     		if (!buzzerOn && !resting) {
-    			Robot.logger.println("Talon Sensor Fault!", true, Severity.ERROR);
+    			Logger.getInstance().println("Talon Sensor Fault!", true, Severity.ERROR);
     			Robot.buzzer.enable(time);
             	buzzerOn = true;
     			timeyWhimey.reset();

@@ -6,6 +6,7 @@ package org.usfirst.frc330.commands.drivecommands;
 
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.constants.ChassisConst;
+import org.usfirst.frc330.util.Logger;
 import org.usfirst.frc330.util.Logger.Severity;
 import org.usfirst.frc330.wpilibj.PIDGains;
 /*
@@ -43,7 +44,7 @@ public class DriveWaypoint extends DriveDistanceAtAbsAngle_NoTurn {
         
         if (Double.isNaN(calcAngle) || Double.isInfinite(calcAngle))
         {
-        	Robot.logger.println("Infinite calcAngle in DriveWaypoint", Severity.ERROR);
+        	Logger.getInstance().println("Infinite calcAngle in DriveWaypoint", Severity.ERROR);
             calcAngle = 0;
         }
         
@@ -51,7 +52,7 @@ public class DriveWaypoint extends DriveDistanceAtAbsAngle_NoTurn {
         
         if (Double.isNaN(robotAngle) || Double.isInfinite(robotAngle))
         {
-        	Robot.logger.println("Infinite robotAngle in DriveWaypoint", Severity.ERROR);
+        	Logger.getInstance().println("Infinite robotAngle in DriveWaypoint", Severity.ERROR);
             robotAngle = 0;
         }
         if (Math.abs(robotAngle-calcAngle)<180)
@@ -68,8 +69,8 @@ public class DriveWaypoint extends DriveDistanceAtAbsAngle_NoTurn {
             while (robotAngle-calcAngle < -180)
                 calcAngle -= 360;
         }
-        Robot.logger.println("DriveWaypoint x: " + x + " y: " + y + " curX: " + curX + " curY: " + curY + " curAngle: " + robotAngle);
-        Robot.logger.println("DriveWaypoint distance: " + calcDistance + " angle: " + calcAngle);
+        Logger.getInstance().println("DriveWaypoint x: " + x + " y: " + y + " curX: " + curX + " curY: " + curY + " curAngle: " + robotAngle);
+        Logger.getInstance().println("DriveWaypoint distance: " + calcDistance + " angle: " + calcAngle);
         
         leftDistance = calcDistance;
         rightDistance = calcDistance;
@@ -81,8 +82,8 @@ public class DriveWaypoint extends DriveDistanceAtAbsAngle_NoTurn {
     	if (isTimedOut()) {
     		severity = Severity.WARNING;
     	}
-    	Robot.logger.println("DriveWaypoint Final Location   X: " + Robot.chassis.getX() + "  Y: " + Robot.chassis.getY(), severity);
-    	Robot.logger.println("DriveWaypoint Final DriveTrain Distances   Left: " + Robot.chassis.getLeftDistance() + "  Right: " + Robot.chassis.getRightDistance(), severity);
+    	Logger.getInstance().println("DriveWaypoint Final Location   X: " + Robot.chassis.getX() + "  Y: " + Robot.chassis.getY(), severity);
+    	Logger.getInstance().println("DriveWaypoint Final DriveTrain Distances   Left: " + Robot.chassis.getLeftDistance() + "  Right: " + Robot.chassis.getRightDistance(), severity);
         super.end();
     }
     

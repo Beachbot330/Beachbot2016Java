@@ -6,6 +6,7 @@ package org.usfirst.frc330.commands.drivecommands;
 
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.constants.ChassisConst;
+import org.usfirst.frc330.util.Logger;
 import org.usfirst.frc330.wpilibj.PIDGains;
  
 /**
@@ -30,6 +31,6 @@ public class TurnGyroWaypointBackward extends TurnGyroWaypoint {
             angle = angle-180;
         else
             angle = angle+180;
-        Robot.logger.println("Backward Angle: " + angle);
+        Logger.getInstance().println("Backward Angle: " + angle);
     }
 }

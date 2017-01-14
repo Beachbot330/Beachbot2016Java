@@ -1,6 +1,7 @@
 package org.usfirst.frc330.commands;
 
 import org.usfirst.frc330.Robot;
+import org.usfirst.frc330.util.Logger;
 import org.usfirst.frc330.util.Logger.Severity;
 
 import edu.wpi.first.wpilibj.command.BBCommand;
@@ -20,9 +21,9 @@ public class RotatePosition extends BBCommand {
     	x = -2*Robot.chassis.getX();
         y = -2*Robot.chassis.getY();
         
-        Robot.logger.println("Old coordinates: " + Robot.chassis.getX() + ", " + Robot.chassis.getY() +
+        Logger.getInstance().println("Old coordinates: " + Robot.chassis.getX() + ", " + Robot.chassis.getY() +
         					 "   At an angle of: " + Robot.chassis.getAngle(), Severity.DEBUG);
-        Robot.logger.println("Old gyro comp: " + Robot.chassis.getGyroComp(), Severity.DEBUG);
+        Logger.getInstance().println("Old gyro comp: " + Robot.chassis.getGyroComp(), Severity.DEBUG);
         
         if (Robot.chassis.getAngle() < 0)
         	Robot.chassis.setGyroComp(Robot.chassis.getGyroComp()+180);
@@ -31,9 +32,9 @@ public class RotatePosition extends BBCommand {
         
     	Robot.chassis.setXYoffset(x, y);
     	
-    	Robot.logger.println("New coordinates: " + Robot.chassis.getX() + ", " + Robot.chassis.getY() +
+    	Logger.getInstance().println("New coordinates: " + Robot.chassis.getX() + ", " + Robot.chassis.getY() +
 				 			 "   At an angle of: " + Robot.chassis.getAngle(), Severity.DEBUG);
-    	Robot.logger.println("New gyro comp: " + Robot.chassis.getGyroComp(), Severity.DEBUG);
+    	Logger.getInstance().println("New gyro comp: " + Robot.chassis.getGyroComp(), Severity.DEBUG);
     }
 
     // Called repeatedly when this Command is scheduled to run

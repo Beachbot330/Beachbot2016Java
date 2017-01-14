@@ -18,6 +18,7 @@ import org.usfirst.frc330.constants.TurretConst;
 import org.usfirst.frc330.constants.TurretConstPract;
 import org.usfirst.frc330.util.CSVLoggable;
 import org.usfirst.frc330.util.CSVLogger;
+import org.usfirst.frc330.util.Logger;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
@@ -453,15 +454,15 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 			if (key.equals("p") || key.equals("i") || key.equals("d") || key.equals("f")) {
 				if (turret.getP() != table.getNumber("p", 0.0) || turret.getI() != table.getNumber("i", 0.0)
 						|| turret.getD() != table.getNumber("d", 0.0) || turret.getF() != table.getNumber("f", 0.0))
-					Robot.logger.println("Changing PID from SmartDashboard.");
-					Robot.logger.println("Old Value P: " + turret.getP() + " New Value: " + table.getNumber("p", 0.0));
-					Robot.logger.println("Old Value I: " + turret.getI() + " New Value: " + table.getNumber("i", 0.0));
-					Robot.logger.println("Old Value D: " + turret.getD() + " New Value: " + table.getNumber("d", 0.0));
-					Robot.logger.println("Old Value F: " + turret.getF() + " New Value: " + table.getNumber("f", 0.0));
+					Logger.getInstance().println("Changing PID from SmartDashboard.");
+					Logger.getInstance().println("Old Value P: " + turret.getP() + " New Value: " + table.getNumber("p", 0.0));
+					Logger.getInstance().println("Old Value I: " + turret.getI() + " New Value: " + table.getNumber("i", 0.0));
+					Logger.getInstance().println("Old Value D: " + turret.getD() + " New Value: " + table.getNumber("d", 0.0));
+					Logger.getInstance().println("Old Value F: " + turret.getF() + " New Value: " + table.getNumber("f", 0.0));
 					setPIDConstants(table.getNumber("p", 0.0), table.getNumber("i", 0.0), table.getNumber("d", 0.0));
 			} else if (key.equals("setpoint")) {
 				if (getTurretSetpoint() != ((Double) value).doubleValue())
-					Robot.logger.println("Changing Setpoint from SmartDashboard. Old Value: " + getTurretSetpoint() + " New Value: " + ((Double) value).doubleValue());
+					Logger.getInstance().println("Changing Setpoint from SmartDashboard. Old Value: " + getTurretSetpoint() + " New Value: " + ((Double) value).doubleValue());
 					setTurretAngle(((Double) value).doubleValue());
 			} else if (key.equals("enabled")) {
 				if (isEnable() != ((Boolean) value).booleanValue()) {
@@ -487,9 +488,9 @@ public class Turret extends Subsystem implements LiveWindowSendable {
 			throw new RuntimeException("Unsupported control mode for arm: " + newControlMode.toString());
 		}
 		if (newControlMode != oldControlMode) {
-			Robot.logger.println("Old Turret Mode: " + oldControlMode);
+			Logger.getInstance().println("Old Turret Mode: " + oldControlMode);
 			turret.changeControlMode(newControlMode);
-			Robot.logger.println("New Turret Mode: " + newControlMode);
+			Logger.getInstance().println("New Turret Mode: " + newControlMode);
 			if (SCtable != null)
 				SCtable.putNumber("Mode", newControlMode.getValue());
 		}

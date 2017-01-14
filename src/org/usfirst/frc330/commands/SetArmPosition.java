@@ -14,6 +14,7 @@ package org.usfirst.frc330.commands;
 
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.constants.ArmConst;
+import org.usfirst.frc330.util.Logger;
 import org.usfirst.frc330.util.Logger.Severity;
 import org.usfirst.frc330.wpilibj.PIDGains;
 
@@ -66,7 +67,7 @@ public class  SetArmPosition extends BBCommand {
     	else
     		{setTimeout(9999999);}
     	Robot.arm.enableArm();
-    	Robot.logger.println("Arm set to: " + this.angle + " degrees, with tolerance: " + this.tolerance);
+    	Logger.getInstance().println("Arm set to: " + this.angle + " degrees, with tolerance: " + this.tolerance);
     	
     	Robot.arm.setPIDConstants(gains.getP(), gains.getI(), gains.getD());
     	Robot.arm.setMaxOutput(gains.getMaxOutput());
@@ -84,7 +85,7 @@ public class  SetArmPosition extends BBCommand {
 
     	if (isTimedOut())
     	{
-    		Robot.logger.println("SetArmPosition setpoint: " + this.angle + "   Position at timeout: " + Robot.arm.getArmAngle(), Severity.WARNING);
+    		Logger.getInstance().println("SetArmPosition setpoint: " + this.angle + "   Position at timeout: " + Robot.arm.getArmAngle(), Severity.WARNING);
     	}
     	return (Robot.arm.onArmTarget() || isTimedOut());
     }

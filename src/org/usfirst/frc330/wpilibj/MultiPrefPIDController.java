@@ -44,19 +44,19 @@ public class MultiPrefPIDController extends PrefPIDController{
     }
     protected void savePIDPref()
     {
-//        Robot.Logger.println("savePIDPref: " + name+gainName);
+//        Logger.getInstance().println("savePIDPref: " + name+gainName);
         Preferences.getInstance().putDouble(name+gainName+"P", getP());
         Preferences.getInstance().putDouble(name+gainName+"I", getI());
         Preferences.getInstance().putDouble(name+gainName+"D", getD());
         Preferences.getInstance().putDouble(name+gainName+"F", getF());
-//        Robot.Logger.println("Saved PID Preferences: " + this.name);
+//        Logger.getInstance().println("Saved PID Preferences: " + this.name);
     }
 
     protected void readPIDPref(double p, double i, double d, double f, String gainName) {
         String savedName = name;
         this.gainName = gainName;
         name = savedName+gainName;
-//        Robot.Logger.println("readPIDPref: " +name);
+//        Logger.getInstance().println("readPIDPref: " +name);
         super.readPIDPref(p, i, d, f);
         name = savedName;
         if (!gainName.equals(SmartDashboard.getString(name+"gainName", name+gainName)))
@@ -92,10 +92,10 @@ public class MultiPrefPIDController extends PrefPIDController{
                 boolean prevSave = false;
 
                 public void valueChanged(ITable table, String key, Object value, boolean isNew) {
-//                    Robot.Logger.println(key + " changed");
+//                    Logger.getInstance().println(key + " changed");
                     if (key.equals("gainName"))
                     {
-//                        Robot.Logger.println("prevSave: " + prevSave + "curSave: " + ((Boolean) value).booleanValue());
+//                        Logger.getInstance().println("prevSave: " + prevSave + "curSave: " + ((Boolean) value).booleanValue());
                         MultiPrefSendablePIDController.this.setGainName((String)value);
                     }                
                 }

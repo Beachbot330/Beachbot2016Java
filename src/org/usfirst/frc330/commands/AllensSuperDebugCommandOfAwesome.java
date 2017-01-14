@@ -13,6 +13,7 @@ package org.usfirst.frc330.commands;
 
 import edu.wpi.first.wpilibj.command.BBCommand;
 import org.usfirst.frc330.Robot;
+import org.usfirst.frc330.util.Logger;
 import org.usfirst.frc330.util.Logger.Severity;
 
 /**
@@ -39,12 +40,12 @@ public class AllensSuperDebugCommandOfAwesome extends BBCommand {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.logger.println("Running Debug Command", true, Severity.DEBUG);
-    	Robot.logger.println("Arm Angle: " + Robot.arm.getArmAngle(), true, Severity.DEBUG);
-    	Robot.logger.println("RAW Position: " + Robot.arm.getArmPositionTicks(), true, Severity.DEBUG);
-    	Robot.logger.println("Lower Limit: " + Robot.arm.getLowerLimit(), true, Severity.DEBUG);
-    	Robot.logger.println("Upper Limit: " + Robot.arm.getUpperLimit(), true, Severity.DEBUG);
-    	Robot.logger.println("Forward Limit: " + Robot.arm.getLowerLimitTripped() +
+    	Logger.getInstance().println("Running Debug Command", true, Severity.DEBUG);
+    	Logger.getInstance().println("Arm Angle: " + Robot.arm.getArmAngle(), true, Severity.DEBUG);
+    	Logger.getInstance().println("RAW Position: " + Robot.arm.getArmPositionTicks(), true, Severity.DEBUG);
+    	Logger.getInstance().println("Lower Limit: " + Robot.arm.getLowerLimit(), true, Severity.DEBUG);
+    	Logger.getInstance().println("Upper Limit: " + Robot.arm.getUpperLimit(), true, Severity.DEBUG);
+    	Logger.getInstance().println("Forward Limit: " + Robot.arm.getLowerLimitTripped() +
     						"   Reverse Limit: " + Robot.arm.getUpperLimitTripped(), true, Severity.DEBUG);
     }
 

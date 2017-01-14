@@ -5,6 +5,7 @@ package org.usfirst.frc330.commands;
 import org.usfirst.frc330.Robot;
 import edu.wpi.first.wpilibj.command.BBCommand;
 import org.usfirst.frc330.commands.*;
+import org.usfirst.frc330.util.Logger;
 
 public class ArmDeployWait extends BBCommand {
 
@@ -20,11 +21,11 @@ public class ArmDeployWait extends BBCommand {
     	commandOne = new Wait(time);
     	commandTwo = new Wait(0.1);
     	if(Robot.climber.isLowerClimberDeployed()){
-    		Robot.logger.println("Lower climber deployed, starting 2s timer");
+    		Logger.getInstance().println("Lower climber deployed, starting 2s timer");
     		commandOne.start();
     	}
     	else{
-    		Robot.logger.println("Starting 0.1s timer");
+    		Logger.getInstance().println("Starting 0.1s timer");
     		commandTwo.start();
     	}
     }

@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.constants.TurretConst;
 import org.usfirst.frc330.constants.TurretConstPract;
+import org.usfirst.frc330.util.Logger;
 import org.usfirst.frc330.util.Logger.Severity;
 
 /**
@@ -171,11 +172,11 @@ public class AimSmart extends BBCommand {
 			counter++;
 			break;
 		default:
-			Robot.logger.println("Got to default case in AimSmart", true, Severity.ERROR);
+			Logger.getInstance().println("Got to default case in AimSmart", true, Severity.ERROR);
 			break;
     	}
     	if (prevState != state) {
-    		Robot.logger.println("Aim Smart Old State: " + prevState + " New State: " + state, true, Severity.INFO);
+    		Logger.getInstance().println("Aim Smart Old State: " + prevState + " New State: " + state, true, Severity.INFO);
     		prevState = state;
     		counter = 0;
     		toleranceCount = 0;
@@ -188,7 +189,7 @@ public class AimSmart extends BBCommand {
     protected boolean isFinished() {
     	if (isTimedOut())
     	{
-    		Robot.logger.println("Aim Timed Out. Aim setpoint: " + this.setpoint + "   Position at timeout: " + Robot.turret.getTurretAngle() + " Aim State: " + state,Severity.WARNING);
+    		Logger.getInstance().println("Aim Timed Out. Aim setpoint: " + this.setpoint + "   Position at timeout: " + Robot.turret.getTurretAngle() + " Aim State: " + state,Severity.WARNING);
     	}
     	return ( (state == AimState.Aimed && isTargetRightDistance()) || isTimedOut() );
     }

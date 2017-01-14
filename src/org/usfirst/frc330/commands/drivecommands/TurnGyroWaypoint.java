@@ -6,6 +6,7 @@ package org.usfirst.frc330.commands.drivecommands;
 
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.constants.ChassisConst;
+import org.usfirst.frc330.util.Logger;
 import org.usfirst.frc330.util.Logger.Severity;
 import org.usfirst.frc330.wpilibj.PIDGains;
  
@@ -42,7 +43,7 @@ public class TurnGyroWaypoint extends TurnGyroAbs {
         
         if (Double.isNaN(calcAngle) || Double.isInfinite(calcAngle))
         {
-        	Robot.logger.println("Infinite calcAngle in TurnGyroWaypoint", Severity.ERROR);
+        	Logger.getInstance().println("Infinite calcAngle in TurnGyroWaypoint", Severity.ERROR);
             calcAngle = 0;
         }
         
@@ -50,12 +51,12 @@ public class TurnGyroWaypoint extends TurnGyroAbs {
         
         if (Double.isNaN(robotAngle) || Double.isInfinite(robotAngle))
         {
-        	Robot.logger.println("Infinite robotAngle in TurnWaypoint", Severity.ERROR);
+        	Logger.getInstance().println("Infinite robotAngle in TurnWaypoint", Severity.ERROR);
             robotAngle = 0;
         }
  
-        Robot.logger.println("Robot angle: " + robotAngle, Severity.DEBUG);
-        Robot.logger.println("Calc angle: " + calcAngle, Severity.DEBUG);
+        Logger.getInstance().println("Robot angle: " + robotAngle, Severity.DEBUG);
+        Logger.getInstance().println("Calc angle: " + calcAngle, Severity.DEBUG);
         
         if (Math.abs(robotAngle-calcAngle)<180)
         {
@@ -71,7 +72,7 @@ public class TurnGyroWaypoint extends TurnGyroAbs {
             while (Math.abs(robotAngle-calcAngle)>180)
                 calcAngle -= 360;
         }
-       Robot.logger.println("angle: " + calcAngle);
+       Logger.getInstance().println("angle: " + calcAngle);
         
         angle = calcAngle;
     }

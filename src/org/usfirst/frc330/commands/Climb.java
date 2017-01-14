@@ -19,6 +19,7 @@ import org.usfirst.frc330.commands.commandgroups.Shoot;
 import org.usfirst.frc330.commands.commandgroups.ShootUpperStage;
 import org.usfirst.frc330.constants.ArmConst;
 import org.usfirst.frc330.constants.ClimberConst;
+import org.usfirst.frc330.util.Logger;
 import org.usfirst.frc330.constants.ClimberConst;
 
 /**
@@ -53,7 +54,7 @@ public class Climb extends BBCommand {
     // Called just before this Command runs the first time
     protected void initialize() {
     	if (Robot.oi.getDriverR().getRawButton(3) && !initalized) {
-    		Robot.logger.println("Climber init calling init", false);
+    		Logger.getInstance().println("Climber init calling init", false);
     		init();
     	}
     	
@@ -68,7 +69,7 @@ public class Climb extends BBCommand {
 		rightStartDistance = Robot.chassis.getRightDistance();
 		initalized = true;
 		climbed = false;
-		Robot.logger.println("One time climber init", false);
+		Logger.getInstance().println("One time climber init", false);
     }
 
     double leftDriven = 0;
@@ -81,7 +82,7 @@ public class Climb extends BBCommand {
     	
     	leftDriven = Robot.chassis.getLeftDistance() - leftStartDistance;
     	rightDriven = Robot.chassis.getRightDistance() - rightStartDistance;
-    	Robot.logger.println("Left Climber Distance: " + leftDriven + "  Right Climber Distance: " + rightDriven);
+    	Logger.getInstance().println("Left Climber Distance: " + leftDriven + "  Right Climber Distance: " + rightDriven);
     	if (initalized && Robot.oi.getDriverR().getRawButton(3) && (leftDriven > -ClimberConst.climberMaxDistance || rightDriven > -ClimberConst.climberMaxDistance) )
     		Robot.chassis.tankDrive(-ClimberConst.climberSpeed, -ClimberConst.climberSpeed);
     	else 

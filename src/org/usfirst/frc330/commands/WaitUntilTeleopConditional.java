@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.command.BBCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc330.Robot;
+import org.usfirst.frc330.util.Logger;
 import org.usfirst.frc330.util.Logger.Severity;
 
 /**
@@ -29,10 +30,10 @@ public class WaitUntilTeleopConditional extends BBCommand {
 
     protected void initialize() {
     	if (SmartDashboard.getBoolean("driveHome", false)){
-    		Robot.logger.println("Robot done, waiting for teleop", Severity.DEBUG);
+    		Logger.getInstance().println("Robot done, waiting for teleop", Severity.DEBUG);
     	}
     	else{
-    		Robot.logger.println("Returning to start location", Severity.DEBUG);
+    		Logger.getInstance().println("Returning to start location", Severity.DEBUG);
     	}
     }
 

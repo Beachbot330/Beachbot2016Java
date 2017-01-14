@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.command.BBCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc330.Robot;
+import org.usfirst.frc330.util.Logger;
 import org.usfirst.frc330.util.Logger.Severity;
 
 /**
@@ -50,7 +51,7 @@ public class ShootCommand extends BBCommand {
     		severity = Severity.ERROR;
     	shotNumber++;
         shootOffTimer = Timer.getFPGATimestamp() + 0.5;
-        Robot.logger.println("Shot Number: " + shotNumber + " " + name + "   Air Pressure: " +
+        Logger.getInstance().println("Shot Number: " + shotNumber + " " + name + "   Air Pressure: " +
         					 Robot.chassis.getPressure(), severity);
         SmartDashboard.putString("savePictureName", "Shot_" + shotNumber + "_begin");
         SmartDashboard.putBoolean("savePicture", true);
@@ -76,6 +77,6 @@ public class ShootCommand extends BBCommand {
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.pickup.shootSolenoidsOff();
-    	Robot.logger.println("Shot Number: " + shotNumber + " was interrupted", Severity.WARNING);
+    	Logger.getInstance().println("Shot Number: " + shotNumber + " was interrupted", Severity.WARNING);
     }
 }

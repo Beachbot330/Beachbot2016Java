@@ -5,6 +5,7 @@
 package org.usfirst.frc330.wpilibj;
 
 import org.usfirst.frc330.Robot;
+import org.usfirst.frc330.util.Logger;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -32,7 +33,7 @@ public class MultiPIDController extends PIDController{
 
     public void setPID(PIDGains gains) {
         setPID(gains.getP(), gains.getI(), gains.getD(), gains.getF());
-        Robot.logger.println("Changing " + name + " Gains to " + gains.getName() + ". P=" + gains.getP() + " MaxOutput=" + gains.getMaxOutput() + " MaxOutputStep=" + gains.getMaxOutputStep(),false);        
+        Logger.getInstance().println("Changing " + name + " Gains to " + gains.getName() + ". P=" + gains.getP() + " MaxOutput=" + gains.getMaxOutput() + " MaxOutputStep=" + gains.getMaxOutputStep(),false);        
     }
     
     public void setMaxOutput(double maxOutput) {

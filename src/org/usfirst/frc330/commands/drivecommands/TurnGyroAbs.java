@@ -11,6 +11,7 @@ package org.usfirst.frc330.commands.drivecommands;
 
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.constants.ChassisConst;
+import org.usfirst.frc330.util.Logger;
 import org.usfirst.frc330.util.Logger.Severity;
 import org.usfirst.frc330.wpilibj.PIDGains;
 
@@ -73,8 +74,8 @@ public class  TurnGyroAbs extends BBCommand {
         Robot.chassis.gyroPID.setSetpoint(angle);
         maxOutputMax = gains.getMaxOutput();
         maxOutputStep = gains.getMaxOutputStep();
-        Robot.logger.println("TurnGyroAbs Setpoint: " + angle);
-        Robot.logger.println("Max output: " + gains.getMaxOutput());
+        Logger.getInstance().println("TurnGyroAbs Setpoint: " + angle);
+        Logger.getInstance().println("Max output: " + gains.getMaxOutput());
         if (enable) 
             Robot.chassis.gyroPID.enable();
     }
@@ -103,7 +104,7 @@ public class  TurnGyroAbs extends BBCommand {
         }
         if (isTimedOut())
         	severity = Severity.WARNING;
-        Robot.logger.println("TurnGyroAbs Final Angle: " + Robot.chassis.getAngle() + "  Setpoint: " + angle, severity);
+        Logger.getInstance().println("TurnGyroAbs Final Angle: " + Robot.chassis.getAngle() + "  Setpoint: " + angle, severity);
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run

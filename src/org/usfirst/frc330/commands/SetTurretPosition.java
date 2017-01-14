@@ -14,6 +14,7 @@ package org.usfirst.frc330.commands;
 
 import org.usfirst.frc330.Robot;
 import org.usfirst.frc330.constants.TurretConst;
+import org.usfirst.frc330.util.Logger;
 import org.usfirst.frc330.util.Logger.Severity;
 
 import edu.wpi.first.wpilibj.command.BBCommand;
@@ -52,7 +53,7 @@ public class  SetTurretPosition extends BBCommand {
     	else
     		{setTimeout(9999999);}
     	Robot.turret.enableTurret();
-    	Robot.logger.println("Arm turret to: " + this.angle + " degrees, with tolerance: " + this.tolerance);
+    	Logger.getInstance().println("Arm turret to: " + this.angle + " degrees, with tolerance: " + this.tolerance);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -63,7 +64,7 @@ public class  SetTurretPosition extends BBCommand {
     protected boolean isFinished() {
     	if (isTimedOut())
     	{
-    		Robot.logger.println("SetTurretPosition setpoint: " 
+    		Logger.getInstance().println("SetTurretPosition setpoint: " 
     								+ this.angle
     								+ "   Position at timeout: " 
     								+ Robot.turret.getTurretAngle(), Severity.WARNING);

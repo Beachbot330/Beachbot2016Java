@@ -17,6 +17,7 @@ import org.usfirst.frc330.commands.ManualArm;
 import org.usfirst.frc330.constants.ArmConst;
 import org.usfirst.frc330.util.CSVLoggable;
 import org.usfirst.frc330.util.CSVLogger;
+import org.usfirst.frc330.util.Logger;
 import org.usfirst.frc330.util.Logger.Severity;
 
 import com.ctre.CANTalon;
@@ -212,13 +213,13 @@ public class Arm extends Subsystem implements LiveWindowSendable {
             SCtable.putNumber("p", P);
             SCtable.putNumber("i", I);
             SCtable.putNumber("d", D);
-            Robot.logger.println("Arm PID set to: " + P + ", " + I + ", " + D, Severity.INFO);
+            Logger.getInstance().println("Arm PID set to: " + P + ", " + I + ", " + D, Severity.INFO);
 		}
 	}
     
     public void setMaxOutput(double maxOutput){
     	armL.configMaxOutputVoltage(maxOutput);
-    	Robot.logger.println("Max arm output set to: " + maxOutput, Severity.INFO);
+    	Logger.getInstance().println("Max arm output set to: " + maxOutput, Severity.INFO);
     }
     
     public int getCurrentQuadrant() {
@@ -240,8 +241,8 @@ public class Arm extends Subsystem implements LiveWindowSendable {
     	if ( quadrant >= ArmConst.minQuadrant && quadrant <= ArmConst.maxQuadrant )
     	{
     		// Set the position
-    		Robot.logger.println("Original Quadrant: " + currentQuadrant, true, Severity.WARNING);
-    		Robot.logger.println("New Quadrant: " + quadrant, true, Severity.WARNING);
+    		Logger.getInstance().println("Original Quadrant: " + currentQuadrant, true, Severity.WARNING);
+    		Logger.getInstance().println("New Quadrant: " + quadrant, true, Severity.WARNING);
     		armL.setPosition(convertDegreesToRotations(currentArmAngle + angleChange));
     		if (armL.getControlMode() == TalonControlMode.Position)
     			setArmAngle(getArmAngle() + angleChange);
@@ -446,15 +447,15 @@ public class Arm extends Subsystem implements LiveWindowSendable {
 			if (key.equals("p") || key.equals("i") || key.equals("d") || key.equals("f")) {
 				if (armL.getP() != table.getNumber("p", 0.0) || armL.getI() != table.getNumber("i", 0.0)
 						|| armL.getD() != table.getNumber("d", 0.0) || armL.getF() != table.getNumber("f", 0.0))
-					Robot.logger.println("Changing PID from SmartDashboard.");
-					Robot.logger.println("Old Value P: " + armL.getP() + " New Value: " + table.getNumber("p", 0.0));
-					Robot.logger.println("Old Value I: " + armL.getI() + " New Value: " + table.getNumber("i", 0.0));
-					Robot.logger.println("Old Value D: " + armL.getD() + " New Value: " + table.getNumber("d", 0.0));
-					Robot.logger.println("Old Value F: " + armL.getF() + " New Value: " + table.getNumber("f", 0.0));
+					Logger.getInstance().println("Changing PID from SmartDashboard.");
+					Logger.getInstance().println("Old Value P: " + armL.getP() + " New Value: " + table.getNumber("p", 0.0));
+					Logger.getInstance().println("Old Value I: " + armL.getI() + " New Value: " + table.getNumber("i", 0.0));
+					Logger.getInstance().println("Old Value D: " + armL.getD() + " New Value: " + table.getNumber("d", 0.0));
+					Logger.getInstance().println("Old Value F: " + armL.getF() + " New Value: " + table.getNumber("f", 0.0));
 					setPIDConstants(table.getNumber("p", 0.0), table.getNumber("i", 0.0), table.getNumber("d", 0.0));
 			} else if (key.equals("setpoint")) {
 				if (getSetpoint() != ((Double) value).doubleValue())
-					Robot.logger.println("Changing Setpoint from SmartDashboard. Old Value: " + getSetpoint() + " New Value: " + ((Double) value).doubleValue());
+					Logger.getInstance().println("Changing Setpoint from SmartDashboard. Old Value: " + getSetpoint() + " New Value: " + ((Double) value).doubleValue());
 					setArmAngle(((Double) value).doubleValue());
 			} else if (key.equals("enabled")) {
 				if (isEnable() != ((Boolean) value).booleanValue()) {
@@ -480,9 +481,9 @@ public class Arm extends Subsystem implements LiveWindowSendable {
 			throw new RuntimeException("Unsupported control mode for arm: " + newControlMode.toString());
 		}
 		if (oldControlMode != newControlMode) {
-			//Robot.logger.println("Old Arm Mode: " + oldControlMode);
+			//Logger.getInstance().println("Old Arm Mode: " + oldControlMode);
 			armL.changeControlMode(newControlMode);
-			//Robot.logger.println("New Arm Mode: " + newControlMode);
+			//Logger.getInstance().println("New Arm Mode: " + newControlMode);
 			if (SCtable != null)
 				SCtable.putNumber("Mode", newControlMode.getValue());
 		}
@@ -501,7 +502,7 @@ public class Arm extends Subsystem implements LiveWindowSendable {
 			return true;
 		}
 		else {
-			Robot.logger.println("Not safe to deploy lower climer. Current angle: " + armAngle, Severity.WARNING);
+			Logger.getInstance().println("Not safe to deploy lower climer. Current angle: " + armAngle, Severity.WARNING);
 			return false;
 		}
 	}

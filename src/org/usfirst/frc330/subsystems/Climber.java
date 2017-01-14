@@ -16,6 +16,7 @@ import org.usfirst.frc330.RobotMap;
 import org.usfirst.frc330.commands.*;
 import org.usfirst.frc330.util.CSVLoggable;
 import org.usfirst.frc330.util.CSVLogger;
+import org.usfirst.frc330.util.Logger;
 import org.usfirst.frc330.util.Logger.Severity;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -79,14 +80,14 @@ public class Climber extends Subsystem
     	if (Robot.arm.isSafeToDeployLowerClimber())
     	{
     		pivotLow.set(true);
-    		Robot.logger.println("Deploying (Unlocking) Lower Climber Stage", Severity.INFO);
+    		Logger.getInstance().println("Deploying (Unlocking) Lower Climber Stage", Severity.INFO);
     	}
     	else
-    		Robot.logger.println("Unsafe to deploy lower climber", true, Severity.WARNING);
+    		Logger.getInstance().println("Unsafe to deploy lower climber", true, Severity.WARNING);
     }
     
     public void lockLowerClimber() {
-    	Robot.logger.println("Locking Lower Climber Stage", Severity.INFO);
+    	Logger.getInstance().println("Locking Lower Climber Stage", Severity.INFO);
     	pivotLow.set(false);
     }
     
@@ -104,11 +105,11 @@ public class Climber extends Subsystem
     {
     	if (Robot.arm.isSafeToDeployUpperClimber() && isLowerClimberDeployed()){
     		pivotHigh.set(true);
-    		Robot.logger.println("Deploying (Unlocking) Upper Climber Stage", Severity.INFO);
+    		Logger.getInstance().println("Deploying (Unlocking) Upper Climber Stage", Severity.INFO);
     		return true;
     	}
     	else{
-    		Robot.logger.println("Unsafe to deploy upper climber", true, Severity.WARNING);
+    		Logger.getInstance().println("Unsafe to deploy upper climber", true, Severity.WARNING);
     		return false;
     	}
     }
@@ -119,7 +120,7 @@ public class Climber extends Subsystem
     }
     
     public void lockUpperClimber() {
-    	Robot.logger.println("Locking Upper Climber Stage", Severity.INFO);
+    	Logger.getInstance().println("Locking Upper Climber Stage", Severity.INFO);
     	pivotHigh.set(false);
     }
 
